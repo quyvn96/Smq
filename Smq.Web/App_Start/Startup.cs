@@ -1,24 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
-using Owin;
-using Smq.Data;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.DataProtection;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
-using Autofac;
-using System.Reflection;
-using Smq.Data.Infrastructure;
-using Smq.Service;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using System.Web.Mvc;
-using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
+using Owin;
+using Smq.Data;
+using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
-using System.Web;
-using Smq.Web.App_Start;
 using Smq.Model.Models;
+using Smq.Service;
+using System.Reflection;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
 
 [assembly: OwinStartup(typeof(Smq.Web.App_Start.Startup))]
 
@@ -32,6 +27,7 @@ namespace Smq.Web.App_Start
             ConfigAutofac(app);
             ConfigureAuth(app);
         }
+
         private void ConfigAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
@@ -51,7 +47,6 @@ namespace Smq.Web.App_Start
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
-
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
@@ -66,7 +61,6 @@ namespace Smq.Web.App_Start
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
-
         }
     }
 }

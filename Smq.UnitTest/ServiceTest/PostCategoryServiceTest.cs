@@ -1,14 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
 using Smq.Service;
+using System.Collections.Generic;
 
 namespace Smq.UnitTest.ServiceTest
 {
@@ -19,6 +15,7 @@ namespace Smq.UnitTest.ServiceTest
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IPostCategoryService _categoryService;
         private List<PostCategory> _listCategory;
+
         [TestInitialize]
         public void Initialize()
         {
@@ -32,7 +29,8 @@ namespace Smq.UnitTest.ServiceTest
                 new PostCategory(){ID=3,Name="DM3",Status=true},
             };
         }
-        [TestMethod]    
+
+        [TestMethod]
         public void PostCategory_Service_GetAll()
         {
             _mockRepository.Setup(n => n.GetAll(null)).Returns(_listCategory);
@@ -40,6 +38,7 @@ namespace Smq.UnitTest.ServiceTest
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result.Count);
         }
+
         [TestMethod]
         public void PostCategory_Service_Create()
         {
@@ -52,7 +51,7 @@ namespace Smq.UnitTest.ServiceTest
                 p.ID = 1;
                 return p;
             });
-            var result =  _categoryService.Add(category);
+            var result = _categoryService.Add(category);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.ID);

@@ -8,8 +8,9 @@ namespace Smq.Model.Models
     {
         [Key]
         [MaxLength(50)]
-        public string ID { get; set; }
+        public string ID { set; get; }
+
         [Required]
-        public string Name { get; set; }    
+        public string Content { set; get; }
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Smq.Data;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security.Cookies;
-using Smq.Web.App_Start;
 using Smq.Model.Models;
+using System;
 
 [assembly: OwinStartup(typeof(Smq.Web.App_Start.Startup))]
 

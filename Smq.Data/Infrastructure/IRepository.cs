@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Smq.Data.Infrastructure
 {
@@ -15,6 +14,7 @@ namespace Smq.Data.Infrastructure
 
         // Marks an entity to be removed
         T Delete(T entity);
+
         T Delete(int id);
 
         //Delete multi records

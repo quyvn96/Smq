@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Smq.Model.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Smq.Data
 {
@@ -16,6 +11,7 @@ namespace Smq.Data
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
         public DbSet<Footer> Footers { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuGroup> MenuGroups { get; set; }
@@ -39,9 +35,10 @@ namespace Smq.Data
         {
             return new SmqSolutionDbContext();
         }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            builder.Entity<IdentityUserRole>().HasKey(n => new { n.UserId,n.RoleId});
+            builder.Entity<IdentityUserRole>().HasKey(n => new { n.UserId, n.RoleId });
             builder.Entity<IdentityUserLogin>().HasKey(n => n.UserId);
         }
     }

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Smq.Model.Abstract;
-using System.Collections.Generic;
 
 namespace Smq.Model.Models
 {
@@ -10,28 +10,28 @@ namespace Smq.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int ID { set; get; }
 
         [Required]
         [MaxLength(256)]
-        public string Name { get; set; }
+        public string Name { set; get; }
 
         [Required]
         [Column(TypeName = "varchar")]
         [MaxLength(256)]
-        public string Alias { get; set; }
+        public string Alias { set; get; }
 
         [MaxLength(500)]
-        public string Description { get; set; }
+        public string Description { set; get; }
 
-        public int? ParentID { get; set; }
-        public int? DisplayOrder { get; set; }
+        public int? ParentID { set; get; }
+        public int? DisplayOrder { set; get; }
 
         [MaxLength(256)]
-        public string Image { get; set; }
+        public string Image { set; get; }
 
-        public bool? HomeFlag { get; set; }
+        public bool? HomeFlag { set; get; }
 
-        public virtual IEnumerable<Post> Posts { get; set; }
+        public virtual IEnumerable<Post> Posts { set; get; }
     }
 }

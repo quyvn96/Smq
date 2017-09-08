@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Smq.Model.Models
 {
@@ -7,17 +7,18 @@ namespace Smq.Model.Models
     public class ProductTag
     {
         [Key]
-        public int ProductID { get; set; }
+        [Column(Order = 1)]
+        public int ProductID { set; get; }
 
         [Key]
-        [Column(TypeName = "varchar")]
+        [Column(TypeName = "varchar", Order = 2)]
         [MaxLength(50)]
-        public string TagID { get; set; }
+        public string TagID { set; get; }
 
         [ForeignKey("ProductID")]
-        public virtual Product Product { get; set; }
+        public virtual Product Product { set; get; }
 
         [ForeignKey("TagID")]
-        public virtual Tag Tag { get; set; }
+        public virtual Tag Tag { set; get; }
     }
 }

@@ -3,11 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Smq.Data;
+using Smq.Model.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Smq.Data;
-using Smq.Model.Models;
 
 namespace Smq.Web.App_Start
 {
@@ -18,6 +18,7 @@ namespace Smq.Web.App_Start
         {
         }
     }
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
