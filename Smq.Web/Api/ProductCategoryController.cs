@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
+using Smq.Model.Models;
+using Smq.Service;
+using Smq.Web.Infrastructure.Core;
+using Smq.Web.Infrastructure.Extensions;
+using Smq.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Smq.Model.Models;
-using Smq.Service;
-using Smq.Web.Infrastructure.Core;
-using Smq.Web.Models;
-using Smq.Web.Infrastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace Smq.Web.Api
 {
@@ -17,6 +18,7 @@ namespace Smq.Web.Api
     public class ProductCategoryController : ApiControllerBase
     {
         #region Init
+
         private IProductCategoryService _productCategoryService;
 
         public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService)
@@ -24,7 +26,9 @@ namespace Smq.Web.Api
         {
             this._productCategoryService = productCategoryService;
         }
-        #endregion
+
+        #endregion Init
+
         [Route("getallparents")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
@@ -32,7 +36,7 @@ namespace Smq.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 var model = _productCategoryService.GetAll();
-                
+
                 var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
@@ -42,7 +46,7 @@ namespace Smq.Web.Api
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        public HttpResponseMessage GetById(HttpRequestMessage request,int id)
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -80,7 +84,6 @@ namespace Smq.Web.Api
                 return response;
             });
         }
-
 
         [Route("create")]
         [HttpPost]
@@ -157,6 +160,33 @@ namespace Smq.Web.Api
 
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach (var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.Save();
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
                 }
 
                 return response;

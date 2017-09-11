@@ -1,7 +1,10 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
+
 (function () {
     angular.module('smq.products', ['smq.common']).config(config);
+
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider.state('products', {
             url: "/products",

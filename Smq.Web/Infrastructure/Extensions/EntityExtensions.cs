@@ -66,5 +66,28 @@ namespace Smq.Web.Infrastructure.Extensions
             post.UpdatedBy = postVm.UpdatedBy;
             post.Status = postVm.Status;
         }
+        public static void UpdateProduct(this Product product, ProductViewModel productVm)
+        {
+            product.ID = productVm.ID;
+            product.Name = productVm.Name;
+            product.Alias = productVm.Alias;
+            product.Description = productVm.Description;
+            product.CategoryID = productVm.CategoryID;
+            product.Content = productVm.Content;
+            product.Image = productVm.Image;
+            product.MoreImages = productVm.MoreImages;
+            product.Price = productVm.Price;
+            product.PromotionPrice = productVm.PromotionPrice;
+            product.Warranty = productVm.Warranty;
+            product.HomeFlag = productVm.HomeFlag;
+            product.ViewCount = productVm.ViewCount;
+            product.CreatedDate = productVm.CreatedDate;
+            product.CreatedBy = productVm.CreatedBy;
+            product.MetaDescription = productVm.MetaDescription;
+            product.MetaKeyword = productVm.MetaKeyword;
+            product.UpdatedDate = productVm.UpdatedDate;
+            product.UpdatedBy = productVm.UpdatedBy;
+            product.Status = productVm.Status;
+        }
     }
 }
