@@ -133,7 +133,8 @@ namespace Smq.Web.Api
 
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
-                    dbProduct.UpdatedBy = User.Identity.Name;
+                    dbProduct.CreatedBy = User.Identity.Name;
+
                     _productService.Update(dbProduct);
                     _productService.Save();
 

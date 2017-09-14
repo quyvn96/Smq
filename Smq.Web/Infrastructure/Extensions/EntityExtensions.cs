@@ -88,6 +88,7 @@ namespace Smq.Web.Infrastructure.Extensions
             product.UpdatedDate = productVm.UpdatedDate;
             product.UpdatedBy = productVm.UpdatedBy;
             product.Status = productVm.Status;
+            product.Tags = productVm.Tags;
         }
     }
 }
