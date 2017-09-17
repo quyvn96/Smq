@@ -4403,6 +4403,7 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Category.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\orders\" />
@@ -4413,7 +4414,6 @@
     <Folder Include="Views\About\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Post\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
