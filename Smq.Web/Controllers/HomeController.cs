@@ -14,14 +14,28 @@ namespace Smq.Web.Controllers
     {
         IProductCategoryService _productCategoryService;
         ICommonService _commonService;
-        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService)
+        IProductService _productService;
+        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService,IProductService productService)
         {
             this._productCategoryService = productCategoryService;
             this._commonService = commonService;
+            this._productService = productService;
         }
         public ActionResult Index()
         {
-            return View();
+            var slideModel = _commonService.GetSlides();
+            var slideView = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slideModel);
+            var homeView = new HomeViewModel();
+            homeView.Slides = slideView;
+
+            var lastestProductModel = _productService.GetLastest(3);
+            var topSaleProductModel = _productService.GetHotProduct(3);
+            var lastestProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProductModel);
+            var topSaleProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
+            homeView.LastestProducts = lastestProductViewModel;
+            homeView.TopSaleProducts = topSaleProductViewModel;
+
+            return View(homeView);
         }
 
         public ActionResult About()

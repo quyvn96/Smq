@@ -3,6 +3,7 @@ using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
 using Smq.Common;
+using System.Linq;
 
 namespace Smq.Service
 {
@@ -16,6 +17,9 @@ namespace Smq.Service
 
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetAll(string keyword);
+
+        IEnumerable<Product> GetLastest(int top);
+        IEnumerable<Product> GetHotProduct(int top);
 
         Product GetById(int id);
 
@@ -123,6 +127,17 @@ namespace Smq.Service
             {
                 return _productRepository.GetAll();
             }
+        }
+
+
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(n => n.Status).OrderByDescending(n => n.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(n => n.Status && n.HotFlag == true).OrderByDescending(n => n.CreatedDate).Take(top);
         }
     }
 }
