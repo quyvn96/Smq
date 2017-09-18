@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Smq.Common;
 using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
-using Smq.Common;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Smq.Service
@@ -16,12 +16,18 @@ namespace Smq.Service
         Product Delete(int id);
 
         IEnumerable<Product> GetAll();
+
         IEnumerable<Product> GetAll(string keyword);
 
         IEnumerable<Product> GetLastest(int top);
+
         IEnumerable<Product> GetHotProduct(int top);
 
-        IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId,int page,int pageSize,string sort,out int totalRow);
+        IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<string> GetListProductByName(string name);
 
         Product GetById(int id);
 
@@ -35,7 +41,7 @@ namespace Smq.Service
         private IProductTagRepository _productTagRepository;
         private IUnitOfWork _unitOfWork;
 
-        public ProductService(IProductRepository productRepository,IProductTagRepository productTagRepository,ITagRepository tagRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IProductTagRepository productTagRepository, ITagRepository tagRepository, IUnitOfWork unitOfWork)
         {
             this._productRepository = productRepository;
             this._productTagRepository = productTagRepository;
@@ -92,7 +98,7 @@ namespace Smq.Service
         }
 
         public void Update(Product Product)
-        { 
+        {
             _productRepository.Update(Product);
             if (!string.IsNullOrEmpty(Product.Tags))
             {
@@ -114,10 +120,8 @@ namespace Smq.Service
                     productTag.TagID = tagId;
                     _productTagRepository.Add(productTag);
                 }
-               
             }
         }
-
 
         public IEnumerable<Product> GetAll(string keyword)
         {
@@ -131,7 +135,6 @@ namespace Smq.Service
             }
         }
 
-
         public IEnumerable<Product> GetLastest(int top)
         {
             return _productRepository.GetMulti(n => n.Status).OrderByDescending(n => n.CreatedDate).Take(top);
@@ -141,28 +144,60 @@ namespace Smq.Service
         {
             return _productRepository.GetMulti(n => n.Status && n.HotFlag == true).OrderByDescending(n => n.CreatedDate).Take(top);
         }
-    
 
-public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize,string sort, out int totalRow)
-{
-    var query = _productRepository.GetMulti(n => n.Status && n.CategoryID == categoryId);
-    switch (sort)
-    {
-        case "popular":
-            query = query.OrderByDescending(n => n.ViewCount);
-            break;
-        case "discount":
-            query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
-            break;
-        case "price":
-            query = query.OrderBy(n => n.Price);
-            break;
-        default:
-            query = query.OrderByDescending(n => n.CreatedDate);
-            break;
+        public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(n => n.Status && n.CategoryID == categoryId);
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(n => n.ViewCount);
+                    break;
+
+                case "discount":
+                    query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
+                    break;
+
+                case "price":
+                    query = query.OrderBy(n => n.Price);
+                    break;
+
+                default:
+                    query = query.OrderByDescending(n => n.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(n => n.Status && n.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(n => n.Status && n.Name.Contains(keyword));
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(n => n.ViewCount);
+                    break;
+
+                case "discount":
+                    query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
+                    break;
+
+                case "price":
+                    query = query.OrderBy(n => n.Price);
+                    break;
+
+                default:
+                    query = query.OrderByDescending(n => n.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
     }
-    totalRow = query.Count();
-    return query.Skip((page - 1) * pageSize).Take(pageSize);
-}
-}
 }
