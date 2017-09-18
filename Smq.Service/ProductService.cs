@@ -21,7 +21,7 @@ namespace Smq.Service
         IEnumerable<Product> GetLastest(int top);
         IEnumerable<Product> GetHotProduct(int top);
 
-        IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId,int page,int pageSize,out int totalRow);
+        IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId,int page,int pageSize,string sort,out int totalRow);
 
         Product GetById(int id);
 
@@ -143,9 +143,24 @@ namespace Smq.Service
         }
     
 
-public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize,string sort, out int totalRow)
 {
     var query = _productRepository.GetMulti(n => n.Status && n.CategoryID == categoryId);
+    switch (sort)
+    {
+        case "popular":
+            query = query.OrderByDescending(n => n.ViewCount);
+            break;
+        case "discount":
+            query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
+            break;
+        case "price":
+            query = query.OrderBy(n => n.Price);
+            break;
+        default:
+            query = query.OrderByDescending(n => n.CreatedDate);
+            break;
+    }
     totalRow = query.Count();
     return query.Skip((page - 1) * pageSize).Take(pageSize);
 }
