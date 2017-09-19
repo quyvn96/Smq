@@ -33,6 +33,12 @@ namespace Smq.Service
         Product GetById(int id);
 
         void Save();
+
+        IEnumerable<Tag> GetListTagByProductId(int id);
+
+        Tag GetTag(string tagId);
+        void IncreaseView(int id);
+        IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow);
     }
 
     public class ProductService : IProductService
@@ -206,6 +212,33 @@ namespace Smq.Service
         {
             var product = _productRepository.GetSingleById(id);
             return _productRepository.GetMulti(n => n.Status && n.ID != id && n.CategoryID == product.CategoryID).OrderByDescending(n => n.CreatedDate).Take(top);
+        }
+
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(n => n.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
+        }
+
+        public IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow)
+        {
+
+          return  _productRepository.GetListProductByTag(tagId, page, pageSize,out totalRow);
+        }
+
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(n => n.ID == tagId);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using Smq.Model.Abstract;
+using System.Collections.Generic;
 
 namespace Smq.Model.Models
 {
@@ -48,5 +49,7 @@ namespace Smq.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
+
+        public virtual IEnumerable<ProductTag> ProductTags { get; set; }
     }
 }
