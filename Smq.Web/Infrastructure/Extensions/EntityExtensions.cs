@@ -90,6 +90,7 @@ namespace Smq.Web.Infrastructure.Extensions
             product.UpdatedBy = productVm.UpdatedBy;
             product.Status = productVm.Status;
             product.Tags = productVm.Tags;
+            product.Quantity = productVm.Quantity;
         }
     }
 }

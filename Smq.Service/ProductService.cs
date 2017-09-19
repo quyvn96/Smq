@@ -27,6 +27,7 @@ namespace Smq.Service
 
         IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
 
+        IEnumerable<Product> GetReatedProducts(int id, int top);
         IEnumerable<string> GetListProductByName(string name);
 
         Product GetById(int id);
@@ -198,6 +199,13 @@ namespace Smq.Service
             }
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+
+        public IEnumerable<Product> GetReatedProducts(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(n => n.Status && n.ID != id && n.CategoryID == product.CategoryID).OrderByDescending(n => n.CreatedDate).Take(top);
         }
     }
 }
