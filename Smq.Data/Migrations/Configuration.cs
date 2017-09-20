@@ -19,6 +19,7 @@
         {
             CreateProductCategorySample(context);
             CreatePage(context);
+            CreateContactDetail(context);
             //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmqSolutionDbContext()));
@@ -76,6 +77,27 @@
                     Status = true
                 };
                 context.Pages.Add(page);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateContactDetail(SmqSolutionDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                var contact = new Smq.Model.Models.ContactDetail()
+                {
+                    Name = "Giới thiệu",
+                    Address = "gioi-thieu",
+                    Email = "smq@gmail.com",
+                    Lat=21.0282462,
+                    Lng=105.7961449,
+                    Phone = "0984388720",
+                    Website = "http://www.savisoft.vn/",
+                    Other = "",
+                    Status = true
+                };
+                context.ContactDetails.Add(contact);
                 context.SaveChanges();
             }
         }

@@ -31,6 +31,8 @@ namespace Smq.Data
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<Error> Errors { get; set; }
 
+        public DbSet<ContactDetail> ContactDetails { get; set; }
+
         public static SmqSolutionDbContext Create()
         {
             return new SmqSolutionDbContext();
