@@ -92,5 +92,13 @@ namespace Smq.Web.Infrastructure.Extensions
             product.Tags = productVm.Tags;
             product.Quantity = productVm.Quantity;
         }
+        public static void UpdateFeedback(this Feedback feedback,FeedbackViewModel feedbackVm)
+        {
+            feedback.Name = feedbackVm.Name;
+            feedback.Email = feedbackVm.Email;
+            feedback.Message = feedbackVm.Message;
+            feedback.CreatedDate = DateTime.Now;
+            feedback.Status = feedbackVm.Status;
+        }
     }
 }

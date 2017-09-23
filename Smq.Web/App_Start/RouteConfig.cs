@@ -9,6 +9,8 @@ namespace Smq.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx"});
+
             routes.MapRoute(
                     name: "Contact",
                     url: "lien-he.html",
@@ -26,6 +28,13 @@ namespace Smq.Web
                      url: "dang-nhap.html",
                      defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
                      namespaces: new string[] { "Smq.Web.Controllers" });
+
+            routes.MapRoute(
+                  name: "Register",
+                  url: "dang-ky.html",
+                  defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+                  namespaces: new string[] { "Smq.Web.Controllers" });
+
             routes.MapRoute(
                        name: "Page",
                        url: "trang/{alias}.html",
