@@ -1,4 +1,5 @@
-﻿<div class="header">
+﻿@using Microsoft.AspNet.Identity;
+<div class="header">
     <div class="top-header">
         <div class="container">
             <div class="top-header-left">
@@ -10,7 +11,7 @@
                     <li class="van"><a href="#"><label> </label></a></li>
                     <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
                 </ul>
-                <ul class="support">    
+                <ul class="support">
                     <li class="van"><a href="#"><label> </label></a></li>
                     <li><a href="/gioi-thieu.html"><span class="live">Giới thiệu </span></a></li>
                 </ul>
@@ -54,17 +55,30 @@
                         <input type="text" id="txtKeyword" name="keyword" placeholder="Từ khóa" />
                         <input type="submit" value="Tìm kiếm" id="btnSearch">
                     </form>
-                   
+
 
                 </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-                <div class="account"><a href="login.html"><span> </span>TÀI KHOẢN</a></div>
-                <ul class="login">
-                    <li><a href="/dang-nhap.html"><span> </span>ĐĂNG NHẬP</a></li> |
-                    <li><a href="/dang-ky.html">ĐĂNG KÝ</a></li>
-                </ul>
+              @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new {@id="frmLogOut"}))
+              {
+                  if (Request.IsAuthenticated)
+                  {
+                    @Html.AntiForgeryToken()
+                    <ul class="login">
+                        <li><a href="/tai-khoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
+                        <li><a href="#" id="btnLogOut">Thoát</a></li>
+                    </ul> 
+                  }
+                  else
+                  {
+                    <ul class="login">
+                        <li><a href="/dang-nhap.html"><span> </span>ĐĂNG NHẬP</a></li> |
+                        <li><a href="/dang-ky.html">ĐĂNG KÝ</a></li>
+                    </ul>
+                  }
+              }
                 <div class="cart"><a href="/gio-hang.html"><span> </span>GIỎ HÀNG</a></div>
                 <div class="clearfix"> </div>
             </div>
