@@ -2,6 +2,7 @@
 using Smq.Common;
 using Smq.Model.Models;
 using Smq.Service;
+using Smq.Web.App_Start;
 using Smq.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using Microsoft.AspNet.Identity;
+using Smq.Web.Infrastructure.Extensions;
 
 namespace Smq.Web.Controllers
 {
     public class ShoppingCartController : Controller
     {
         IProductService _productService;
-        public ShoppingCartController(IProductService productService)
+        IOrderService _orderService;
+        ApplicationUserManager _userManager;
+        public ShoppingCartController( IOrderService orderService,IProductService productService, ApplicationUserManager userManager)
         {
             this._productService = productService;
+            this._userManager = userManager;
+            this._orderService = orderService;
         }
         // GET: ShoppingCart
         public ActionResult Index()
@@ -25,6 +32,55 @@ namespace Smq.Web.Controllers
             if (Session[CommonConstants.SessionCart] == null)
             Session[CommonConstants.SessionCart] = new List<ShoppingCartViewModel>();
             return View();
+        }
+        public ActionResult CheckOut()
+        {
+            if (Session[CommonConstants.SessionCart] == null)
+            {
+                return Redirect("/gio-hang.html");
+            }
+            return View();
+        }
+        public JsonResult GetUser()
+        {
+            if(Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _userManager.FindById(userId);
+                return Json(new
+                {
+                    data = user,
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+        public JsonResult CreateOrder(string orderViewModel)
+        {
+            var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+            var orderNew = new Order();
+            orderNew.UpdateOrder(order);
+            if (Request.IsAuthenticated)
+            {
+                orderNew.CustomerId = User.Identity.GetUserId();
+                orderNew.CreatedBy = User.Identity.GetUserName();
+            }
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            foreach(var item in cart){
+                var detail = new OrderDetail();
+                detail.ProductID = item.ProductId;
+                detail.Quantitty = item.Quantity;
+                orderDetails.Add(detail);
+            }
+            _orderService.Create(orderNew, orderDetails);
+            return Json(new
+            {
+                status = true
+            });
         }
         public JsonResult GetAll()
         {

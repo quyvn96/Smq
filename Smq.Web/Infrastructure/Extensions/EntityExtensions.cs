@@ -1,4 +1,5 @@
-﻿using Smq.Model.Models;
+﻿using AutoMapper;
+using Smq.Model.Models;
 using Smq.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -99,6 +100,20 @@ namespace Smq.Web.Infrastructure.Extensions
             feedback.Message = feedbackVm.Message;
             feedback.CreatedDate = DateTime.Now;
             feedback.Status = feedbackVm.Status;
+        }
+        public static void UpdateOrder(this Order order, OrderViewModel orderVm)
+        {
+            order.CustomerName = orderVm.CustomerName;
+            order.CustomerAddress = orderVm.CustomerAddress;
+            order.CustomerEmail = orderVm.CustomerEmail;
+            order.CustomerMobile = orderVm.CustomerMobile;
+            order.CustomerMessage = orderVm.CustomerMessage;
+            order.PaymentMethod = orderVm.PaymentMethod;
+            order.PaymentStatus = orderVm.PaymentStatus;
+            order.CreatedDate = DateTime.Now;
+            order.CreatedBy = orderVm.CreatedBy;
+            order.Status = orderVm.Status;
+            order.CustomerId = orderVm.CustomerId;
         }
     }
 }

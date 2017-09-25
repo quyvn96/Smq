@@ -42,6 +42,12 @@ namespace Smq.Web
                  namespaces: new string[] { "Smq.Web.Controllers" });
 
             routes.MapRoute(
+                name: "CheckOut",
+                url: "thanh-toan.html",
+                defaults: new { controller = "ShoppingCart", action = "CheckOut", id = UrlParameter.Optional },
+                namespaces: new string[] { "Smq.Web.Controllers" });
+
+            routes.MapRoute(
                        name: "Page",
                        url: "trang/{alias}.html",
                        defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
