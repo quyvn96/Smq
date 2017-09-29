@@ -47,6 +47,8 @@ namespace Smq.Model.Models
 
         public int Quantity { get; set; }
 
+        public decimal OriginalPrice { set; get; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
 

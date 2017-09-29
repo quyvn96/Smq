@@ -53,6 +53,7 @@ namespace Smq.Web.Models
         public string Tags { set; get; }
 
         public int Quantity { get; set; }
+        public decimal OriginalPrice { get; set; }
 
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
     }

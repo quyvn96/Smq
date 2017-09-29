@@ -1,4 +1,5 @@
-﻿using Smq.Data.Infrastructure;
+﻿using Smq.Common.ViewModels;
+using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
 using System;
@@ -36,7 +37,7 @@ namespace Smq.Service
                     orderDetail.OrderID = order.ID;
                     _orderDetailRepository.Add(orderDetail);
                 }
-                _unitOfWork.Commit();
+              
                 return true;
             }catch(Exception ex){
                 throw; 
