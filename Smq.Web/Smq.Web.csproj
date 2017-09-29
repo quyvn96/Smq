@@ -430,7 +430,6 @@
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap.css" />
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap.min.css" />
-    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\bootstrap.js" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\bootstrap.min.js" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\npm.js" />
@@ -5123,7 +5122,6 @@
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -5413,6 +5411,7 @@
     <Content Include="Assets\admin\libs\angular-chart.js\README.md" />
     <Content Include="Assets\admin\libs\Chart.js\.bower.json" />
     <Content Include="Assets\admin\libs\Chart.js\bower.json" />
+    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
     <Content Include="Scripts\jquery-3.1.1.js" />

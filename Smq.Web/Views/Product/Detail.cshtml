@@ -1,7 +1,9 @@
 ﻿@model Smq.Web.Models.ProductViewModel
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = @Model.Name;
+    ViewBag.MetaKeyword = @Model.MetaKeyword;
+    ViewBag.MetaDescription = @Model.MetaDescription;
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 <link href="~/Assets/client/css/etalage.css" rel="stylesheet" />

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Smq.Common;
 using Smq.Model.Models;
 using Smq.Service;
 using Smq.Web.Models;
@@ -36,7 +37,16 @@ namespace Smq.Web.Controllers
             var topSaleProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
             homeView.LastestProducts = lastestProductViewModel;
             homeView.TopSaleProducts = topSaleProductViewModel;
+            try
+            {
+                homeView.Title = _commonService.GetSystemConfig(CommonConstants.HomeTitle).ValueString;
+                homeView.MetaKeyword = _commonService.GetSystemConfig(CommonConstants.HomeMetaKeyword).ValueString;
+                homeView.MetaDescription = _commonService.GetSystemConfig(CommonConstants.HomeDescription).ValueString;
+            }
+            catch
+            {
 
+            }
             return View(homeView);
         }
         [ChildActionOnly]
