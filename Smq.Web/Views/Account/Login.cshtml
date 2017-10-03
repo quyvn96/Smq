@@ -8,9 +8,8 @@
     <div class="login-right">
         <h3>Đăng nhập</h3>
         <p>Nếu bạn có một tài khoản. Làm ơn đăng nhập!</p>
-        @using (Html.BeginForm("Login", "Account", new { returUrl = ViewBag.ReturnUrl}, FormMethod.Post))
+        @using (Html.BeginForm("Login", "Account", new { returUrl = @ViewBag.ReturnUrl}, FormMethod.Post))
         { 
-        <form>
             <div>
                 <span>Tài khoản<label>*</label></span>
                 @Html.TextBoxFor(model => model.UserName)
@@ -25,8 +24,8 @@
             </div>
             <a class="forgot" href="#">Quên mật khẩu?</a>
             <input type="submit" value="Đăng nhập">
-        </form>
         }
+      @Html.Partial("_ExternalLoginsListPartial", new Smq.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </div>
     <div class=" login-left">
         <h3>Bạn chưa có tài khoản.</h3>

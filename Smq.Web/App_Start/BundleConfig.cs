@@ -21,7 +21,7 @@ namespace Smq.Web
 
             bundles.Add(new StyleBundle("~/css/base")
                 .Include("~/Assets/client/css/bootstrap.css", new CssRewriteUrlTransform())
-                .Include("~/Assets/client/font-awesome-4.7.0/css/font-awesome.css", new CssRewriteUrlTransform())
+                .Include("~/Assets/client/font-awesome-4.7.0/css/font-awesome.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/admin/libs/jquery-ui/themes/smoothness/jquery-ui.min.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/client/css/style.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/client/css/customer.css", new CssRewriteUrlTransform())
