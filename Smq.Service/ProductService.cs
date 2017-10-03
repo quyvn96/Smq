@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 ﻿using System.Collections.Generic;
 using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
 using Smq.Common;
+=======
+﻿using Smq.Common;
+using Smq.Data.Infrastructure;
+using Smq.Data.Repositories;
+using Smq.Model.Models;
+using System.Collections.Generic;
+using System.Linq;
+>>>>>>> Lesson66
 
 namespace Smq.Service
 {
@@ -15,11 +24,38 @@ namespace Smq.Service
         Product Delete(int id);
 
         IEnumerable<Product> GetAll();
+<<<<<<< HEAD
         IEnumerable<Product> GetAll(string keyword);
 
         Product GetById(int id);
 
         void Save();
+=======
+
+        IEnumerable<Product> GetAll(string keyword);
+
+        IEnumerable<Product> GetLastest(int top);
+
+        IEnumerable<Product> GetHotProduct(int top);
+
+        IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<Product> GetReatedProducts(int id, int top);
+        IEnumerable<string> GetListProductByName(string name);
+
+        Product GetById(int id);
+
+        void Save();
+
+        IEnumerable<Tag> GetListTagByProductId(int id);
+
+        Tag GetTag(string tagId);
+        void IncreaseView(int id);
+        IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow);
+        bool SellProduct(int productId, int quantity);
+>>>>>>> Lesson66
     }
 
     public class ProductService : IProductService
@@ -29,7 +65,11 @@ namespace Smq.Service
         private IProductTagRepository _productTagRepository;
         private IUnitOfWork _unitOfWork;
 
+<<<<<<< HEAD
         public ProductService(IProductRepository productRepository,IProductTagRepository productTagRepository,ITagRepository tagRepository, IUnitOfWork unitOfWork)
+=======
+        public ProductService(IProductRepository productRepository, IProductTagRepository productTagRepository, ITagRepository tagRepository, IUnitOfWork unitOfWork)
+>>>>>>> Lesson66
         {
             this._productRepository = productRepository;
             this._productTagRepository = productTagRepository;
@@ -86,7 +126,11 @@ namespace Smq.Service
         }
 
         public void Update(Product Product)
+<<<<<<< HEAD
         { 
+=======
+        {
+>>>>>>> Lesson66
             _productRepository.Update(Product);
             if (!string.IsNullOrEmpty(Product.Tags))
             {
@@ -108,11 +152,17 @@ namespace Smq.Service
                     productTag.TagID = tagId;
                     _productTagRepository.Add(productTag);
                 }
+<<<<<<< HEAD
                
             }
         }
 
 
+=======
+            }
+        }
+
+>>>>>>> Lesson66
         public IEnumerable<Product> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
@@ -124,5 +174,117 @@ namespace Smq.Service
                 return _productRepository.GetAll();
             }
         }
+<<<<<<< HEAD
+=======
+
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(n => n.Status).OrderByDescending(n => n.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(n => n.Status && n.HotFlag == true).OrderByDescending(n => n.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(n => n.Status && n.CategoryID == categoryId);
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(n => n.ViewCount);
+                    break;
+
+                case "discount":
+                    query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
+                    break;
+
+                case "price":
+                    query = query.OrderBy(n => n.Price);
+                    break;
+
+                default:
+                    query = query.OrderByDescending(n => n.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(n => n.Status && n.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(n => n.Status && n.Name.Contains(keyword));
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(n => n.ViewCount);
+                    break;
+
+                case "discount":
+                    query = query.OrderByDescending(n => n.PromotionPrice.HasValue);
+                    break;
+
+                case "price":
+                    query = query.OrderBy(n => n.Price);
+                    break;
+
+                default:
+                    query = query.OrderByDescending(n => n.CreatedDate);
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+
+        public IEnumerable<Product> GetReatedProducts(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(n => n.Status && n.ID != id && n.CategoryID == product.CategoryID).OrderByDescending(n => n.CreatedDate).Take(top);
+        }
+
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(n => n.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
+        }
+
+        public IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow)
+        {
+
+          return  _productRepository.GetListProductByTag(tagId, page, pageSize,out totalRow);
+        }
+
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(n => n.ID == tagId);
+        }
+
+
+        public bool SellProduct(int productId, int quantity)
+        {
+            var product = _productRepository.GetSingleById(productId);
+            if (product.Quantity < quantity)
+                return false;
+            product.Quantity -= quantity;
+            return true;
+        }
+>>>>>>> Lesson66
     }
 }

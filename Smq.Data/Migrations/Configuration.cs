@@ -18,6 +18,9 @@
         protected override void Seed(Smq.Data.SmqSolutionDbContext context)
         {
             CreateProductCategorySample(context);
+            CreatePage(context);
+            CreateContactDetail(context);
+            CreateConfigTitle(context);
             //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmqSolutionDbContext()));
@@ -45,6 +48,33 @@
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
+        private void CreateConfigTitle(SmqSolutionDbContext context)
+        {
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeTitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeDescription",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
+        }
         private void CreateProductCategorySample(Smq.Data.SmqSolutionDbContext context)
         {
             if (context.ProductCategories.Count() == 0)
@@ -57,6 +87,45 @@
                 new ProductCategory(){Name="Mỹ phẩm",Alias="MP01",Status=true},
             };
                 context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
+        }
+        private void CreatePage(SmqSolutionDbContext context)
+        {
+            if (context.Pages.Count() == 0)
+            {
+                var page = new Page()
+                {
+                    Name = "Giới thiệu",
+                    Alias="gioi-thieu",
+                    Content = @"Techopedia explains Product Introduction Product introduction is primarily a marketing approach and is a planned initiative to make a product available to specific market segments. 
+                                Depending on the nature of the product, market dynamics, regulatory requirements and other economic and social constraints, the product introduction process can vary.
+                                For example, a software development company may introduce a new product through a beta version before launching the complete solution. 
+                                This allows the company to gain valuable user feedback, and to fix bugs and errors before the complete launch.",
+                    Status = true
+                };
+                context.Pages.Add(page);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateContactDetail(SmqSolutionDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                var contact = new Smq.Model.Models.ContactDetail()
+                {
+                    Name = "Giới thiệu",
+                    Address = "gioi-thieu",
+                    Email = "smq@gmail.com",
+                    Lat=21.0282462,
+                    Lng=105.7961449,
+                    Phone = "0984388720",
+                    Website = "http://www.savisoft.vn/",
+                    Other = "",
+                    Status = true
+                };
+                context.ContactDetails.Add(contact);
                 context.SaveChanges();
             }
         }

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Smq.Web.Models
 {
+    [Serializable]
     public class ProductViewModel
     {
         public int ID { set; get; }
@@ -51,6 +52,12 @@ namespace Smq.Web.Models
 
         public string Tags { set; get; }
 
+<<<<<<< HEAD
+=======
+        public int Quantity { get; set; }
+        public decimal OriginalPrice { get; set; }
+
+>>>>>>> Lesson66
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
     }
 }
