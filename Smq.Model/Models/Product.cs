@@ -45,13 +45,10 @@ namespace Smq.Model.Models
 
         public string Tags { set; get; }
 
-<<<<<<< HEAD
-=======
         public int Quantity { get; set; }
 
         public decimal OriginalPrice { set; get; }
 
->>>>>>> Lesson66
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
 

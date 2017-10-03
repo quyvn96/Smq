@@ -41,17 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonConstants.cs" />
-<<<<<<< HEAD
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringHelper.cs" />
-=======
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Exceptions\NameDuplicatedException.cs" />
     <Compile Include="MailHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="ViewModels\RevenueStatisticViewModel.cs" />
->>>>>>> Lesson66
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

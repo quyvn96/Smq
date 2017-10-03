@@ -69,8 +69,6 @@
     <Compile Include="Migrations\201709120844064_AddTag.Designer.cs">
       <DependentUpon>201709120844064_AddTag.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="Migrations\201709170737568_AddSlides.cs" />
     <Compile Include="Migrations\201709170737568_AddSlides.Designer.cs">
       <DependentUpon>201709170737568_AddSlides.cs</DependentUpon>
@@ -111,7 +109,6 @@
     <Compile Include="Migrations\201709281617368_AddStoreProcedure.Designer.cs">
       <DependentUpon>201709281617368_AddStoreProcedure.cs</DependentUpon>
     </Compile>
->>>>>>> Lesson66
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -192,17 +189,6 @@
       <Name>Smq.Model</Name>
     </ProjectReference>
   </ItemGroup>
-<<<<<<< HEAD
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709081409543_InitialMigration.resx">
-      <DependentUpon>201709081409543_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709120844064_AddTag.resx">
-      <DependentUpon>201709120844064_AddTag.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-=======
->>>>>>> Lesson66
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

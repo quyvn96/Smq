@@ -10,10 +10,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Smq.Data;
 using Smq.Model.Models;
-<<<<<<< HEAD
-=======
 using Microsoft.Owin.Security.Google;
->>>>>>> Lesson66
 
 [assembly: OwinStartup(typeof(Smq.Web.App_Start.Startup))]
 
@@ -31,16 +28,6 @@ namespace Smq.Web.App_Start
 
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
-<<<<<<< HEAD
-            {
-                TokenEndpointPath = new PathString("/oauth/token"),
-                Provider = new AuthorizationServerProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                AllowInsecureHttp = true,
-
-            });
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-=======
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
@@ -66,7 +53,6 @@ namespace Smq.Web.App_Start
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
->>>>>>> Lesson66
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
@@ -86,56 +72,6 @@ namespace Smq.Web.App_Start
                 ClientId = "741087990762-u5qml3fg8p6nct2lo0g7b63bq90dmnpb.apps.googleusercontent.com",
                 ClientSecret = "oKFLn8EoSkCjwvfotHvW-wRh"
             });
-        }
-        public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
-        {
-            public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-            {
-                context.Validated();
-            }
-            public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-            {
-                var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
-
-                if (allowedOrigin == null) allowedOrigin = "*";
-
-                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
-
-                UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
-                ApplicationUser user;
-                try
-                {
-                    user = await userManager.FindAsync(context.UserName, context.Password);
-                }
-                catch
-                {
-                    // Could not retrieve the user due to error.
-                    context.SetError("server_error");
-                    context.Rejected();
-                    return;
-                }
-                if (user != null)
-                {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
-                }
-                else
-                {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.'");
-                    context.Rejected();
-                }
-            }
-        }
-
-
-
-        private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
-        {
-            var userStore = new UserStore<ApplicationUser>(context.Get<SmqSolutionDbContext>());
-            var owinManager = new UserManager<ApplicationUser>(userStore);
-            return owinManager;
         }
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
         {

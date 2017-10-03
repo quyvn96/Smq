@@ -91,8 +91,6 @@ namespace Smq.Web.Infrastructure.Extensions
             product.UpdatedBy = productVm.UpdatedBy;
             product.Status = productVm.Status;
             product.Tags = productVm.Tags;
-<<<<<<< HEAD
-=======
             product.Quantity = productVm.Quantity;
             product.OriginalPrice = productVm.OriginalPrice;
         }
@@ -142,7 +140,6 @@ namespace Smq.Web.Infrastructure.Extensions
             appUser.Email = appUserViewModel.Email;
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
->>>>>>> Lesson66
         }
     }
 }

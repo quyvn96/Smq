@@ -53,8 +53,9 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.WebApi">
-      <HintPath>..\..\..\AngularSourceCode\TeduShop_Bai16\TeduShop.Web\bin\Autofac.Integration.WebApi.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
@@ -211,12 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Api\ApplicationGroupController.cs" />
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
->>>>>>> Lesson66
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
@@ -397,15 +395,12 @@
     <Content Include="Assets\admin\js\demo.js" />
     <Content Include="Assets\admin\js\pages\dashboard.js" />
     <Content Include="Assets\admin\js\pages\dashboard2.js" />
-<<<<<<< HEAD
-=======
     <Content Include="Assets\admin\libs\angular-chart.js\angular-chart.js" />
     <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.css" />
     <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.js" />
     <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.css" />
     <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.js" />
     <Content Include="Assets\admin\libs\angular-chart.js\gulpfile.js" />
->>>>>>> Lesson66
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.min.css" />
@@ -5329,8 +5324,6 @@
     <Content Include="Assets\admin\libs\angular-local-storage\LICENSE" />
     <Content Include="Assets\admin\libs\angular-local-storage\package.json" />
     <Content Include="Assets\admin\libs\angular-local-storage\README.md" />
-<<<<<<< HEAD
-=======
     <Content Include="Assets\client\images\Thumbs.db" />
     <Content Include="Assets\client\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="Assets\client\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
@@ -5429,7 +5422,6 @@
     <Content Include="Assets\admin\libs\Chart.js\.bower.json" />
     <Content Include="Assets\admin\libs\Chart.js\bower.json" />
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
->>>>>>> Lesson66
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
     <Content Include="Scripts\jquery-3.1.1.js" />

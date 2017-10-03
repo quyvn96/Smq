@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-﻿using System.Collections.Generic;
-using Smq.Data.Infrastructure;
-using Smq.Data.Repositories;
-using Smq.Model.Models;
-using Smq.Common;
-=======
 ﻿using Smq.Common;
 using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
 using System.Collections.Generic;
 using System.Linq;
->>>>>>> Lesson66
 
 namespace Smq.Service
 {
@@ -24,13 +16,6 @@ namespace Smq.Service
         Product Delete(int id);
 
         IEnumerable<Product> GetAll();
-<<<<<<< HEAD
-        IEnumerable<Product> GetAll(string keyword);
-
-        Product GetById(int id);
-
-        void Save();
-=======
 
         IEnumerable<Product> GetAll(string keyword);
 
@@ -55,7 +40,6 @@ namespace Smq.Service
         void IncreaseView(int id);
         IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow);
         bool SellProduct(int productId, int quantity);
->>>>>>> Lesson66
     }
 
     public class ProductService : IProductService
@@ -65,11 +49,7 @@ namespace Smq.Service
         private IProductTagRepository _productTagRepository;
         private IUnitOfWork _unitOfWork;
 
-<<<<<<< HEAD
-        public ProductService(IProductRepository productRepository,IProductTagRepository productTagRepository,ITagRepository tagRepository, IUnitOfWork unitOfWork)
-=======
         public ProductService(IProductRepository productRepository, IProductTagRepository productTagRepository, ITagRepository tagRepository, IUnitOfWork unitOfWork)
->>>>>>> Lesson66
         {
             this._productRepository = productRepository;
             this._productTagRepository = productTagRepository;
@@ -126,11 +106,7 @@ namespace Smq.Service
         }
 
         public void Update(Product Product)
-<<<<<<< HEAD
-        { 
-=======
         {
->>>>>>> Lesson66
             _productRepository.Update(Product);
             if (!string.IsNullOrEmpty(Product.Tags))
             {
@@ -152,17 +128,9 @@ namespace Smq.Service
                     productTag.TagID = tagId;
                     _productTagRepository.Add(productTag);
                 }
-<<<<<<< HEAD
-               
             }
         }
 
-
-=======
-            }
-        }
-
->>>>>>> Lesson66
         public IEnumerable<Product> GetAll(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
@@ -174,8 +142,6 @@ namespace Smq.Service
                 return _productRepository.GetAll();
             }
         }
-<<<<<<< HEAD
-=======
 
         public IEnumerable<Product> GetLastest(int top)
         {
@@ -285,6 +251,5 @@ namespace Smq.Service
             product.Quantity -= quantity;
             return true;
         }
->>>>>>> Lesson66
     }
 }
