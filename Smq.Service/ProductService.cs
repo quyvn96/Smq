@@ -39,6 +39,7 @@ namespace Smq.Service
         Tag GetTag(string tagId);
         void IncreaseView(int id);
         IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow);
+        bool SellProduct(int productId, int quantity);
     }
 
     public class ProductService : IProductService
@@ -239,6 +240,16 @@ namespace Smq.Service
         public Tag GetTag(string tagId)
         {
             return _tagRepository.GetSingleByCondition(n => n.ID == tagId);
+        }
+
+
+        public bool SellProduct(int productId, int quantity)
+        {
+            var product = _productRepository.GetSingleById(productId);
+            if (product.Quantity < quantity)
+                return false;
+            product.Quantity -= quantity;
+            return true;
         }
     }
 }

@@ -2,7 +2,10 @@
 
 @{
     var tag = (Smq.Web.Models.TagViewModel)ViewBag.Tag;
-    ViewBag.Title = "Kết quả tìm kiếm cho tag" + tag.Name;
+    var pageIndex = Model.Page;
+    ViewBag.Title = pageIndex == 1 ? "Kết quả tìm kiếm cho tag" + tag.Name : "Kết quả tìm kiếm cho tag" + tag.Name + " - Trang " + pageIndex;
+    ViewBag.MetaKeyword = pageIndex == 1 ? "Kết quả tìm kiếm cho tag" + tag.Name : "Kết quả tìm kiếm cho tag" + tag.Name + " - Trang " + pageIndex;
+    ViewBag.MetaDescription = pageIndex == 1 ? "Kết quả tìm kiếm cho tag" + tag.Name : "Kết quả tìm kiếm cho tag" + tag.Name + " - Trang " + pageIndex;
     Layout = "~/Views/Shared/Layout.cshtml";
     var category = (Smq.Web.Models.ProductCategoryViewModel)ViewBag.Category;
 }
@@ -20,7 +23,7 @@
         <div class="grid-product">
             @foreach (var product in Model.Items)
             {
-                var url = "/" + product.Alias + ".p-" + product.ID;
+                var url = "/" + product.Alias + ".p-" + product.ID + ".html";
                 <div class="product-grid">
                     <div class="content_box">
                         <a href="@url">

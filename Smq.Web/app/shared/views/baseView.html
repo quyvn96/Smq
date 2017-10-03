@@ -6,7 +6,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Trang</b>Admin</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -150,9 +150,9 @@
                 </li>
                 <li class="treeview">
                     <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
+                        <i class="fa fa-database" aria-hidden="true"></i>
                         <span>Hệ thống</span>
-                        <span class="label label-primary pull-right">3</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
@@ -164,11 +164,21 @@
                     <a href="javascript:void(0);">
                         <i class="fa fa-files-o"></i>
                         <span>Sản phẩm</span>
-                        <span class="label label-primary pull-right">4</span>
+                        <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Danh mục sản phẩm</a></li>
                         <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-area-chart"></i>
+                        <span>Thống kê</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a ui-sref="statistic_revenue"><i class="fa fa-circle-o"></i> Thống kê doanh số</a></li>
                     </ul>
                 </li>
             </ul>
@@ -180,7 +190,6 @@
     <div class="content-wrapper">
         <div ui-view></div>
     </div><!-- /.content-wrapper -->
-    <div class="clearfix"></div>
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.3.0
@@ -345,3 +354,4 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div><!-- ./wrapper -->
+<script src="../../../Assets/admin/js/app.js"></script>

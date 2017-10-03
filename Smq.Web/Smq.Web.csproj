@@ -53,8 +53,9 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.WebApi">
-      <HintPath>..\..\..\AngularSourceCode\TeduShop_Bai16\TeduShop.Web\bin\Autofac.Integration.WebApi.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
@@ -105,6 +106,14 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -210,6 +219,7 @@
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\StatisticController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -237,6 +247,7 @@
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
+    <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -298,6 +309,9 @@
     <Content Include="app\components\product_categories\productCategoryEditView.html" />
     <Content Include="app\components\product_categories\productCategoryListController.js" />
     <Content Include="app\components\product_categories\productCategoryListView.html" />
+    <Content Include="app\components\statistic\revenueStatisticController.js" />
+    <Content Include="app\components\statistic\revenueStatisticView.html" />
+    <Content Include="app\components\statistic\statistic.module.js" />
     <Content Include="app\shared\directives\asDateDirective.js" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirective.js" />
@@ -381,6 +395,12 @@
     <Content Include="Assets\admin\js\demo.js" />
     <Content Include="Assets\admin\js\pages\dashboard.js" />
     <Content Include="Assets\admin\js\pages\dashboard2.js" />
+    <Content Include="Assets\admin\libs\angular-chart.js\angular-chart.js" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.css" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.js" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.css" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.js" />
+    <Content Include="Assets\admin\libs\angular-chart.js\gulpfile.js" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.css" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.js" />
     <Content Include="Assets\admin\libs\angular-loading-bar\build\loading-bar.min.css" />
@@ -420,7 +440,6 @@
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap.css" />
     <Content Include="Assets\admin\libs\bootstrap\dist\css\bootstrap.min.css" />
-    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\bootstrap.js" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\bootstrap.min.js" />
     <Content Include="Assets\admin\libs\bootstrap\dist\js\npm.js" />
@@ -443,6 +462,7 @@
     <Content Include="Assets\admin\libs\bootstrap\js\tooltip.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\transition.js" />
     <Content Include="Assets\admin\libs\bootstrap\package.js" />
+    <Content Include="Assets\admin\libs\Chart.js\Chart.js" />
     <Content Include="Assets\admin\libs\checklist-model\checklist-model.js" />
     <Content Include="Assets\admin\libs\checklist-model\LICENSE.txt" />
     <Content Include="Assets\admin\libs\ckeditor\adapters\jquery.js" />
@@ -5112,7 +5132,6 @@
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Assets\admin\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -5387,6 +5406,22 @@
     <Content Include="Assets\admin\libs\checklist-model\.bower.json" />
     <Content Include="Assets\admin\libs\checklist-model\bower.json" />
     <Content Include="Assets\admin\libs\checklist-model\readme.md" />
+    <Content Include="Assets\admin\libs\angular-chart.js\.bower.json" />
+    <Content Include="Assets\admin\libs\angular-chart.js\angular-chart.less" />
+    <Content Include="Assets\admin\libs\angular-chart.js\bower.json" />
+    <Content Include="Assets\admin\libs\angular-chart.js\CONTRIBUTING.md" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.js.tar.gz" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.css.map" />
+    <Content Include="Assets\admin\libs\angular-chart.js\dist\angular-chart.min.js.map" />
+    <Content Include="Assets\admin\libs\angular-chart.js\Dockerfile" />
+    <Content Include="Assets\admin\libs\angular-chart.js\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\admin\libs\angular-chart.js\LICENSE" />
+    <Content Include="Assets\admin\libs\angular-chart.js\package.json" />
+    <Content Include="Assets\admin\libs\angular-chart.js\PULL_REQUEST_TEMPLATE.md" />
+    <Content Include="Assets\admin\libs\angular-chart.js\README.md" />
+    <Content Include="Assets\admin\libs\Chart.js\.bower.json" />
+    <Content Include="Assets\admin\libs\Chart.js\bower.json" />
+    <Content Include="Assets\admin\libs\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -5436,6 +5471,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\orders\" />

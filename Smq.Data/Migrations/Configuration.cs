@@ -20,6 +20,7 @@
             CreateProductCategorySample(context);
             CreatePage(context);
             CreateContactDetail(context);
+            CreateConfigTitle(context);
             //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmqSolutionDbContext()));
@@ -46,6 +47,33 @@
             //var adminUser = manager.FindByEmail("quyvn317@gmail.com");
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+        }
+        private void CreateConfigTitle(SmqSolutionDbContext context)
+        {
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeTitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
+            if (!context.SystemConfigs.Any(n => n.Code == "HomeDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeDescription",
+                    ValueString = "Trang chủ SMQShop"
+                });
+            }
         }
         private void CreateProductCategorySample(Smq.Data.SmqSolutionDbContext context)
         {

@@ -7,6 +7,7 @@
          'smq.application_groups',
          'smq.application_roles',
          'smq.application_users',
+         'smq.statistics',
          'smq.common'])
         .config(config)
         .config(configAuthentication);

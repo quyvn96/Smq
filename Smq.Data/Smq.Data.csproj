@@ -101,6 +101,14 @@
     <Compile Include="Migrations\201709260908562_AddApplicationTable.Designer.cs">
       <DependentUpon>201709260908562_AddApplicationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709281330350_ChangeDataBase.cs" />
+    <Compile Include="Migrations\201709281330350_ChangeDataBase.Designer.cs">
+      <DependentUpon>201709281330350_ChangeDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709281617368_AddStoreProcedure.cs" />
+    <Compile Include="Migrations\201709281617368_AddStoreProcedure.Designer.cs">
+      <DependentUpon>201709281617368_AddStoreProcedure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -134,12 +142,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Smq.Model\Smq.Model.csproj">
-      <Project>{deea1458-f22c-4986-a2a6-3166f03565f9}</Project>
-      <Name>Smq.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201709081409543_InitialMigration.resx">
       <DependentUpon>201709081409543_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +172,22 @@
     <EmbeddedResource Include="Migrations\201709260908562_AddApplicationTable.resx">
       <DependentUpon>201709260908562_AddApplicationTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709281330350_ChangeDataBase.resx">
+      <DependentUpon>201709281330350_ChangeDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709281617368_AddStoreProcedure.resx">
+      <DependentUpon>201709281617368_AddStoreProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Smq.Common\Smq.Common.csproj">
+      <Project>{9fc108c1-add9-4b74-a6b9-0f101e5a8473}</Project>
+      <Name>Smq.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Smq.Model\Smq.Model.csproj">
+      <Project>{deea1458-f22c-4986-a2a6-3166f03565f9}</Project>
+      <Name>Smq.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

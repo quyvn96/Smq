@@ -14,17 +14,20 @@ namespace Smq.Service
     {
         Footer GetFooter();
         IEnumerable<Slide> GetSlides();
+        SystemConfig GetSystemConfig(string code);
     }
     public class CommonService: ICommonService
     {
         IFooterRepository _footerReponsitory;
         IUnitOfWork _unitOfWork;
         ISlideRepository _slideRepository;
-        public CommonService(IFooterRepository footerReponsitory, IUnitOfWork unitOfWork, ISlideRepository slideRepository)
+        ISystemConfigRepository _systemConfigRepository;
+        public CommonService(IFooterRepository footerReponsitory, IUnitOfWork unitOfWork, ISystemConfigRepository systemConfigRepository, ISlideRepository slideRepository)
         {
             this._footerReponsitory = footerReponsitory;
             this._unitOfWork = unitOfWork;
             this._slideRepository = slideRepository;
+            this._systemConfigRepository = systemConfigRepository;
         }
         public Footer GetFooter()
         {
@@ -35,6 +38,12 @@ namespace Smq.Service
         public IEnumerable<Slide> GetSlides()
         {
            return  _slideRepository.GetMulti(x=>x.Status);
+        }
+
+
+        public SystemConfig GetSystemConfig(string code)
+        {
+            return _systemConfigRepository.GetSingleByCondition(n => n.Code == code);
         }
     }
 }
