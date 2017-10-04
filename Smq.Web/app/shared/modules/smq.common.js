@@ -1,4 +1,4 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 (function () {
-    angular.module('smq.common', ['ui.router', 'ngBootbox', 'ngCkeditor','checklist-model','chart.js'])
+    angular.module('smq.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'checklist-model', 'chart.js', 'LocalStorageModule'])
 })();
