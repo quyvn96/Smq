@@ -21,7 +21,7 @@
 <input type="hidden" id="hidName" value="@Model.ContactDetail.Name" />
 <div class="main">
     <div class="reservation_top">
-        <div class=" contact_right">
+        <div class="contact_right">
             <h3>Thông tin liên hệ</h3>
             <address class="address">
                 <p>@Model.ContactDetail.Address</p>
@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="reservation_top">
-        <div class=" contact_right">
+        <div class="contact_right">
             <h3>Gửi thông tin liên hệ</h3>
             <div class="contact-form">
                @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post))

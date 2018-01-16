@@ -34,18 +34,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     @{Html.RenderAction("Footer", "Home");}
     <div class="clearfix"> </div>
-
-    @*<script src="~/Assets/client/js/jquery.min.js"></script>
-    <script src="~/Assets/admin/libs/jquery-ui/jquery-ui.min.js"></script>
-    <script src="~/Assets/admin/libs/mustache/mustache.js"></script>
-    <script src="~/Assets/admin/libs/numeral/numeral.js"></script>
-    <script src="~/Assets/admin/libs/jquery-validation/dist/jquery.validate.js"></script>
-
-    <script src="~/Assets/admin/libs/jquery-validation/dist/additional-methods.min.js"></script>
-    <script src="~/Assets/client/js/common.js"></script>*@
     <!--script-->
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/plugins")
     @RenderSection("footerJS",required:false)
+    <!--initiate accordion-->
+    <script type="text/javascript">
+          $(function () {
+            var menu_ul = $('.menu > li > ul'),
+                   menu_a = $('.menu > li > a');
+            menu_ul.hide();
+            menu_a.click(function (e) {
+              e.preventDefault();
+              if (!$(this).hasClass('active')) {
+                menu_a.removeClass('active');
+                menu_ul.filter(':visible').slideUp('normal');
+                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+              } else {
+                $(this).removeClass('active');
+                $(this).next().stop(true, true).slideUp('normal');
+              }
+            });
+
+          });
+    </script>
 </body>
 </html>
