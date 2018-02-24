@@ -8,7 +8,8 @@ namespace Smq.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/jquery").Include("~/Assets/client/js/jquery.min.js"));
+            bundles.Add(new ScriptBundle("~/js/jquery").Include("~/Assets/client/js/jquery.min.js",
+                 "~/Scripts/ActiveScript.js"));
 
             bundles.Add(new ScriptBundle("~/js/plugins").Include(
                  "~/Assets/admin/libs/jquery-ui/jquery-ui.min.js",
@@ -16,7 +17,7 @@ namespace Smq.Web
                  "~/Assets/admin/libs/numeral/numeral.js",
                  "~/Assets/admin/libs/jquery-validation/dist/jquery.validate.js",
                  "~/Assets/admin/libs/jquery-validation/dist/additional-methods.min.js",
-                 "~/Assets/client/js/common.js"
+                 "~/Assets/client/js/common.js"            
                 ));
 
             bundles.Add(new StyleBundle("~/css/base")

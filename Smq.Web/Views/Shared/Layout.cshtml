@@ -10,13 +10,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>@ViewBag.Title</title>
     <meta name="MetaKeyword" content="@ViewBag.MetaKeyword" />
     <meta name="MetaDescription" content="@ViewBag.MetaDescription" />
-    @*<link href="../../Assets/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Assets/client/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
-    <link href="~/Assets/admin/libs/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet" />
-    <!--theme-style-->
-    <link href="../../Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="~/Assets/client/css/customer.css" rel="stylesheet" />
-    <!--//theme-style-->*@
     @Styles.Render("~/css/base")
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -36,27 +29,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="clearfix"> </div>
     <!--script-->
     @Scripts.Render("~/js/jquery")
+    @*<script src="~/Scripts/ActiveScript.js"></script>*@
     @Scripts.Render("~/js/plugins")
     @RenderSection("footerJS",required:false)
-    <!--initiate accordion-->
-    <script type="text/javascript">
-          $(function () {
-            var menu_ul = $('.menu > li > ul'),
-                   menu_a = $('.menu > li > a');
-            menu_ul.hide();
-            menu_a.click(function (e) {
-              e.preventDefault();
-              if (!$(this).hasClass('active')) {
-                menu_a.removeClass('active');
-                menu_ul.filter(':visible').slideUp('normal');
-                $(this).addClass('active').next().stop(true, true).slideDown('normal');
-              } else {
-                $(this).removeClass('active');
-                $(this).next().stop(true, true).slideUp('normal');
-              }
-            });
-
-          });
-    </script>
 </body>
 </html>

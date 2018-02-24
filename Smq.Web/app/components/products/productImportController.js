@@ -47,11 +47,11 @@
                 //Create an object that contains the model and files which will be transformed
                 // in the above transformRequest method
                 data: { categoryID: $scope.categoryID, files: $scope.files }
-            }).success(function (result, status, headers, config) {
+            }).then(function (result, status, headers, config) {
                 notificationService.displaySuccess(result.data);
                 $state.go('products');
-            }).
-            error(function(data, status, headers, config) {
+            },
+            function (data, status, headers, config) {
                 notificationService.displayError(data);
             });
         }
