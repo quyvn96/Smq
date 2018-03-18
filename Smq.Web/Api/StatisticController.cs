@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Smq.Web.Api
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/statistic")]
     public class StatisticController : ApiControllerBase
     {
@@ -19,7 +19,7 @@ namespace Smq.Web.Api
         {
             this._statisticService = statisticService;
         }
-        [Route("getrevenue")]
+        [Route("getrevenues")]
         [HttpGet]
         public HttpResponseMessage GetRevenueStatistic(HttpRequestMessage request, string fromDate, string toDate)
         {

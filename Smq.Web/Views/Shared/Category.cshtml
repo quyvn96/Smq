@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Smq.Web.Models.ProductCategoryViewModel>
 <div class="sub-cate">
     <div class="top-nav rsidebar span_1_of_left">
-        <h3 class="cate">Danh mục sản phẩm</h3>
+        <h3 class="cate">CATEGORIES</h3>
         <ul class="menu">
             @foreach (var category in Model.Where(x => x.ParentID == null))
             {
@@ -11,7 +11,7 @@
                     @if (childCategories.Count() > 0)
                     {
                         <a href="@url">
-                            @category.Name<img class="arrow-img" src="/Assets/client/images/arrow1.png" alt="" width="20" height="20"/>
+                            @category.Name<img class="arrow-img" src="/Assets/client/images/arrow1.png" alt=""/>
                         </a>
                     }
                     else
@@ -46,8 +46,5 @@
             <h6><a href="single.html">Lorem ipsum dolor</a></h6>
         </div>
     </div>
-    <a class="view-all all-product" href="product.html">XEM TẤT CẢ<span> </span></a>
+    <a class="view-all all-product" href="product.html">VIEW ALL<span> </span></a>
 </div>
-@*@section footerJS{
- <script src="~/Scripts/ActiveScript.js"></script>
-}*@

@@ -18,10 +18,10 @@ namespace Smq.Model.Models
 
         public decimal Price { set; get; }
 
-        [ForeignKey("OrderID")]
-        public virtual Order Order { set; get; }
+        //[ForeignKey("OrderID")]
+        //public virtual Order Order { set; get; }
 
-        [ForeignKey("ProductID")]
-        public virtual Product Product { set; get; }
+        //[ForeignKey("ProductID")]
+        //public virtual Product Product { set; get; }
     }
 }

@@ -13,13 +13,13 @@
     {
         <div class="w_content">
             <div class="women">
-                <a href=""><h4>Kết quả tìm kiếm:@keyword- <span> @Model.TotalCount sản phẩm</span> </h4></a>
+                <a href=""><h4>Kết quả tìm kiếm:@keyword- <span> @Model.TotalCount product(s)</span> </h4></a>
                 <ul class="w_nav">
                     <li>Sắp xếp : </li>
-                    <li><a class="active" href="?page=@Model.Page&sort=popular">Phổ biến</a></li> |
-                    <li><a href="?page=@Model.Page&sort=new">Mới</a></li> |
-                    <li><a href="?page=@Model.Page&sort=discount">Khuyến mại</a></li> |
-                    <li><a href="?page=@Model.Page&sort=price">Giá: Thấp -> Cao</a></li>
+                    <li><a class="active" href="?page=@Model.Page&sort=popular">Popular</a></li> |
+                    <li><a href="?page=@Model.Page&sort=new">New</a></li> |
+                    <li><a href="?page=@Model.Page&sort=discount">Discount</a></li> |
+                    <li><a href="?page=@Model.Page&sort=price">Price: Low -> High</a></li>
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"> </div>
@@ -29,14 +29,14 @@
         <div class="grid-product">
             @foreach (var product in Model.Items)
             {
-                var url = "/" + product.Alias + ".p-" + product.ID;
+                var url = "/" + product.Alias + ".p-" + product.ID + ".html";
                 <div class="product-grid">
                     <div class="content_box">
                         <a href="@url">
                             <div class="left-grid-view grid-view-left">
                                 <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
                                 <div class="mask">
-                                    <div class="info">Xem nhanh</div>
+                                    <div class="info">View</div>
                                 </div>
                             </div>
                         </a>
@@ -101,6 +101,6 @@
 
     else
     {
-        <div class="text-center">Không có sản phẩm nào được tìm thấy</div>
+        <div class="text-center">No products were found</div>
     }
 </div>

@@ -1,12 +1,7 @@
 ﻿<section class="content-header">
   <h1>
-    Thêm mới người dùng
+    Add new user 
   </h1>
-  <ol class="breadcrumb">
-    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li><a ui-sref="accounts">Danh mục người dùng</a></li>
-    <li class="active"><a href="#">Thêm mới</a></li>
-  </ol>
 </section>
 <section class="content">
   <div class="row">
@@ -20,21 +15,21 @@
           <div class="box-body">
             <div class="col-md-8">
               <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.name.$invalid && !frmAddAccount.name.$pristine }">
-                <label class="col-sm-2 control-label">Họ tên người dùng</label>
+                <label class="col-sm-2 control-label">Full name</label>
                 <div class="col-sm-10">
                   <input type="text" name="name" class="form-control"
                          required reqired-message="Họ tên bắt buộc." ng-model="account.FullName">
                 </div>
               </div>
               <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.userName.$invalid && !frmAddAccount.userName.$pristine }">
-                <label class="col-sm-2 control-label">Tài khoản</label>
+                <label class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-10">
                   <input type="text" name="userName" class="form-control"
                          required reqired-message="Tài khoản bắt buộc." ng-model="account.UserName">
                 </div>
               </div>
               <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.password.$invalid && !frmAddAccount.password.$pristine }">
-                <label class="col-sm-2 control-label">Mật khẩu</label>
+                <label class="col-sm-2 control-label">Passwword</label>
                 <div class="col-sm-10">
                   <input type="password" name="password" class="form-control"
                          required reqired-message="Mật khẩu bắt buộc." ng-model="account.Password">
@@ -48,14 +43,14 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Điện thoại</label>
+                <label class="col-sm-2 control-label">Phone number</label>
                 <div class="col-sm-10">
                   <input type="text" name="password" class="form-control"
                           ng-model="account.PhoneNumber">
                 </div>
               </div>
               <div class="form-group" ng-class="{ 'has-error' : frmAddAccount.birthDate.$invalid && !frmAddAccount.birthDate.$pristine }">
-                <label class="col-sm-2 control-label">Ngày sinh</label>
+                <label class="col-sm-2 control-label">BirthDate</label>
                 <div class="col-sm-10">
                   <input type="date" name="birthDate" class="form-control"
                          required reqired-message="Ngày sinh bắt buộc." ng-model="account.BirthDay">
@@ -70,8 +65,8 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <a ui-sref="application_users" class="btn btn-default">Hủy bỏ</a>
-                  <input type="submit" ng-disabled="frmAddAccount.$invalid" class="btn btn-primary" value="Lưu lại" />
+                  <a ui-sref="application_users" class="btn btn-default">Cancel</a>
+                  <input type="submit" ng-disabled="frmAddAccount.$invalid" class="btn btn-primary" value="Save" />
                 </div>
               </div>
             </div>

@@ -21,7 +21,8 @@ namespace Smq.Service
         }
         public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate)
         {
-            return _orderRepository.GetGetRevenueStatistic(fromDate, toDate);
+            var data = _orderRepository.GetGetRevenueStatistic(fromDate, toDate);
+            return data;
         }
     }
 }

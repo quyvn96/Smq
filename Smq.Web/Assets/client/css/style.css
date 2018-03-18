@@ -16,7 +16,7 @@ body a{
 	-moz-transition: 0.5s all;
 }
 .top-header{
-	background: #F97E76;
+	background: #3c8dbc;
 	padding: 0.7em 0;
 }
 .top-header-left{
@@ -308,7 +308,7 @@ a.now-get{
 	font-size: 1.1em;
 	color:#fff;
 	padding:0.6em 0.8em;
-	background:#323A45;
+	background:#00a65a;
 	text-decoration: none;
 }
 a.now-get:hover{
@@ -454,7 +454,7 @@ h5.latest-product{
 	margin: 2em 0;
 }
 .sed-left-top,.grid-top-chain{
-	margin: 0;
+	margin: 5px !important;
 }
 .star-price {
 	padding: 1em 0.5em;

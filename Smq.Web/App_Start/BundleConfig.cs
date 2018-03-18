@@ -9,7 +9,7 @@ namespace Smq.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/jquery").Include("~/Assets/client/js/jquery.min.js",
-                 "~/Scripts/ActiveScript.js"));
+                 "~/Scripts/active-script.js"));
 
             bundles.Add(new ScriptBundle("~/js/plugins").Include(
                  "~/Assets/admin/libs/jquery-ui/jquery-ui.min.js",

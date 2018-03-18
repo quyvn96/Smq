@@ -26,10 +26,10 @@
         function UpdateProductCategory() {
             apiService.put('/api/productcategory/update', $scope.productCategory,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
+                    notificationService.displaySuccess(result.data.Name + ' Updated successfully.');
                     $state.go('product_categories');
                 }, function (error) {
-                    notificationService.displayError('Cập nhật không thành công.');
+                    notificationService.displayError('Updated faild.');
                 });
         }
         function loadParentCategory() {

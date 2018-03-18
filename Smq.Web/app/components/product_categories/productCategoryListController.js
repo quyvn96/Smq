@@ -26,10 +26,10 @@
                 }
             }
             apiService.del('/api/productcategory/deletemulti', config, function (result) {
-                notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi');
+                notificationService.displaySuccess('Deleted successfully ' + result.data + ' record(s)');
                 search();
             }, function (error) {
-                notificationService.displayError('Xóa không thành công');
+                notificationService.displayError('Deleted faild');
             });
         }
 
@@ -62,17 +62,17 @@
         }, true);
 
         function deleteProductCategory(id) {
-            $ngBootbox.confirm('Bạn có chắc muốn xóa?').then(function () {
+            $ngBootbox.confirm('Are you sure you want to delete?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
                 apiService.del('/api/productcategory/delete', config, function () {
-                    notificationService.displaySuccess('Xóa thành công');
+                    notificationService.displaySuccess('Deleted successfully');
                     search();
                 }, function () {
-                    notificationService.displayError('Xóa không thành công');
+                    notificationService.displayError('Delete faild');
                 })
             });
         }

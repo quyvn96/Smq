@@ -25,7 +25,7 @@
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.role.Name + ' đã được cập nhật thành công.');
+            notificationService.displaySuccess($scope.role.Name + ' Updated successfully.');
 
             $location.url('application_roles');
         }

@@ -121,7 +121,7 @@
                     $('#divCheckout').hide();
                     cart.deleteAll();
                     setTimeout(function () {
-                        $('#cartContent').html("Chúc mừng bạn đã đặt hàng thành công.Chúng tôi sẽ liên hệ sớm nhất có thể!");
+                        $('#cartContent').html("Congratulations on your successful order. We will contact you as soon as possible!");
                     }, 2000);
                 }
             }
@@ -208,7 +208,7 @@
                     });
                     $('#cartBody').html(html);
                     if (html == '') {
-                        $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng!');
+                        $('#cartContent').html('No products in cart!');
                     }
                     $('#lblTotalOrder').text(numeral(cart.getTotalOrder()).format('0,0'));
                     cart.registerEvent();             

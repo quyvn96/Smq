@@ -15,7 +15,7 @@
         $scope.deleteItem = deleteItem;
 
         function deleteItem(id) {
-            $ngBootbox.confirm('Bạn có chắc muốn xóa?')
+            $ngBootbox.confirm('Are you sure you want to delete ?')
                 .then(function () {
                     var config = {
                         params: {
@@ -23,11 +23,11 @@
                         }
                     }
                     apiService.del('/api/applicationUser/delete', config, function () {
-                        notificationService.displaySuccess('Đã xóa thành công.');
+                        notificationService.displaySuccess('Deleted successfully.');
                         search();
                     },
                     function () {
-                        notificationService.displayError('Xóa không thành công.');
+                        notificationService.displayError('Deleted faild.');
                     });
                 });
         }

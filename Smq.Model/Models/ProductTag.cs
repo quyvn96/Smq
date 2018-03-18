@@ -15,10 +15,10 @@ namespace Smq.Model.Models
         [MaxLength(50)]
         public string TagID { set; get; }
 
-        [ForeignKey("ProductID")]
-        public virtual Product Product { set; get; }
+        //[ForeignKey("ProductID")]
+        //public virtual Product Product { set; get; }
 
-        [ForeignKey("TagID")]
-        public virtual Tag Tag { set; get; }
+        //[ForeignKey("TagID")]
+        //public virtual Tag Tag { set; get; }
     }
 }

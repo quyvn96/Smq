@@ -1,75 +1,90 @@
 ﻿  <!-- Content Header (Page header) -->
 <section class="content-header">
-  <h1>
-    Thêm mới sản phẩm
-
-  </h1>
-  <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li><a href="#">Sản phẩm</a></li>
-    <li><a ui-sref="products">Danh sách</a></li>
-    <li class="active">Thêm mới</li>
-  </ol>
+    <h1>
+        Revenue Statistic of MyShop
+    </h1>
 </section>
 <!-- Main content -->
 <section class="content">
-  <div class="row">
-    <!-- Left col -->
-    <section class="col-lg-7">
-      <!-- Custom tabs (Charts with tabs)-->
-      <div class="nav-tabs-custom">
-        <!-- Tabs within a box -->
-        <ul class="nav nav-tabs pull-right">
-          <li class="active"><a href="#revenue-chart" data-toggle="tab">Doanh thu</a></li>
-        </ul>
-        <div class="tab-content no-padding">
-          <!-- Morris chart - Sales -->
-          <canvas id="bar" class="chart chart-line"
-                  chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
-        </div>
-      </div><!-- /.nav-tabs-custom -->
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Revenue</a></li>
+                </ul>
+                <div class="tab-content no-padding">
+                    <!-- Morris chart - Sales -->
+                    <canvas id="bar" class="chart chart-line"
+                            chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                </div>
+            </div><!-- /.nav-tabs-custom -->
+        </section><!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5">
+            <!-- Map box -->
+            <div class="box box-solid">
+                <div class="box-header">
+                    <!-- tools box -->
+                    <i class="fa fa-map-marker"></i>
+                    <h3 class="box-title">
+                        Statistic data
+                    </h3>
+                    <br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>From date</label>                              
+                                        <input type="date" class="form-control" ng-model="fromdate" />
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>To date</label>                          
+                                        <input type="date" class="form-control" ng-model="todate" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                             <div class="form-group">
+                                 <label>Filter</label> 
+                                 <input type="button" value="Filter" class="btn btn-primary" ng-click="filterData()"/>
+                             </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
 
-    </section><!-- /.Left col -->
-    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-    <section class="col-lg-5">
-      <!-- Map box -->
-      <div class="box box-solid">
-        <div class="box-header">
-          <!-- tools box -->
-          <i class="fa fa-map-marker"></i>
-          <h3 class="box-title">
-            Dữ liệu thống kê
-          </h3>
-        </div>
-        <div class="box-body">
-          
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <td>Ngày</td>
-                <td>Doanh số</td>
-                <td>Lợi nhuận</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="item in tabledata">
-                <td>
-                  {{item.Date | date}}
-                </td>
-                <td>
-                  {{item.Revenues | number}}
-                </td>
-                <td>
-                  {{item.Benefit | number}}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div><!-- /.box-body-->
-        <div class="box-footer no-border">
-        </div>
-      </div>
-    </section><!-- right col -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Revenue</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in tabledata">
+                                <td>
+                                    {{item.Date | date}}
+                                </td>
+                                <td>
+                                    {{item.Revenues | number}}
+                                </td>
+                                <td>
+                                    {{item.Benefit | number}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body-->
+                <div class="box-footer no-border">
+                </div>
+            </div>
+        </section>
+</section><!-- right col -->
   </div><!-- /.row (main row) -->
-
 </section><!-- /.content -->

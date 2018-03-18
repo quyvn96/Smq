@@ -61,53 +61,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201709081409543_InitialMigration.cs" />
-    <Compile Include="Migrations\201709081409543_InitialMigration.Designer.cs">
-      <DependentUpon>201709081409543_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709120844064_AddTag.cs" />
-    <Compile Include="Migrations\201709120844064_AddTag.Designer.cs">
-      <DependentUpon>201709120844064_AddTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709170737568_AddSlides.cs" />
-    <Compile Include="Migrations\201709170737568_AddSlides.Designer.cs">
-      <DependentUpon>201709170737568_AddSlides.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709190813327_QuantityProduct.cs" />
-    <Compile Include="Migrations\201709190813327_QuantityProduct.Designer.cs">
-      <DependentUpon>201709190813327_QuantityProduct.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709191041010_AddForeignKey.cs" />
-    <Compile Include="Migrations\201709191041010_AddForeignKey.Designer.cs">
-      <DependentUpon>201709191041010_AddForeignKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709201354298_ContactDetail.cs" />
-    <Compile Include="Migrations\201709201354298_ContactDetail.Designer.cs">
-      <DependentUpon>201709201354298_ContactDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709211605371_AddFeedbacks.cs" />
-    <Compile Include="Migrations\201709211605371_AddFeedbacks.Designer.cs">
-      <DependentUpon>201709211605371_AddFeedbacks.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709250924383_AddCustomerId.cs" />
-    <Compile Include="Migrations\201709250924383_AddCustomerId.Designer.cs">
-      <DependentUpon>201709250924383_AddCustomerId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709260721048_RenameTableIdentity.cs" />
-    <Compile Include="Migrations\201709260721048_RenameTableIdentity.Designer.cs">
-      <DependentUpon>201709260721048_RenameTableIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709260908562_AddApplicationTable.cs" />
-    <Compile Include="Migrations\201709260908562_AddApplicationTable.Designer.cs">
-      <DependentUpon>201709260908562_AddApplicationTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709281330350_ChangeDataBase.cs" />
-    <Compile Include="Migrations\201709281330350_ChangeDataBase.Designer.cs">
-      <DependentUpon>201709281330350_ChangeDataBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709281617368_AddStoreProcedure.cs" />
-    <Compile Include="Migrations\201709281617368_AddStoreProcedure.Designer.cs">
-      <DependentUpon>201709281617368_AddStoreProcedure.cs</DependentUpon>
+    <Compile Include="Migrations\201803180927136_CreateDB.cs" />
+    <Compile Include="Migrations\201803180927136_CreateDB.Designer.cs">
+      <DependentUpon>201803180927136_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,44 +98,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709081409543_InitialMigration.resx">
-      <DependentUpon>201709081409543_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709120844064_AddTag.resx">
-      <DependentUpon>201709120844064_AddTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709170737568_AddSlides.resx">
-      <DependentUpon>201709170737568_AddSlides.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709190813327_QuantityProduct.resx">
-      <DependentUpon>201709190813327_QuantityProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709191041010_AddForeignKey.resx">
-      <DependentUpon>201709191041010_AddForeignKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709201354298_ContactDetail.resx">
-      <DependentUpon>201709201354298_ContactDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709211605371_AddFeedbacks.resx">
-      <DependentUpon>201709211605371_AddFeedbacks.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709250924383_AddCustomerId.resx">
-      <DependentUpon>201709250924383_AddCustomerId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709260721048_RenameTableIdentity.resx">
-      <DependentUpon>201709260721048_RenameTableIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709260908562_AddApplicationTable.resx">
-      <DependentUpon>201709260908562_AddApplicationTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709281330350_ChangeDataBase.resx">
-      <DependentUpon>201709281330350_ChangeDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709281617368_AddStoreProcedure.resx">
-      <DependentUpon>201709281617368_AddStoreProcedure.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Smq.Common\Smq.Common.csproj">
       <Project>{9fc108c1-add9-4b74-a6b9-0f101e5a8473}</Project>
       <Name>Smq.Common</Name>
@@ -188,6 +106,11 @@
       <Project>{deea1458-f22c-4986-a2a6-3166f03565f9}</Project>
       <Name>Smq.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803180927136_CreateDB.resx">
+      <DependentUpon>201803180927136_CreateDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

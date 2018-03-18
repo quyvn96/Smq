@@ -5,39 +5,19 @@
             <div class="top-header-left">
                 <ul class="support">
                     <li><a href="#"><label> </label></a></li>
-                    <li><a href="#">Hỗ trợ trực tuyến</a></li>
+                    <li><a href="#">Support Online</a></li>
                 </ul>
                 <ul class="support">
                     <li class="van"><a href="#"><label> </label></a></li>
-                    <li><a href="#">Miễn phí giao hàng</a></li>
-                </ul>
-                <ul class="support">
-                    <li class="van"><a href="#"><label> </label></a></li>
-                    <li><a href="/gioi-thieu.html"><span class="live">Giới thiệu </span></a></li>
+                    <li><a href="/gioi-thieu.html"><span class="live">Introduction</span></a></li>
                 </ul>
                 <ul class="support">
                     <li class="#"><a href="#"><label> </label></a></li>
-                    <li><a href="/lien-he.html"><span class="live">Liên hệ </span></a></li>
+                    <li><a href="/lien-he.html"><span class="live">Contact</span></a></li>
                 </ul>
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
-                <div class="down-top">
-                    <select class="in-drop">
-                        <option value="English" class="in-of">English</option>
-                        <option value="Japanese" class="in-of">Japanese</option>
-                        <option value="French" class="in-of">French</option>
-                        <option value="German" class="in-of">German</option>
-                    </select>
-                </div>
-                <div class="down-top top-down">
-                    <select class="in-drop">
-
-                        <option value="Dollar" class="in-of">Dollar</option>
-                        <option value="Yen" class="in-of">Yen</option>
-                        <option value="Euro" class="in-of">Euro</option>
-                    </select>
-                </div>
                 <!---->
                 <div class="clearfix"> </div>
             </div>
@@ -48,12 +28,12 @@
         <div class="container">
             <div class="header-bottom-left">
                 <div class="logo">
-                    <a href="/"><img src="../../Assets/client/images/logo.png" alt=" " /></a>
+                    <a href="/"><img src="../../Assets/client/images/logo.png" alt="" /></a>
                 </div>
                 <div class="search">
                     <form method="get" action="/tim-kiem.html">
-                        <input type="text" id="txtKeyword" name="keyword" placeholder="Từ khóa" />
-                        <input type="submit" value="Tìm kiếm" id="btnSearch">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Enter name" />
+                        <input type="submit" value="Search" id="btnSearch">
                     </form>
 
 
@@ -67,19 +47,19 @@
                   {
                     @Html.AntiForgeryToken()
                     <ul class="login">
-                        <li><a href="/tai-khoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
-                        <li><a href="#" id="btnLogOut">Thoát</a></li>
+                        <li><a href="/tai-khoan.html"><span> </span>HELLO:@User.Identity.GetUserName()</a></li> |
+                        <li><a href="#" id="btnLogOut">EXIT</a></li>
                     </ul> 
                   }
                   else
                   {
                     <ul class="login">
-                        <li><a href="/dang-nhap.html"><span> </span>ĐĂNG NHẬP</a></li> |
-                        <li><a href="/dang-ky.html">ĐĂNG KÝ</a></li>
+                        <li><a href="/dang-nhap.html"><span> </span>LOGIN</a></li> |
+                        <li><a href="/dang-ky.html">REGISTER</a></li>
                     </ul>
                   }
               }
-                <div class="cart"><a href="/gio-hang.html"><span> </span>GIỎ HÀNG</a></div>
+                <div class="cart"><a href="/gio-hang.html"><span> </span>YOUR CART</a></div>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>

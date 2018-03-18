@@ -23,10 +23,10 @@
             $scope.product.MoreImages = JSON.stringify($scope.moreImages)
             apiService.post('/api/product/create', $scope.product,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
+                    notificationService.displaySuccess(result.data.Name + ' Added successfully.');
                     $state.go('products');
                 }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
+                    notificationService.displayError('Added faild.');
                 });
         }
         function loadProductCategory() {

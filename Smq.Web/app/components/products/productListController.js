@@ -59,11 +59,11 @@
                     checkedProducts: JSON.stringify(listId)
                 }
             }
-            apiService.del('api/product/deletemulti', config, function (result) {
-                notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
+            apiService.del('/api/product/deletemulti', config, function (result) {
+                notificationService.displaySuccess('Deleted successfuly' + result.data + ' record(s).');
                 search();
             }, function (error) {
-                notificationService.displayError('Xóa không thành công');
+                notificationService.displayError('Deleted faild');
             });
         }
 
@@ -93,17 +93,17 @@
         }, true);
 
         function deleteProduct(id) {
-            $ngBootbox.confirm('Bạn có chắc muốn xóa?').then(function () {
+            $ngBootbox.confirm('Are you sure you want to delete?').then(function () {
                 var config = {
                     params: {
                         id: id
                     }
                 }
-                apiService.del('api/product/delete', config, function () {
-                    notificationService.displaySuccess('Xóa thành công');
+                apiService.del('/api/product/delete', config, function () {
+                    notificationService.displaySuccess('Deleted successfully');
                     search();
                 }, function () {
-                    notificationService.displayError('Xóa không thành công');
+                    notificationService.displayError('Deleted faild');
                 })
             });
         }
@@ -123,7 +123,7 @@
             }
             apiService.get('/api/product/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
-                    notificationService.displayWarning('Không có bản ghi nào được tìm thấy.');
+                    notificationService.displayWarning('Not found record.');
                 }
                 $scope.products = result.data.Items;
                 $scope.page = result.data.Page;

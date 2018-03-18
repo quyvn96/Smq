@@ -25,7 +25,7 @@
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.account.FullName + ' đã được cập nhật thành công.');
+            notificationService.displaySuccess($scope.account.FullName + 'Updated successfully.');
 
             $location.url('application_users');
         }
@@ -39,7 +39,7 @@
                 function (response) {
                     $scope.groups = response.data;
                 }, function (response) {
-                    notificationService.displayError('Không tải được danh sách nhóm.');
+                    notificationService.displayError('Not load group list.');
                 });
 
         }

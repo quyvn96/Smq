@@ -2,9 +2,9 @@
     app.filter('statusFilter', function () {
         return function (input) {
             if (input == true)
-                return 'Hiệu lực';
+                return 'Active';
             else
-                return 'Khóa';
+                return 'Inactive';
         }
     });
 })(angular.module('smq.common'));

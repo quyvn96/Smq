@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Smq.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Smq.Model.Models
 {
     [Table("ApplicationGroups")]
-    public class ApplicationGroup
+    public class ApplicationGroup:Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,6 +19,5 @@ namespace Smq.Model.Models
         public string Name { get; set; }
          [StringLength(250)]
         public string Description { get; set; }
-
     }
 }

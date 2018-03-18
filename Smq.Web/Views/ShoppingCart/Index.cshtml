@@ -12,43 +12,43 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Hình ảnh</th>
-                        <th>Giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                        <th>Thao tác</th>
+                        <th>No</th>
+                        <th>Product name</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Into money</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="cartBody"></tbody>
             </table>
-            <button class="btn btn-success" id="btnContinue">Tiếp tục mua hàng</button>
-            <button class="btn btn-danger" id="btnDeleteAll">Xóa giỏ hàng</button>
-            <button class="btn btn-default" id="btnCheckout">Thanh toán</button>
+            <button class="btn btn-success" id="btnContinue">Continue buying</button>
+            <button class="btn btn-danger" id="btnDeleteAll">Delete cart</button>
+            <button class="btn btn-default" id="btnCheckout">Payment</button>
             <div class="pull-right">
-                Tổng tiền: <span id="lblTotalOrder"></span>
+                Total money: <span id="lblTotalOrder"></span>
             </div>
         </div>
         <div id="divCheckout" style="display:none">
                 <div class="reservation_top">
                     <div class="contact_right">
-                        <h3>Thanh toán</h3>
+                        <h3>PAYMENT PRODUCT(s)</h3>
                         <div class="contact-form">
                             <form method="post" id="frmPayment">
                                 @if (Request.IsAuthenticated)
                                 {
                                     <label>
                                         <input type="checkbox" id="chkUserLoginInfo" />
-                                        Sử dụng thông tin đăng nhập
+                                        Use login information
                                     </label>
                                 }      
-                                <input type="text" class="textbox" name="name" id="txtName" placeholder="Họ tên">
-                                <input type="text" class="textbox" name="address" id="txtAddress" placeholder="Địa chỉ">
+                                <input type="text" class="textbox" name="name" id="txtName" placeholder="Full name">
+                                <input type="text" class="textbox" name="address" id="txtAddress" placeholder="Address">
                                 <input type="text" class="textbox" name="email" id="txtEmail" placeholder="Email">
-                                <input type="text" class="textbox" name="phone" id="txtPhone" placeholder="Điện thoại">
+                                <input type="text" class="textbox" name="phone" id="txtPhone" placeholder="Phone number">
                                 <textarea id="txtMessage"></textarea>
-                                <input type="button" id="btnCreateOrder" value="Thanh toán" class="btn btn-info">
+                                <input type="button" id="btnCreateOrder" value="Payment" class="btn btn-info">
                                 <div class="clearfix"> </div>
                             </form>
                         </div>

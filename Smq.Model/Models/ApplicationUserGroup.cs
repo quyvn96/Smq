@@ -19,9 +19,9 @@ namespace Smq.Model.Models
         public int GroupId { get; set; }
 
 
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser ApplicationUser { get; set; }
-        [ForeignKey("GroupId")]
-        public virtual ApplicationGroup ApplicationGroup { get; set; }
+        //[ForeignKey("UserId")]
+        //public virtual ApplicationUser ApplicationUser { get; set; }
+        //[ForeignKey("GroupId")]
+        //public virtual ApplicationGroup ApplicationGroup { get; set; }
     }
 }

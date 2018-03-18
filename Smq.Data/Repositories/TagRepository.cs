@@ -10,7 +10,7 @@ namespace Smq.Data.Repositories
 {
     public interface ITagRepository : IRepository<Tag>
     {
-
+         IEnumerable<Tag> GetTagByProductId(int productId);
     }
     public class TagRepository : RepositoryBase<Tag>,ITagRepository
     {
@@ -18,6 +18,16 @@ namespace Smq.Data.Repositories
             : base(dbFactory)
         {
 
+        }
+
+        public IEnumerable<Tag> GetTagByProductId(int productId)
+        {
+            var query = from p in DbContext.Tags
+                        join pt in DbContext.Products
+                        on p.ID equals pt.Tags
+                        where pt.ID == productId
+                        select p;
+            return query;
         }
     }
 }

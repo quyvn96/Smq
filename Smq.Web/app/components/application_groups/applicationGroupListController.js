@@ -28,10 +28,10 @@
                 }
             }
             apiService.del('api/applicationGroup/deletemulti', config, function (result) {
-                notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
+                notificationService.displaySuccess('Deleted successfully ' + result.data + ' record.');
                 search();
             }, function (error) {
-                notificationService.displayError('Xóa không thành công');
+                notificationService.displayError('Deleted faild');
             });
         }
 
@@ -61,7 +61,7 @@
         }, true);
 
         function deleteItem(id) {
-            $ngBootbox.confirm('Bạn có chắc muốn xóa?')
+            $ngBootbox.confirm('Are you sure you want to delete?')
                 .then(function () {
                     var config = {
                         params: {
@@ -69,11 +69,11 @@
                         }
                     }
                     apiService.del('/api/applicationGroup/delete', config, function () {
-                        notificationService.displaySuccess('Đã xóa thành công.');
+                        notificationService.displaySuccess('Deleted successfully.');
                         search();
                     },
                     function () {
-                        notificationService.displayError('Xóa không thành công.');
+                        notificationService.displayError('Deleted faild.');
                     });
                 });
         }

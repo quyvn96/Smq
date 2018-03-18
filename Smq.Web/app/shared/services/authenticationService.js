@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
-    app.service('authenticationService', ['$http', '$q', 'localStorageService', 'authData',
-    function ($http, $q, localStorageService, authData) {
+    app.service('authenticationService', ['$http', '$q', '$window', 'localStorageService', 'authData',
+    function ($http, $q, $window, localStorageService, authData) {
         var tokenInfo;
 
         this.setTokenInfo = function (data) {

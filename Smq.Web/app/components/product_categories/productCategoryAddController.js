@@ -14,10 +14,10 @@
         function AddProductCategory() {
             apiService.post('/api/productcategory/create', $scope.productCategory,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
+                    notificationService.displaySuccess(result.data.Name + 'Added successfully.');
                     $state.go('product_categories');
                 }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
+                    notificationService.displayError('Updated faild.');
                 });
         }
         function loadParentCategory() {

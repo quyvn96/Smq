@@ -220,7 +220,9 @@ namespace Smq.Service
 
         public IEnumerable<Tag> GetListTagByProductId(int id)
         {
-            return _productTagRepository.GetMulti(n => n.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+            //return _productTagRepository.GetMulti(n => n.ProductID == id, new string[] { "Tag" }).Select(y=>y.Tag);
+            var listTag = _tagRepository.GetTagByProductId(id);
+            return listTag;
         }
 
         public void IncreaseView(int id)

@@ -7,27 +7,28 @@
 
         this.login = function (userName, password) {
             deferred = $q.defer();
-            var data = "grant_type=password&username=" + userName + "&password=" + password;
+            var data = "userName=" + encodeURIComponent(userName) + "&password=" + encodeURIComponent(password) + "&grant_type=password";
             $http.post('/oauth/token', data, {
-                headers:
-                   { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-             .then(function (response) {
-                 userInfo = {
-                     accessToken: response.data.access_token,
-                     userName: userName
-                 };
-                 authenticationService.setTokenInfo(userInfo);
-                 authData.authenticationData.IsAuthenticated = true;
-                 authData.authenticationData.userName = userName;
-                 authData.authenticationData.accessToken = userInfo.accessToken;
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                     'Accept': 'application/json'
+                }
+            }).then(function (response) {
+                userInfo = {
+                    accessToken: response.data.access_token,
+                    userName: userName
+                };
+                authenticationService.setTokenInfo(userInfo);
+                authData.authenticationData.IsAuthenticated = true;
+                authData.authenticationData.userName = userName;
+                authData.authenticationData.accessToken = userInfo.accessToken;
 
-                 deferred.resolve(null);
-             }, function (err, status) {
-                 authData.authenticationData.IsAuthenticated = false;
-                 authData.authenticationData.userName = "";
-                 deferred.resolve(err);
-             })
+                deferred.resolve(null);
+            }, function (err, status) {
+                authData.authenticationData.IsAuthenticated = false;
+                authData.authenticationData.userName = "";
+                deferred.resolve(err);
+            })
             return deferred.promise;
         }
 
@@ -37,6 +38,7 @@
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";
                 authData.authenticationData.accessToken = "";
+
             }, null);
 
         }

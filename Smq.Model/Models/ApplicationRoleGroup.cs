@@ -19,9 +19,9 @@ namespace Smq.Model.Models
         [Key]
         [Column(Order = 2)]
         public string RoleId { get; set; }
-        [ForeignKey("RoleId")]
-        public virtual ApplicationRole ApplicationRole{get;set;}
-        [ForeignKey("GroupId")]
-        public virtual ApplicationGroup ApplicationGroup { get; set; }
+        //[ForeignKey("RoleId")]
+        //public virtual ApplicationRole ApplicationRole{get;set;}
+        //[ForeignKey("GroupId")]
+        //public virtual ApplicationGroup ApplicationGroup { get; set; }
     }
 }

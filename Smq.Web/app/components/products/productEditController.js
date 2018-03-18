@@ -30,10 +30,10 @@
             $scope.product.MoreImages = JSON.stringify($scope.moreImages)
             apiService.put('/api/product/update', $scope.product,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
+                    notificationService.displaySuccess(result.data.Name + ' updated successfully.');
                     $state.go('products');
                 }, function (error) {
-                    notificationService.displayError('Cập nhật không thành công.');
+                    notificationService.displayError('Updated faild.');
                 });
         }
         function loadProductCategory() {

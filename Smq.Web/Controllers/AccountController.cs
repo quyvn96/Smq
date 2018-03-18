@@ -87,7 +87,7 @@ namespace Smq.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng.");
+                    ModelState.AddModelError("", "Incorrect password or username!");
                 }
             }
             return View(model);
@@ -166,7 +166,7 @@ namespace Smq.Web.Controllers
             return View();
         }
         [HttpPost]
-        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Mã xác nhận không đúng")]
+        [CaptchaValidation("CaptchaCode", "registerCaptcha", "Incorrect code")]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -174,13 +174,13 @@ namespace Smq.Web.Controllers
                 var userByEmail = await _userManager.FindByEmailAsync(model.Email);
                 if (userByEmail != null)
                 {
-                    ModelState.AddModelError("email", "Email đã tồn tại");
+                    ModelState.AddModelError("email", "Email already exists");
                     return View(model);
                 }
                 var userByUserName = await _userManager.FindByNameAsync(model.UserName);
                 if (userByUserName != null)
                 {
-                    ModelState.AddModelError("email", "Tài khoản đã tồn tại");
+                    ModelState.AddModelError("email", "Account already exists");
                     return View(model);
                 }
                 var user = new ApplicationUser()
@@ -195,21 +195,18 @@ namespace Smq.Web.Controllers
 
                 };
 
-                await _userManager.CreateAsync(user, model.Password);
-
-
                 var adminUser = await _userManager.FindByEmailAsync(model.Email);
-                if (adminUser != null)
-                    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "User" });
+                //if (adminUser != null)
+                //    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "User" });
 
                 string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/newuser.html"));
                 content = content.Replace("{{UserName}}", adminUser.FullName);
                 content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "dang-nhap.html");
 
-                MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
+                MailHelper.SendMail(adminUser.Email, "Register successfully!", content);
+                await _userManager.CreateAsync(user, model.Password);
 
-
-                ViewData["SuccessMsg"] = "Đăng ký thành công";
+                ViewData["SuccessMsg"] = "Register successfully!";
             }
 
             return View();
