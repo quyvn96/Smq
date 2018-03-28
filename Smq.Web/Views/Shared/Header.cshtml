@@ -46,6 +46,7 @@
                   if (Request.IsAuthenticated)
                   {
                     @Html.AntiForgeryToken()
+                    <div class="account"><a href="#"><span> </span>YOUR ACCOUNT</a></div>
                     <ul class="login">
                         <li><a href="/tai-khoan.html"><span> </span>HELLO:@User.Identity.GetUserName()</a></li> |
                         <li><a href="#" id="btnLogOut">EXIT</a></li>
@@ -59,7 +60,7 @@
                     </ul>
                   }
               }
-                <div class="cart"><a href="/gio-hang.html"><span> </span>YOUR CART</a></div>
+                <div class="cart"><a href="/gio-hang.html"><span> </span>CART</a></div>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>

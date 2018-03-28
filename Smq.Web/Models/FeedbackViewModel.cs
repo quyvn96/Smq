@@ -9,15 +9,15 @@ namespace Smq.Web.Models
     public class FeedbackViewModel
     {
         public int ID { get; set; }
-        [MaxLength(250,ErrorMessage="Tên không vượt quá 250 ký tự")]
-        [Required(ErrorMessage="Phải nhập tên")]
+        [MaxLength(250,ErrorMessage= "Name does not exceed 250 characters")]
+        [Required(ErrorMessage="Please enter name")]
         public string Name { get; set; }
-        [MaxLength(250,ErrorMessage="Email không vượt quá 250 ký tự")]
+        [MaxLength(250,ErrorMessage= "Email does not exceed 250 characters")]
         public string Email { get; set; }
-        [MaxLength(500,ErrorMessage="Tin nhắn không vượt quá 500 ký tự")]
+        [MaxLength(500,ErrorMessage= "Message does not exceed 500 characters")]
         public string Message { get; set; }
         public DateTime CreatedDate { get; set; }
-        [Required(ErrorMessage = "Phải nhập trạng thái")]
+        [Required(ErrorMessage = "Please enter status")]
         public bool Status { get; set; }
 
         public ContactDetailViewModel ContactDetail { get; set; }

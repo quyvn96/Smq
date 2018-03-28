@@ -38,3 +38,9 @@
     padding: 0.5em;
     margin: 0.5em 0;
 }
+#message-login{
+    color:red;
+}
+.login-right,.register label{
+    color:red;
+}

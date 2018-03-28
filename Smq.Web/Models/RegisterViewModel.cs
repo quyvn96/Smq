@@ -8,18 +8,18 @@ namespace Smq.Web.Models
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Bạn cần nhập tên")]
+        [Required(ErrorMessage ="Please enter fullname")]
         public string FullName { get; set; }
-        [Required(ErrorMessage = "Bạn cần nhập tên đăng nhập")]
+        [Required(ErrorMessage = "Please enter username")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Bạn cần nhập mật khẩu")]
-        [MinLength(6,ErrorMessage="Mật khẩu phải có ít nhất 6 ký tự")]
+        [Required(ErrorMessage = "Please enter password")]
+        [MinLength(6,ErrorMessage= "Passwords must be at least 6 characters")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Bạn cần nhập email")]
-        [EmailAddress(ErrorMessage="Email không hợp lệ")]
+        [Required(ErrorMessage = "Please enter email")]
+        [EmailAddress(ErrorMessage="Invalid email ")]
         public string Email { get; set; }
         public string Address { get; set; }
-        [Required(ErrorMessage = "Bạn cần nhập số điện thoại")]
+        [Required(ErrorMessage = "Please enter phone number")]
         public string PhoneNumber { get; set; }
     }
 }

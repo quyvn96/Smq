@@ -18,20 +18,19 @@
                 }
             },
             messages:{
-                name: "Yêu cầu nhập tên",
-                address: "Yêu cầu nhập địa chỉ",
+                name: "Please enter name",
+                address: "Please enter address",
                 email: {
-                    required: "Yêu cầu nhập email",
-                    email: "Sai định dạng"
+                    required: "Please enter email",
+                    email: "Wrong format"
                 },
                 phone: {
-                    required: "Yêu cầu nhập số điện thoại",
-                    number: "Nhập số"
+                    required: "Please enter phone number",
+                    number: "Enter number"
                 }
             }
         });
-        $('.btnDeleteItem').off('click').on('click', function (e) {
-            e.preventDefault();
+        $('.btnDeleteItem').off('click').on('click', function () {
             var productId = parseInt($(this).data('id'));
             cart.deleteItem(productId);
         });
@@ -57,6 +56,7 @@
         $('#btnDeleteAll').off('click').on('click', function (e) {
             e.preventDefault();
             cart.deleteAll();
+            $('#divCheckout').hide();
         });
         $('#btnCheckout').off('click').on('click', function (e) {
             e.preventDefault();
@@ -105,7 +105,7 @@
         CustomerEmail : $('#txtEmail').val(),
         CustomerMobile: $('#txtPhone').val(),
         CustomerMessage : $('#txtMessage').val(),
-        PaymentMethod : "Thanh toán tiền mặt",
+        PaymentMethod : "",
         PaymentStatus : "",
         Status :false
         }

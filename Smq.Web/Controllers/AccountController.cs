@@ -63,34 +63,51 @@ namespace Smq.Web.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (model.UserName == null && model.Password == null)
             {
-                ApplicationUser user = _userManager.Find(model.UserName, model.Password);
-                if (user != null)
+                ViewBag.Message = "Incorrect password or username!";
+                return View(model);
+            }
+            else
+            {
+                if(model.UserName != null && model.Password == null)
                 {
-                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
-                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationProperties props = new AuthenticationProperties();
-                    props.IsPersistent = model.RememberMe;
-                    authenticationManager.SignIn(props, identity);
-                    if (Url.IsLocalUrl(returnUrl))
+                    ViewBag.Message = "Please enter password!";
+                }
+                else if(model.UserName == null && model.Password != null)
+                {
+                    ViewBag.Message = "Please enter username!";
+                }
+                else
+                { 
+                    ApplicationUser user = _userManager.Find(model.UserName, model.Password);
+                    if (user != null)
                     {
-                        return Redirect(returnUrl);
+                        IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                        authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                        ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                        AuthenticationProperties props = new AuthenticationProperties();
+                        props.IsPersistent = model.RememberMe;
+                        authenticationManager.SignIn(props, identity);
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        ViewBag.Message = "Incorrect password or username!";
                     }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Incorrect password or username!");
-                }
-            }
-            return View(model);
+                return View(model);
+            }         
         }
 
         // POST: /Account/ExternalLogin
@@ -167,6 +184,7 @@ namespace Smq.Web.Controllers
         }
         [HttpPost]
         [CaptchaValidation("CaptchaCode", "registerCaptcha", "Incorrect code")]
+        [ValidateInput(false)]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)

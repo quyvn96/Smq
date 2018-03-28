@@ -23,9 +23,9 @@ namespace Smq.Data.Repositories
         public IEnumerable<Tag> GetTagByProductId(int productId)
         {
             var query = from p in DbContext.Tags
-                        join pt in DbContext.Products
-                        on p.ID equals pt.Tags
-                        where pt.ID == productId
+                        join pt in DbContext.ProductTags
+                        on p.ID equals pt.TagID
+                        where pt.ProductID == productId
                         select p;
             return query;
         }

@@ -9,9 +9,9 @@ namespace Smq.Web.Models
     public class ProductCategoryViewModel
     {
         public int ID { set; get; }
-        [Required(ErrorMessage="Nhập tên danh mục")]
+        [Required(ErrorMessage="Please enter category name")]
         public string Name { set; get; }
-        [Required(ErrorMessage = "Nhập tiêu đề ")]
+        [Required(ErrorMessage = "Please enter alias")]
         public string Alias { set; get; }
         public string Description { set; get; }
 
@@ -38,7 +38,7 @@ namespace Smq.Web.Models
         public string MetaKeyword { set; get; }
 
         public string MetaDescription { set; get; }
-        [Required(ErrorMessage = "Nhập trạng thái")]
+        [Required(ErrorMessage = "Plase enter status")]
         public bool Status { set; get; }
     }
 }

@@ -5471,6 +5471,8 @@
     <Content Include="Scripts\js\bootstrap.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\npm.js" />
+    <Content Include="Scripts\js\smq.form.js" />
+    <Content Include="Scripts\js\smq.valiation.js" />
     <Content Include="UploadedFiles\images\ao.jpg" />
     <Content Include="UploadedFiles\images\bag1.jpg" />
     <Content Include="UploadedFiles\images\bag2.jpg" />

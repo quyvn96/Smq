@@ -8,8 +8,8 @@
 <div class="register">
     @using (Html.BeginForm("Register", "Account", FormMethod.Post))
     {    
-                   @Html.AntiForgeryToken()
-                   @Html.ValidationSummary(false, "", new { @class = "error" })
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "error" })
         if (ViewData["SuccessMsg"] != null)
         {
             <div class="alert alert-success" role="alert">
@@ -20,22 +20,22 @@
 				 <div class="register-top-grid">
 					<h3>Personal information</h3>
 					<div class="mation">
-						<span>Full name<label>*</label></span>
+						<span>Full name<label> *</label></span>
 						@Html.TextBoxFor(model => model.FullName)
 					 
-						 <span>Email<label>*</label></span>
+						 <span>Email<label> *</label></span>
                         @Html.TextBoxFor(model => model.Email)
 
-                        <span>Address<label>*</label></span>
+                        <span>Address<label> *</label></span>
                         @Html.TextBoxFor(model => model.Address)
 
-                        <span>Phone number<label>*</label></span>
+                        <span>Phone number<label> *</label></span>
                         @Html.TextBoxFor(model => model.PhoneNumber)
                         <hr />
-                        <span>Username<label>*</label></span>
+                        <span>Username<label> *</label></span>
                         @Html.TextBoxFor(model => model.UserName)
 
-                        <span>Password<label>*</label></span>
+                        <span>Password<label> *</label></span>
                         @Html.PasswordFor(model => model.Password)
 
                         <hr />
