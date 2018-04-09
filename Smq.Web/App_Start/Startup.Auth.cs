@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using Smq.Data;
 using Smq.Model.Models;
 using Microsoft.Owin.Security.Google;
+using Smq.Service;
+using System.Linq;
+using Smq.Common;
+using Smq.Web.Infrastructure.Core;
 
 [assembly: OwinStartup(typeof(Smq.Web.App_Start.Startup))]
 
@@ -91,15 +95,25 @@ namespace Smq.Web.App_Start
                 }
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    var listGroup = applicationGroupService.GetListGroupByUserId(user.Id);
+                    if (listGroup.Any(x => x.Name == CommonConstants.Administrator))
+                    {
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                       user,
+                                       DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("invalid_group", "You are not admin");
+                    }
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Incorrect password or username");
                     context.Rejected();
+                    context.SetError("invalid_grant", "Incorrect password or username");
                 }
             }
         }

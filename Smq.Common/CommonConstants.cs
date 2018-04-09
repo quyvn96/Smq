@@ -15,5 +15,6 @@ namespace Smq.Common
         public const string HomeTitle = "HomeTitle";
         public const string HomeMetaKeyword = "HomeMetaKeyword";
         public const string HomeDescription = "HomeDescription";
+        public const string Administrator = "Administrator";
     }
 }
