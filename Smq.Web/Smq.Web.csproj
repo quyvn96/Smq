@@ -5479,8 +5479,14 @@
     <Content Include="Scripts\js\smq.form.js" />
     <Content Include="Scripts\js\smq.valiation.js" />
     <Content Include="UploadedFiles\images\ao.jpg" />
+    <Content Include="UploadedFiles\images\ba.jpg" />
+    <Content Include="UploadedFiles\images\baa.jpg" />
     <Content Include="UploadedFiles\images\bag1.jpg" />
     <Content Include="UploadedFiles\images\bag2.jpg" />
+    <Content Include="UploadedFiles\images\bo.jpg" />
+    <Content Include="UploadedFiles\images\bott.jpg" />
+    <Content Include="UploadedFiles\images\bottle.jpg" />
+    <Content Include="UploadedFiles\images\ch.jpg" />
     <Content Include="UploadedFiles\images\dress2.jpg" />
     <Content Include="UploadedFiles\images\hat.jpg" />
     <Content Include="UploadedFiles\images\hat1.jpg" />
@@ -5489,9 +5495,23 @@
     <Content Include="UploadedFiles\images\jean.jpg" />
     <Content Include="UploadedFiles\images\jean1.jpg" />
     <Content Include="UploadedFiles\images\karo.jpg" />
+    <Content Include="UploadedFiles\images\pi1.jpg" />
+    <Content Include="UploadedFiles\images\pic10.jpg" />
+    <Content Include="UploadedFiles\images\pic13.jpg" />
+    <Content Include="UploadedFiles\images\pic2.jpg" />
+    <Content Include="UploadedFiles\images\pic3.jpg" />
+    <Content Include="UploadedFiles\images\pic5.jpg" />
+    <Content Include="UploadedFiles\images\pic6.jpg" />
+    <Content Include="UploadedFiles\images\s3.jpg" />
+    <Content Include="UploadedFiles\images\sh.jpg" />
+    <Content Include="UploadedFiles\images\si1.jpg" />
+    <Content Include="UploadedFiles\images\si4.jpg" />
+    <Content Include="UploadedFiles\images\soccer.jpg" />
     <Content Include="UploadedFiles\images\vaycuoi.jpg" />
     <Content Include="UploadedFiles\images\vest.jpg" />
     <Content Include="UploadedFiles\images\vest2.jpg" />
+    <Content Include="UploadedFiles\images\wa.jpg" />
+    <Content Include="UploadedFiles\images\wat.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
