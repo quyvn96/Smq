@@ -18,6 +18,8 @@ namespace Smq.Service
 
         IEnumerable<Product> GetAll();
 
+        IEnumerable<Product> GetAll(int page, int pageSize, string sort, out int totalRow);
+
         IEnumerable<Product> GetAll(string keyword);
 
         IEnumerable<Product> GetLastest(int top);
@@ -97,6 +99,12 @@ namespace Smq.Service
             return _productRepository.GetAll();
         }
 
+        public IEnumerable<Product> GetAll(int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(n => n.Status);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
         public Product GetById(int id)
         {
             return _productRepository.GetSingleById(id);

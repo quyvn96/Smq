@@ -5050,6 +5050,9 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\admin\templates\product-detail.html" />
+    <Content Include="Assets\client\images\girl1.jpg" />
+    <Content Include="Assets\client\images\girl3.jpg" />
+    <Content Include="Assets\client\images\logo1.png" />
     <Content Include="Assets\client\js\controller\contact.js" />
     <Content Include="Assets\client\js\controller\shoppingcart.js" />
     <Content Include="Assets\client\css\bootstrap.css" />
@@ -5462,6 +5465,7 @@
     <Content Include="Assets\admin\libs\angular-ui-select\LICENSE" />
     <Content Include="Assets\admin\libs\angular-ui-select\package.json" />
     <Content Include="Assets\admin\libs\angular-ui-select\README.md" />
+    <None Include="Properties\PublishProfiles\publishweb.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
     <Content Include="Scripts\active-script.js" />
@@ -5516,6 +5520,8 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Product\AllProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\orders\" />
@@ -5527,7 +5533,6 @@
     <Folder Include="Assets\admin\libs\mustache\bin\" />
     <Folder Include="Assets\admin\libs\ngBootbox\typings\" />
     <Folder Include="Reports\" />
-    <Folder Include="Views\About\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,18 @@ namespace Smq.Web
                     namespaces: new string[] { "Smq.Web.Controllers" }
                     );
             routes.MapRoute(
+                    name: "About",
+                    url: "gioi-thieu.html",
+                    defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+                    namespaces: new string[] { "Smq.Web.Controllers" }
+                    );
+            routes.MapRoute(
+                    name: "AllProduct",
+                    url: "san-pham.html",
+                    defaults: new { controller = "Product", action = "AllProduct", id = UrlParameter.Optional },
+                    namespaces: new string[] { "Smq.Web.Controllers" }
+                    );
+            routes.MapRoute(
                     name: "Search",
                     url: "tim-kiem.html",
                     defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },

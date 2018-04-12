@@ -108,5 +108,23 @@ namespace Smq.Web.Controllers
             };
             return View(paginationSet);
         }
+        public ActionResult AllProduct(int page = 1, string sort = "")
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int totalRow = 0;
+            var productModel = _productService.GetAll(page, pageSize, sort, out totalRow);
+            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModel);
+            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPage
+            };
+            return View(paginationSet);
+        }
     }
 }
