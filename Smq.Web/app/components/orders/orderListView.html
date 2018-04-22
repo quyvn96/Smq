@@ -1,0 +1,75 @@
+﻿<section class="content-header">
+    <h1>
+        Order list
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Order list</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Keyword">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-md-6">
+                  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 15%">Customer name</th>
+                            <th style="width: 15%">Customer address</th>
+                            <th style="width: 15%">Customer email</th>
+                            <th style="width: 15%">Customer mobile</th>
+                            <th style="width: 20px">Created date</th>
+                            <th style="width: 10%">Action</th>
+                        </tr>
+                        <tr ng-repeat="item in orders">
+                            <td>{{item.CustomerName}}</td>
+                            <td>{{item.CustomerAddress}}</td>
+                            <td>{{item.CustomerEmail}}</td>
+                            <td>{{item.CustomerMobile}}</td>
+                            <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                            <!--<td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>-->
+                            <td>
+                                <button class="btn btn-sm btn-primary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7"><span class="pull-right"> Page: {{page+1}} - Total record(s):{{totalCount}} </span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getOrders(page)"></pager-directive>
+        </div>
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->

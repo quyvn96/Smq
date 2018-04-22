@@ -22,45 +22,53 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
             <a href="javascript:void(0);">
-                <i class="fa fa-dashboard"></i> <span>Trang chủ</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>My page</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
         </li>
         <li class="treeview">
             <a href="javascript:void(0);">
                 <i class="fa fa-database" aria-hidden="true"></i>
-                <span>Hệ thống</span>
+                <span>User management</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> Nhóm người dùng</a></li>
-                <li><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> Quyền</a></li>
-                <li><a ui-sref="application_users"><i class="fa fa-circle-o"></i> Người dùng</a></li>
+                <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> User group</a></li>
+                <li><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> User role</a></li>
+                <li><a ui-sref="application_users"><i class="fa fa-circle-o"></i> User list</a></li>
             </ul>
         </li>
         <li class="treeview">
             <a href="javascript:void(0);">
                 <i class="fa fa-files-o"></i>
-                <span>Sản phẩm</span>
+                <span>Product management</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Danh mục sản phẩm</a></li>
-                <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Sản phẩm</a></li>
+                <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Product Catagories</a></li>
+                <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Products</a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="javascript:void(0);">
+                <i class="fa fa-list-ul"></i>
+                <span>Order management</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a ui-sref="orders"><i class="fa fa-circle-o"></i> Order list</a></li>
             </ul>
         </li>
         <li class="treeview">
             <a href="javascript:void(0);">
                 <i class="fa fa-area-chart"></i>
-                <span>Thống kê</span>
+                <span>Statistic</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a ui-sref="statistic_revenue"><i class="fa fa-circle-o"></i> Thống kê doanh số</a></li>
+                <li><a ui-sref="statistic_revenue"><i class="fa fa-circle-o"></i> Revenue statistic</a></li>
             </ul>
         </li>
     </ul>
 </section>
-<!-- /.sidebar -->

@@ -16,8 +16,8 @@ using Smq.Web.Models;
 
 namespace Smq.Web.Api
 {
-    [Authorize]
     [RoutePrefix("api/applicationUser")]
+    [Authorize]
     public class ApplicationUserController : ApiControllerBase
     {
         private ApplicationUserManager _userManager;

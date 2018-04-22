@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Smq.Model.Models
 {
     [Table("ApplicationGroups")]
-    public class ApplicationGroup:Auditable
+    public class ApplicationGroup
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

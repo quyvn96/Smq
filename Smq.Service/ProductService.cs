@@ -155,12 +155,12 @@ namespace Smq.Service
 
         public IEnumerable<Product> GetLastest(int top)
         {
-            return _productRepository.GetMulti(n => n.Status).OrderByDescending(n => n.CreatedDate).Take(top);
+            return _productRepository.GetMulti(n => n.Status && n.HomeFlag == true && n.HotFlag == false).OrderByDescending(n => n.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetHotProduct(int top)
         {
-            return _productRepository.GetMulti(n => n.Status && n.HotFlag == true).OrderByDescending(n => n.CreatedDate).Take(top);
+            return _productRepository.GetMulti(n => n.Status && n.HomeFlag == true && n.HotFlag == true).OrderByDescending(n => n.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetListProductCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)

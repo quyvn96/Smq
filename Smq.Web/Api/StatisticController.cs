@@ -9,8 +9,8 @@ using System.Web.Http;
 
 namespace Smq.Web.Api
 {
-    [Authorize]
     [RoutePrefix("api/statistic")]
+    [Authorize]
     public class StatisticController : ApiControllerBase
     {
         IStatisticService _statisticService;

@@ -19,56 +19,6 @@
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <!-- Messages: style can be found in dropdown.less-->
-                    <li class="dropdown messages-menu">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 4 messages</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <!-- start message -->
-                                        <a href="javascript:void(0);">
-                                            <div class="pull-left">
-                                                <img src="/Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li><!-- end message -->
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">See All Messages</a></li>
-                        </ul>
-                    </li>
-                    <!-- Notifications: style can be found in dropdown.less -->
-                    <li class="dropdown notifications-menu">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer"><a href="#">View all</a></li>
-                        </ul>
-                    </li>       
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -114,72 +64,8 @@
     </header>
     <!-- =============================================== -->
     <!-- Left side column. contains the sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="/Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>{{authentication.userName}}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-dashboard"></i> <span>My page</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-database" aria-hidden="true"></i>
-                        <span>User management</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="application_groups"><i class="fa fa-circle-o"></i> User group</a></li>
-                        <li><a ui-sref="application_roles"><i class="fa fa-circle-o"></i> User role</a></li>
-                        <li><a ui-sref="application_users"><i class="fa fa-circle-o"></i> User list</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-files-o"></i>
-                        <span>Product list</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Product Catagories</a></li>
-                        <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Products</a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-area-chart"></i>
-                        <span>Statistic</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a ui-sref="statistic_revenue"><i class="fa fa-circle-o"></i> Revenue statistic</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
+    <aside class="main-sidebar" ng-include="sideBar">
+
         <!-- /.sidebar -->
     </aside>
     <!-- =============================================== -->

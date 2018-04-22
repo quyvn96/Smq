@@ -64,14 +64,13 @@ namespace Smq.Web.Api
         }
 
         [HttpPost]
-        [Authorize]
         [Route("logout")]
+        [Authorize]
         public HttpResponseMessage Logout(HttpRequestMessage request)
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             return request.CreateResponse(HttpStatusCode.OK, new { success = true });
         }
-
     }
 }

@@ -13,6 +13,7 @@ namespace Smq.Data.Repositories
     public interface IOrderRepository : IRepository<Order>
     {
         IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate);
+        IEnumerable<Order> GetAllOrder();
     }
     public class OrderRepository:RepositoryBase<Order>,IOrderRepository
     {
@@ -20,6 +21,11 @@ namespace Smq.Data.Repositories
             : base(dbFactory)
         {
 
+        }
+
+        public IEnumerable<Order> GetAllOrder()
+        {
+            return DbContext.Database.SqlQuery<Order>("EXEC GetAllOrder").ToList();
         }
 
         public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate)

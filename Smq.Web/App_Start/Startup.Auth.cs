@@ -26,21 +26,20 @@ namespace Smq.Web.App_Start
         {
             //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             // Configure the db context, user manager and signin manager to use a single instance per request
-            var oauthServerConfig = new OAuthAuthorizationServerOptions
-            {
-                AllowInsecureHttp = true,
-                Provider = new AuthorizationServerProvider(),
-                TokenEndpointPath = new PathString("/oauth/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                ApplicationCanDisplayErrors = true
-
-            };
             app.CreatePerOwinContext(SmqSolutionDbContext.Create);
+
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
-            app.UseOAuthAuthorizationServer(oauthServerConfig);
+
+            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/oauth/token"),
+                Provider = new AuthorizationServerProvider(),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AllowInsecureHttp = true,
+
+            });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Configure the sign in cookie
@@ -89,8 +88,8 @@ namespace Smq.Web.App_Start
                 catch
                 {
                     // Could not retrieve the user due to error.
-                    context.SetError("server_error");
                     context.Rejected();
+                    context.SetError("server_error");             
                     return;
                 }
                 if (user != null)

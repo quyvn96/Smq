@@ -2,13 +2,14 @@
 
 (function () {
     angular.module('smq',
-        ['smq.products', 
-         'smq.product_categories',
+        ['smq.products',
          'smq.application_groups',
+         'smq.product_categories',
          'smq.application_roles',
          'smq.application_users',
          'smq.statistics',
-         'smq.common'])
+         'smq.common',
+         'smq.orders'])
         .config(config)
         .config(configAuthentication);
 

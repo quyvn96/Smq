@@ -13,6 +13,7 @@ namespace Smq.Service
     public interface IOrderService
     {
         bool Create(Order order,List<OrderDetail> orderDetails);
+        IEnumerable<Order> GetAll(string keyword);
         void UpdateStatus(int orderId);
         void Save();
     }
@@ -55,6 +56,18 @@ namespace Smq.Service
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Order> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _orderRepository.GetMulti(n => n.CustomerName.Contains(keyword) || n.CustomerMobile.Contains(keyword));
+            }
+            else
+            {
+                return _orderRepository.GetAllOrder();
+            }
         }
     }
 }

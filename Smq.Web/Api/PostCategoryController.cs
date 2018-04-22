@@ -14,6 +14,7 @@ using Smq.Web.Infrastructure.Extensions;
 namespace Smq.Web.Api
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;

@@ -23,6 +23,7 @@ namespace Smq.Web.Mappings
                 cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
                 cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
                 cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+                cfg.CreateMap<Order, OrderViewModel>();
             });
         }
 

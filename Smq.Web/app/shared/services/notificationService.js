@@ -1,6 +1,6 @@
-﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
-(function (app) {
+﻿(function (app) {
     app.factory('notificationService', notificationService);
+
     function notificationService() {
         toastr.options = {
             "debug": false,
@@ -9,8 +9,9 @@
             "fadeIn": 300,
             "fadeOut": 1000,
             "timeOut": 3000,
-            "extendedTimeOut":1000
+            "extendedTimeOut": 1000
         };
+
         function displaySuccess(message) {
             toastr.success(message);
         }
@@ -29,7 +30,6 @@
         function displayWarning(message) {
             toastr.warning(message);
         }
-
         function displayInfo(message) {
             toastr.info(message);
         }

@@ -212,7 +212,7 @@ namespace Smq.Web.Controllers
                     Address = model.Address
 
                 };
-
+                await _userManager.CreateAsync(user, model.Password);
                 var adminUser = await _userManager.FindByEmailAsync(model.Email);
                 //if (adminUser != null)
                 //    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "User" });
