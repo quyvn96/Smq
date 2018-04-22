@@ -16,20 +16,22 @@
         $scope.selectAll = selectAll;
         $scope.deleteMultiple = deleteMultiple;
         function deleteMultiple() {
-            var listId = [];
-            $.each($scope.selected, function (i,item) {
-                listId.push(item.ID);
-            });
-            var config = {
-                params: {
-                    checkedProductCategories:JSON.stringify(listId)
+            $ngBootbox.confirm('Are you sure you want to delete?').then(function () {
+                var listId = [];
+                $.each($scope.selected, function (i, item) {
+                    listId.push(item.ID);
+                });
+                var config = {
+                    params: {
+                        checkedProductCategories: JSON.stringify(listId)
+                    }
                 }
-            }
-            apiService.del('/api/productcategory/deletemulti', config, function (result) {
-                notificationService.displaySuccess('Deleted successfully ' + result.data + ' record(s)');
-                search();
-            }, function (error) {
-                notificationService.displayError('Deleted faild');
+                apiService.del('/api/productcategory/deletemulti', config, function (result) {
+                    notificationService.displaySuccess('Deleted successfully ' + result.data + ' record(s)');
+                    search();
+                }, function (error) {
+                    notificationService.displayError('Deleted faild');
+                });
             });
         }
 

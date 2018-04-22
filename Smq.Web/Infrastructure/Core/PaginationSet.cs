@@ -19,5 +19,7 @@ namespace Smq.Web.Infrastructure.Core
         public int TotalCount { get; set; }
         public int MaxPage { get; set; }
         public IEnumerable<T> Items { get; set; }
+        public int TotalQuantity { get; set; }
+        public decimal Total { get; set; }
     }
 }

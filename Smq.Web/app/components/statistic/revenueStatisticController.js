@@ -16,8 +16,8 @@
                 {
                     var config = {
                         param: {
-                            fromDate: $filter('date')($scope.fromdate, "dd-MM-yyyy"),
-                            toDate: $filter('date')($scope.todate, "dd-MM-yyyy")
+                            fromDate: $filter('date')($scope.fromdate, "yyyy-MM-dd"),
+                            toDate: $filter('date')($scope.todate, "yyyy-MM-dd")
                         }
                     }
                     apiService.get('/api/statistic/getrevenues?fromDate=' + config.param.fromDate + "&toDate=" + config.param.toDate, null, function (response) {
@@ -27,7 +27,7 @@
                         var revenues = [];
                         var benefits = [];
                         $.each(response.data, function (i, item) {
-                            labels.push($filter('date')(item.Date, 'dd-MM-yyyy'));
+                            labels.push($filter('date')(item.Date, "yyyy-MM-dd"));
                             revenues.push(item.Revenues);
                             benefits.push(item.Benefit);
                         });

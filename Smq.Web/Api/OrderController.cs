@@ -17,11 +17,13 @@ namespace Smq.Web.Api
     public class OrderController : ApiControllerBase
     {
         private IOrderService _orderService;
+        private IProductService _productService;
 
-        public OrderController(IErrorService errorService, IOrderService orderService)
+        public OrderController(IErrorService errorService, IOrderService orderService,IProductService productService)
             : base(errorService)
         {
             this._orderService = orderService;
+            this._productService = productService;
         }
 
         [Route("getall")]
@@ -44,6 +46,72 @@ namespace Smq.Web.Api
                     Page = page,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
+        [Route("delete")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteOrder(HttpRequestMessage request,int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var orderObject = _orderService.DeleteOrder(id);
+                    _orderService.Save();
+
+                    var responseData = orderObject;
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+        [Route("getorderdetailbyid")]
+        [HttpGet]
+        public HttpResponseMessage GetOrderDetailById(HttpRequestMessage request, int id, int page, int pageSize = 20)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _orderService.GetOrderDetailById(id);
+                var listProduct = _productService.GetAll();
+                var listOrderVM = new List<OrderDetailViewModel>();
+                foreach(var itemOrder in model)
+                {
+                    foreach(var itemProduct in listProduct)
+                    {
+                        if(itemProduct.ID == itemOrder.ProductID)
+                        {
+                            listOrderVM.Add(new OrderDetailViewModel
+                            {
+                                OrderID = itemOrder.OrderID,
+                                ProductID = itemOrder.ProductID,
+                                ProductName = itemProduct.Name,
+                                Quantity = itemOrder.Quantity,
+                                Price = itemOrder.Price,
+                                TotalMoney = (itemOrder.Price * itemOrder.Quantity)
+                            });
+                        }
+                    }
+                }
+                var totalQuantity = listOrderVM.Sum(n => n.Quantity);
+                var total = listOrderVM.Sum(n => n.Quantity * n.Price);
+                var totalRow = listOrderVM.Count;
+                var paginationSet = new PaginationSet<OrderDetailViewModel>()
+                {
+                    Items = listOrderVM,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                    TotalQuantity = totalQuantity,
+                    Total = total
                 };
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;

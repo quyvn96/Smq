@@ -14,13 +14,29 @@ namespace Smq.Data.Repositories
     {
         IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate);
         IEnumerable<Order> GetAllOrder();
+        bool DeleteOrder(int Id);
     }
-    public class OrderRepository:RepositoryBase<Order>,IOrderRepository
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
         public OrderRepository(IDbFactory dbFactory)
             : base(dbFactory)
         {
 
+        }
+
+        public bool DeleteOrder(int id)
+        {
+            try
+            {
+                var parameters = new SqlParameter[]{
+                new SqlParameter("@ID",id) };
+                DbContext.Database.ExecuteSqlCommand("EXEC DeleteOrder @ID", parameters);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<Order> GetAllOrder()

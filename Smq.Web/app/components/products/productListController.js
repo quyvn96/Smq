@@ -42,7 +42,8 @@
             }
             apiService.get('/api/product/ExportPdf', config, function (response) {
                 if (response.status = 200) {
-                    window.location.href = response.data.Message;
+                    //window.location.href = response.data.Message;
+                    window.open(response.data.Message);
                 }
             }, function (error) {
                 notificationService.displayError(error);
@@ -50,20 +51,22 @@
             });
         }
         function deleteMultiple() {
-            var listId = [];
-            $.each($scope.selected, function (i, item) {
-                listId.push(item.ID);
-            });
-            var config = {
-                params: {
-                    checkedProducts: JSON.stringify(listId)
+            $ngBootbox.confirm('Are you sure you want to delete?').then(function () {
+                var listId = [];
+                $.each($scope.selected, function (i, item) {
+                    listId.push(item.ID);
+                });
+                var config = {
+                    params: {
+                        checkedProducts: JSON.stringify(listId)
+                    }
                 }
-            }
-            apiService.del('/api/product/deletemulti', config, function (result) {
-                notificationService.displaySuccess('Deleted successfuly' + result.data + ' record(s).');
-                search();
-            }, function (error) {
-                notificationService.displayError('Deleted faild');
+                apiService.del('/api/product/deletemulti', config, function (result) {
+                    notificationService.displaySuccess('Deleted successfuly' + result.data + ' record(s).');
+                    search();
+                }, function (error) {
+                    notificationService.displayError('Deleted faild');
+                });
             });
         }
 
