@@ -30,9 +30,10 @@
                     </div><!-- /input-group -->
                 </div>
                 <div class="col-md-6">
-                  
+
                 </div>
             </div>
+            <br />
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -52,10 +53,9 @@
                             <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
                             <!--<td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>-->
                             <td>
-                                <button class="btn btn-sm btn-info" ng-click="viewOrderDetail(item.ID)" title="View order detail" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i></button>
-                                <button class="btn btn-sm btn-primary" ui-sref="edit_product_category({id:item.ID})" title="Edit order"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-info" ng-click="viewOrderDetail(item.ID)" title="Order detail" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-sm btn-danger" ng-click="deleteOrder(item.ID)" title="Delete order"><i class="fa fa-trash"></i></button>
-                                <button class="btn btn-sm btn-warning" title="Export excel"><i class="fa fa-file-excel-o"></i></button>
+                                <button class="btn btn-sm btn-warning" ng-click="exportExcelOrder(item.ID)" title="Export excel"><i class="fa fa-file-excel-o"></i></button>
                             </td>
                         </tr>
                         <tfoot>
@@ -84,31 +84,40 @@
                 <h4 class="modal-title">Order detail</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th style="width: 15%">Product name</th>
-                        <th style="width: 15%">Quantity</th>
-                        <th style="width: 15%">Price($)</th>
-                        <th style="width: 15%">Total money($)</th>
-                    </tr>
-                    <tr ng-repeat="item in orderDetails">
-                        <td>{{item.ProductName}}</td>
-                        <td>{{item.Quantity}}</td>
-                        <td>{{item.Price}}</td>
-                        <td>{{item.TotalMoney}}</td>
-                    </tr>
-                    <tfoot>
-                        <tr>
-                            <td><b>Total</b></td>
-                            <td>{{totalQuantity}}</td>
-                            <td></td>
-                            <td>{{total}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="7"><span class="pull-right"> Page: {{page+1}} - Total record(s):{{totalCount}} </span></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th style="width: 20%">Product name</th>
+                                <th style="width: 15%">Quantity</th>
+                                <th style="width: 20%">Price($)</th>
+                                <th style="width: 20%">Total money($)</th>
+                                <th style="width: 25%">Action</th>
+                            </tr>
+                            <tr ng-repeat="item in orderDetails">
+                                <td>{{item.ProductName}}</td>
+                                <td><input type="number" ng-model="item.Quantity" max="999999" min="1" /></td>
+                                <td>{{item.Price}}</td>
+                                <td>{{item.TotalMoney}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-info"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tfoot>
+                                <tr>
+                                    <td><b>Total</b></td>
+                                    <td>{{totalQuantity}}</td>
+                                    <td></td>
+                                    <td>{{total}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"><span class="pull-right"> Page: {{page+1}} - Total record(s):{{totalCount}} </span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
+using Smq.Common;
 using Smq.Model.Models;
 using Smq.Service;
 using Smq.Web.Infrastructure.Core;
 using Smq.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace Smq.Web.Api
@@ -116,6 +120,72 @@ namespace Smq.Web.Api
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return response;
             });
+        }
+        [HttpGet]
+        [Route("exportexcel")]
+        public async Task<HttpResponseMessage> ExportXls(HttpRequestMessage request,int id)
+        {
+            string fileName = string.Concat("OrderDetail_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
+            var folderReport = ConfigHelper.GetByKey("ReportFolder");
+            string filePath = HttpContext.Current.Server.MapPath(folderReport);
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+            string fullPath = Path.Combine(filePath, fileName);
+            try
+            {
+                var data = _orderService.GetAll(null).ToList();
+                var model = _orderService.GetOrderDetailById(id);
+                var listProduct = _productService.GetAll();
+                var listOrderVM = new List<OrderDetailViewModel>();
+                foreach (var itemOrder in model)
+                {
+                    foreach (var itemProduct in listProduct)
+                    {
+                        if (itemProduct.ID == itemOrder.ProductID)
+                        {
+                            listOrderVM.Add(new OrderDetailViewModel
+                            {
+                                OrderID = itemOrder.OrderID,
+                                ProductID = itemOrder.ProductID,
+                                ProductName = itemProduct.Name,
+                                Quantity = itemOrder.Quantity,
+                                Price = itemOrder.Price,
+                                TotalMoney = (itemOrder.Price * itemOrder.Quantity)
+                            });
+                        }
+                    }
+                }
+                var listOrderNewVM = new List<OrderDetailViewModel>();
+                foreach (var item in data)
+                {
+                    foreach (var itemDetail in listOrderVM)
+                    {
+                        if (item.ID == itemDetail.OrderID)
+                        {
+                            listOrderNewVM.Add(new OrderDetailViewModel
+                            {
+                                CustomerAddress = item.CustomerAddress,
+                                CustomerName = item.CustomerName,
+                                OrderID = itemDetail.OrderID,
+                                ProductID = itemDetail.ProductID,
+                                ProductName = itemDetail.ProductName,
+                                Quantity = itemDetail.Quantity,
+                                Price = itemDetail.Price,
+                                TotalMoney = itemDetail.TotalMoney
+                            });
+                        }
+                    }
+                }
+                var dataChild = listOrderNewVM;
+                await ReportHelper.GenerateXls(dataChild, fullPath);
+                return request.CreateErrorResponse(HttpStatusCode.OK, Path.Combine(folderReport, fileName));
+            }
+            catch (Exception ex)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

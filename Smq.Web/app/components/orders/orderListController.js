@@ -16,6 +16,7 @@
         $scope.search = search;
 
         $scope.deleteOrder = deleteOrder;
+        $scope.exportExcelOrder = exportExcelOrder;
 
         function getOrders(page) {
             page = page || 0;
@@ -80,6 +81,22 @@
                 $scope.total = result.data.Total;
             }, function () {
                 console.log('Load orderDetail failed.');
+            });
+        }
+
+        function exportExcelOrder(id) {
+            var config = {
+                params: {
+                    id: id
+                }
+            }
+            apiService.get('/api/order/exportexcel', config, function (response) {
+                if (response.status = 200) {
+                    window.location.href = response.data.Message;
+                }
+            }, function (error) {
+                notificationService.displayError(error);
+
             });
         }
         function search() {
