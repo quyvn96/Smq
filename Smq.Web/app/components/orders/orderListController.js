@@ -17,6 +17,9 @@
 
         $scope.deleteOrder = deleteOrder;
         $scope.exportExcelOrder = exportExcelOrder;
+        $scope.deleteOrderDetails = deleteOrderDetails;
+        $scope.updateOrderDetails = updateOrderDetails;
+        $scope.validationQuantity = validationQuantity;
 
         function getOrders(page) {
             page = page || 0;
@@ -57,6 +60,37 @@
                 })
             });
         }
+        function deleteOrderDetails(orderId,productId) {
+            $ngBootbox.confirm('Are you sure you want to delete?').then(function () {
+                var config = {
+                    params: {
+                        orderId: orderId,
+                        productId: productId
+                    }
+                }
+                apiService.del('/api/order/deleteorderdetails', config, function () {
+                    notificationService.displaySuccess('Deleted successfully');
+                    viewOrderDetail(orderId);
+                }, function () {
+                    notificationService.displayError('Deleted faild');
+                })
+            });
+        }
+        function updateOrderDetails(orderId, productId, quantity) {
+                var config = {
+                    params: {
+                        orderId: orderId,
+                        productId: productId,
+                        quantity: quantity
+                    }
+                }
+                apiService.get('api/order/updateorderdetails', config, function () {
+                    notificationService.displaySuccess('Updated successfully');
+                    viewOrderDetail(orderId);
+                }, function () {
+                    notificationService.displayError('Updated faild');
+                });
+        }
         function viewOrderDetail(id,page) {
             page = page || 0;
             var config = {
@@ -93,6 +127,27 @@
             apiService.get('/api/order/exportexcel', config, function (response) {
                 if (response.status = 200) {
                     window.location.href = response.data.Message;
+                }
+            }, function (error) {
+                notificationService.displayError(error);
+
+            });
+        }
+        function validationQuantity(quantity, orderId, productId) {
+            var config = {
+                params: {
+                    orderId: orderId,
+                    productId: productId
+                }
+            }
+            apiService.get('/api/order/getquantity', config, function (response) {
+                if (response.status = 200) {
+                    var currentQuantity = response.data[0];
+                    if (currentQuantity < quantity) {
+                            notificationService.displayError('You only input values less current value');
+                            $("#quantity-orderdetail-" + orderId + "-" + productId + "").val(currentQuantity);
+                            return;
+                      }
                 }
             }, function (error) {
                 notificationService.displayError(error);

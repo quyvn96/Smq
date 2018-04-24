@@ -16,6 +16,9 @@ namespace Smq.Service
         IEnumerable<Order> GetAll(string keyword);
         bool DeleteOrder(int id);
         IEnumerable<OrderDetail> GetOrderDetailById(int id);
+        IEnumerable<OrderDetail> GetAllOrderDetail();
+        bool DeleteOrderDetails(int orderId, int productId);
+        bool UpdateOrderDetails(int orderId, int productId, int quantity);
         void UpdateStatus(int orderId);
         void Save();
     }
@@ -78,6 +81,21 @@ namespace Smq.Service
         public IEnumerable<OrderDetail> GetOrderDetailById(int id)
         {
             return _orderDetailRepository.GetOrderDetailById(id);
+        }
+
+        public bool DeleteOrderDetails(int orderId, int productId)
+        {
+            return _orderDetailRepository.DeleteOrderDetails(orderId, productId);
+        }
+
+        public bool UpdateOrderDetails(int orderId, int productId, int quantity)
+        {
+            return _orderDetailRepository.UpdateOrderDetails(orderId, productId, quantity);
+        }
+
+        public IEnumerable<OrderDetail> GetAllOrderDetail()
+        {
+            return _orderDetailRepository.GetAllOrderDetail();
         }
     }
 }

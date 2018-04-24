@@ -23,7 +23,7 @@ namespace Smq.Web.Api
         private IOrderService _orderService;
         private IProductService _productService;
 
-        public OrderController(IErrorService errorService, IOrderService orderService,IProductService productService)
+        public OrderController(IErrorService errorService, IOrderService orderService, IProductService productService)
             : base(errorService)
         {
             this._orderService = orderService;
@@ -57,7 +57,7 @@ namespace Smq.Web.Api
         }
         [Route("delete")]
         [HttpDelete]
-        public HttpResponseMessage DeleteOrder(HttpRequestMessage request,int id)
+        public HttpResponseMessage DeleteOrder(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -87,11 +87,11 @@ namespace Smq.Web.Api
                 var model = _orderService.GetOrderDetailById(id);
                 var listProduct = _productService.GetAll();
                 var listOrderVM = new List<OrderDetailViewModel>();
-                foreach(var itemOrder in model)
+                foreach (var itemOrder in model)
                 {
-                    foreach(var itemProduct in listProduct)
+                    foreach (var itemProduct in listProduct)
                     {
-                        if(itemProduct.ID == itemOrder.ProductID)
+                        if (itemProduct.ID == itemOrder.ProductID)
                         {
                             listOrderVM.Add(new OrderDetailViewModel
                             {
@@ -123,7 +123,7 @@ namespace Smq.Web.Api
         }
         [HttpGet]
         [Route("exportexcel")]
-        public async Task<HttpResponseMessage> ExportXls(HttpRequestMessage request,int id)
+        public async Task<HttpResponseMessage> ExportXls(HttpRequestMessage request, int id)
         {
             string fileName = string.Concat("OrderDetail_" + DateTime.Now.ToString("yyyyMMddhhmmsss") + ".xlsx");
             var folderReport = ConfigHelper.GetByKey("ReportFolder");
@@ -186,6 +186,75 @@ namespace Smq.Web.Api
             {
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             }
+        }
+        [Route("deleteorderdetails")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteOrderDetails(HttpRequestMessage request, int orderId, int productId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var orderObject = _orderService.DeleteOrderDetails(orderId, productId);
+                    _orderService.Save();
+
+                    var responseData = orderObject;
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+        [Route("updateorderdetails")]
+        [HttpGet]
+        public HttpResponseMessage UpdateOrderDetails(HttpRequestMessage request, int orderId, int productId, int quantity)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var orderObject = _orderService.UpdateOrderDetails(orderId, productId, quantity);
+                    _orderService.Save();
+
+                    var responseData = orderObject;
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+        [Route("getquantity")]
+        [HttpGet]
+        public HttpResponseMessage UpdateOrderDetails(HttpRequestMessage request, int orderId, int productId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var orderObject = _orderService.GetAllOrderDetail();
+                    _orderService.Save();
+
+                    var responseData = orderObject.Where(n=>n.OrderID == orderId && n.ProductID == productId).Select(x=>x.Quantity).ToList();
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
         }
     }
 }
