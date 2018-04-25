@@ -12,4 +12,3 @@
         return authDataFactory;
     }]);
 })(angular.module('smq.common'));
-

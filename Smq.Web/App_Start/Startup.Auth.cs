@@ -76,7 +76,9 @@ namespace Smq.Web.App_Start
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
             {
                 var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
+
                 if (allowedOrigin == null) allowedOrigin = "*";
+
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
                 UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
@@ -89,7 +91,7 @@ namespace Smq.Web.App_Start
                 {
                     // Could not retrieve the user due to error.
                     context.Rejected();
-                    context.SetError("server_error");             
+                    context.SetError("server_error");                  
                     return;
                 }
                 if (user != null)
@@ -108,11 +110,12 @@ namespace Smq.Web.App_Start
                         context.Rejected();
                         context.SetError("invalid_group", "You are not admin");
                     }
+
                 }
                 else
                 {
                     context.Rejected();
-                    context.SetError("invalid_grant", "Incorrect password or username");
+                    context.SetError("invalid_grant", "Incorrect password or username");    
                 }
             }
         }

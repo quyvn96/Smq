@@ -17,7 +17,7 @@ using System.Web.Http;
 namespace Smq.Web.Api
 {
     [RoutePrefix("api/order")]
-    //[Authorize]
+    [Authorize]
     public class OrderController : ApiControllerBase
     {
         private IOrderService _orderService;
