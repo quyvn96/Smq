@@ -9,7 +9,7 @@ namespace Smq.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx"});
+            routes.IgnoreRoute("{*botdetect}", new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
             routes.MapRoute(
                     name: "Contact",
@@ -23,6 +23,18 @@ namespace Smq.Web
                     defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
                     namespaces: new string[] { "Smq.Web.Controllers" }
                     );
+            routes.MapRoute(
+             name: "Confirm Order",
+             url: "xac-nhan-don-hang.html",
+             defaults: new { controller = "ShoppingCart", action = "ConfirmOrder", id = UrlParameter.Optional },
+             namespaces: new string[] { "Smq.Web.Controllers" }
+            );
+            routes.MapRoute(
+               name: "Cancel Order",
+               url: "huy-don-hang.html",
+               defaults: new { controller = "ShoppingCart", action = "CancelOrder", id = UrlParameter.Optional },
+               namespaces: new string[] { "Smq.Web.Controllers" }
+              );
             routes.MapRoute(
                     name: "AllProduct",
                     url: "san-pham.html",

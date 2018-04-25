@@ -277,6 +277,7 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
+    <Compile Include="Infrastructure\NganLuong\APICheckoutV3.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
     <Compile Include="Models\ApplicationRoleViewModel.cs" />
@@ -5055,6 +5056,7 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\admin\templates\product-detail.html" />
+    <Content Include="Assets\client\images\bank_logo.png" />
     <Content Include="Assets\client\images\girl1.jpg" />
     <Content Include="Assets\client\images\girl3.jpg" />
     <Content Include="Assets\client\images\logo1.png" />
@@ -5470,6 +5472,7 @@
     <Content Include="Assets\admin\libs\angular-ui-router\CONTRIBUTING.md" />
     <Content Include="Assets\admin\libs\angular-ui-router\LICENSE" />
     <Content Include="Assets\admin\libs\angular-ui-router\README.md" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Properties\PublishProfiles\publishweb.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
@@ -5547,6 +5550,8 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Product\AllProduct.cshtml" />
+    <Content Include="Views\ShoppingCart\CancelOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\roles\" />

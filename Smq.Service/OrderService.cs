@@ -12,7 +12,7 @@ namespace Smq.Service
 {
     public interface IOrderService
     {
-        bool Create(Order order,List<OrderDetail> orderDetails);
+        Order Create(ref Order order,List<OrderDetail> orderDetails);
         IEnumerable<Order> GetAll(string keyword);
         bool DeleteOrder(int id);
         IEnumerable<OrderDetail> GetOrderDetailById(int id);
@@ -34,7 +34,7 @@ namespace Smq.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public bool Create(Order order, List<OrderDetail> orderDetails)
+        public Order Create(ref Order order, List<OrderDetail> orderDetails)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Smq.Service
                     _orderDetailRepository.Add(orderDetail);
                 }
               
-                return true;
+                return order;
             }catch(Exception ex){
                 throw; 
             }

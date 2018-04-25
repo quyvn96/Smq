@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Microsoft.AspNet.Identity;
 using Smq.Web.Infrastructure.Extensions;
+using Smq.Web.Infrastructure.NganLuong;
 
 namespace Smq.Web.Controllers
 {
@@ -20,6 +21,9 @@ namespace Smq.Web.Controllers
         IProductService _productService;
         IOrderService _orderService;
         ApplicationUserManager _userManager;
+        private string merchantId = ConfigHelper.GetByKey("MerchantId");
+        private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
+        private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
         public ShoppingCartController( IOrderService orderService,IProductService productService, ApplicationUserManager userManager)
         {
             this._productService = productService;
@@ -58,43 +62,98 @@ namespace Smq.Web.Controllers
                 status = false
             });
         }
-        public JsonResult CreateOrder(string orderViewModel)
+        public ActionResult CreateOrder(string orderViewModel)
         {
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+
             var orderNew = new Order();
+
             orderNew.UpdateOrder(order);
+
             if (Request.IsAuthenticated)
             {
                 orderNew.CustomerId = User.Identity.GetUserId();
                 orderNew.CreatedBy = User.Identity.GetUserName();
             }
+
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
             List<OrderDetail> orderDetails = new List<OrderDetail>();
             bool isEnough = true;
-            foreach(var item in cart){
+            foreach (var item in cart)
+            {
                 var detail = new OrderDetail();
                 detail.ProductID = item.ProductId;
                 detail.Quantity = item.Quantity;
                 detail.Price = item.Product.Price;
                 orderDetails.Add(detail);
+
                 isEnough = _productService.SellProduct(item.ProductId, item.Quantity);
-                //break;
+                break;
             }
             if (isEnough)
             {
-                _orderService.Create(orderNew, orderDetails);
+                var orderReturn = _orderService.Create(ref orderNew, orderDetails);
                 _productService.Save();
-                return Json(new
+
+                if (order.PaymentMethod == "CASH")
                 {
-                    status = true
-                });
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
+                {
+
+                    var currentLink = ConfigHelper.GetByKey("CurrentLink");
+                    RequestInfo info = new RequestInfo();
+                    info.Merchant_id = merchantId;
+                    info.Merchant_password = merchantPassword;
+                    info.Receiver_email = merchantEmail;
+
+
+
+                    info.cur_code = "vnd";
+                    info.bank_code = order.BankCode;
+
+                    info.Order_code = orderReturn.ID.ToString();
+                    info.Total_amount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+                    info.fee_shipping = "0";
+                    info.Discount_amount = "0";
+                    info.order_description = "Thanh toán đơn hàng tại SMQSHOP";
+                    info.return_url = currentLink + "xac-nhan-don-hang.html";
+                    info.cancel_url = currentLink + "huy-don-hang.html";
+
+                    info.Buyer_fullname = order.CustomerName;
+                    info.Buyer_email = order.CustomerEmail;
+                    info.Buyer_mobile = order.CustomerMobile;
+
+                    APICheckoutV3 objNLChecout = new APICheckoutV3();
+                    ResponseInfo result = objNLChecout.GetUrlCheckout(info, order.PaymentMethod);
+                    if (result.Error_code == "00")
+                    {
+                        return Json(new
+                        {
+                            status = true,
+                            urlCheckout = result.Checkout_url,
+                            message = result.Description
+                        });
+                    }
+                    else
+                        return Json(new
+                        {
+                            status = false,
+                            message = result.Description
+                        });
+                }
+
             }
             else
             {
                 return Json(new
                 {
                     status = false,
-                    message = "Không đủ số lượng hàng."
+                    message = "Không đủ hàng."
                 });
             }
         }
@@ -200,6 +259,33 @@ namespace Smq.Web.Controllers
                 status = false
             });
         }
-
+        public ActionResult ConfirmOrder()
+        {
+            string token = Request["token"];
+            RequestCheckOrder info = new RequestCheckOrder();
+            info.Merchant_id = merchantId;
+            info.Merchant_password = merchantPassword;
+            info.Token = token;
+            APICheckoutV3 objNLChecout = new APICheckoutV3();
+            ResponseCheckOrder result = objNLChecout.GetTransactionDetail(info);
+            if (result.errorCode == "00")
+            {
+                //update status order
+                _orderService.UpdateStatus(int.Parse(result.order_code));
+                _orderService.Save();
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Thanh toán thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+            }
+            else
+            {
+                ViewBag.IsSuccess = true;
+                ViewBag.Result = "Có lỗi xảy ra. Vui lòng liên hệ admin.";
+            }
+            return View();
+        }
+        public ActionResult CancelOrder()
+        {
+            return View();
+        }
     }
 }

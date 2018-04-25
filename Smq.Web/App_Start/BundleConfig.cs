@@ -27,7 +27,7 @@ namespace Smq.Web
                 .Include("~/Assets/client/css/style.css", new CssRewriteUrlTransform())
                 .Include("~/Assets/client/css/customer.css", new CssRewriteUrlTransform())
                 );
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = bool.Parse(ConfigHelper.GetByKey("EnableBundles"));
         }
     }
 }
