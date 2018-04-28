@@ -1,6 +1,6 @@
 ﻿<section class="content-header">
     <h1>
-        Product category list
+        Danh sách danh mục sản phẩm
     </h1>
 </section>
 <!-- Main content -->
@@ -8,7 +8,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Product category</h3>
+            <h3 class="box-title"> Danh sách danh mục sản phẩm</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -23,15 +23,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" ng-model="keyword" placeholder="Keyword">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="search()">Search</button>
+                            <button class="btn btn-default" type="button" ng-click="search()">Tìm kiếm</button>
                         </span>
                     </div><!-- /input-group -->
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-success" ui-sref="add_product_category">Add new</button>
-                    <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Delete</button>
+                    <button class="btn btn-success" ui-sref="add_product_category">Thêm mới</button>
+                    <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
                 </div>
             </div>
            <div class="row">
@@ -39,11 +39,11 @@
                    <table class="table table-bordered">
                        <tr>
                            <th><input name="all" type="checkbox" ng-click="selectAll()"/></th>
-                           <th style="width: 10%">Category id</th>
-                           <th style="width: 50%" >Category name</th>
-                           <th style="width: 20%">Create date</th>
-                           <th style="width: 10px">Status</th>
-                           <th style="width: 10%">Action</th>
+                           <th style="width: 20%">Mã danh mục</th>
+                           <th style="width: 40%" >Tên danh mục</th>
+                           <th style="width: 20%">Ngày tạo</th>
+                           <th style="width: 10px">Trạng thái</th>
+                           <th style="width: 10%">#</th>
                        </tr>
                        <tr ng-repeat="item in productCategories">
                            <td><input type="checkbox" ng-model="item.checked" name="all"/></td>
@@ -58,7 +58,7 @@
                        </tr>
                        <tfoot>
                            <tr>
-                               <td colspan="6"><span class="pull-right"> Page: {{page+1}} - Total record(s):{{totalCount}} </span></td>
+                               <td colspan="6"><span class="pull-right"> Trang: {{page+1}} - Tổng số bản ghi:{{totalCount}} </span></td>
                            </tr>
                        </tfoot>
                    </table>

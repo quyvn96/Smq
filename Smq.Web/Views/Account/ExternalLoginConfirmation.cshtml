@@ -7,18 +7,18 @@
 
 <div class="account_grid">
   <div class="login-right">
-    <h3>Link to account @ViewBag.LoginProvider of you.</h3>
+    <h3>Đường dẫn tới tài khoản @ViewBag.LoginProvider của bạn.</h3>
 
     @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
 
-        <h4>Form enter information</h4>
+        <h4>Form nhập thông tin</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <p class="text-info">
-          You just proved successful with<strong>@ViewBag.LoginProvider</strong>.
-            Please enter the name of the account you wish to register on MyShop below to finish the login process. The next time you will not have to perform this step ! 
+          Bạn chỉ cần chứng minh thành công với <strong>@ViewBag.LoginProvider</strong>.
+          Vui lòng nhập tên tài khoản bạn muốn đăng ký trên SMQSHOP bên dưới để hoàn tất quá trình đăng nhập. Lần sau bạn sẽ không phải thực hiện bước này!
 
         </p>
         <div class="form-group">
@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Đăng ký" />
           </div>
         </div>
     }

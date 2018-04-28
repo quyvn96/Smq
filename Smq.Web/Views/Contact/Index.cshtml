@@ -22,13 +22,13 @@
 <div class="main">
     <div class="reservation_top">
         <div class="contact_right">
-            <h3>Contract infomations</h3>
+            <h3>THÔNG TIN LIÊN HỆ</h3>
             <address class="address">
                 <p>@Model.ContactDetail.Address</p>
                 <dl>
                     <dt> </dt>
-                    <dd>Phone Number:<span> @Model.ContactDetail.Phone</span></dd>
-                    <dd>E-mail:&nbsp; <a href="mailto:@(Model.ContactDetail.Email)">@(Model.ContactDetail.Email)</a></dd>
+                    <dd>Điện thoại:<span> @Model.ContactDetail.Phone</span></dd>
+                    <dd>Email:&nbsp; <a href="mailto:@(Model.ContactDetail.Email)">@(Model.ContactDetail.Email)</a></dd>
                 </dl>
             </address>
             <div class="clearfix"></div>
@@ -37,27 +37,27 @@
     </div>
     <div class="reservation_top">
         <div class="contact_right">
-            <h3>Send Contract</h3>
+            <h3>Gửi liên hệ</h3>
             <div class="contact-form">
                @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post))
                {
                    if (ViewData["SuccessMsg"] != null)
                    {
                        <div class="alert alert-success" role="alert">
-                           <strong>Congratulation you !</strong> send feedback successfully.
-                           <br/> We will contact you as soon as possible.
+                           <strong>Chúc mừng bạn</strong> đã gửi phản hồi thành công.
+                           <br/> Chúng tôi sẽ liên hệ với bạn ngay khi có thể.
                        </div>
                    }
                    @Html.ValidationSummary(false, "", new { @class="error"})
-                   @Html.TextBoxFor(model => model.Name, new { placeholder = "Full Name", @class = "textbox" });
+                   @Html.TextBoxFor(model => model.Name, new { placeholder = "Họ và tên", @class = "textbox" });
                    @Html.TextBoxFor(model => model.Email, new { placeholder="Email", @class = "textbox" });
-                   @Html.TextAreaFor(model => model.Message, new { placeholder = "Feedback" });
+                   @Html.TextAreaFor(model => model.Message, new { placeholder = "Phản hồi" });
 
                    MvcCaptcha contactCaptcha = new MvcCaptcha("contactCaptcha");
                    @Html.Captcha(contactCaptcha)
                    @Html.TextBox("CaptchaCode")
 
-                   <input type="submit" value="Send"/>
+                   <input type="submit" value="Gửi"/>
                    <div class="clearfix"></div>
                }
             </div>

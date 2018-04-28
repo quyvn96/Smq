@@ -44,14 +44,15 @@ namespace Smq.Web.Api
                 HttpResponseMessage response = null;
                 int totalRow = 0;
                 var model = _userManager.Users;
-                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(model);
-
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.FullName).Skip(page * pageSize).Take(pageSize);
+                IEnumerable<ApplicationUserViewModel> modelVm = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(query);
                 PaginationSet<ApplicationUserViewModel> pagedSet = new PaginationSet<ApplicationUserViewModel>()
                 {
+                    Items = modelVm,
                     Page = page,
                     TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
-                    Items = modelVm
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 };
 
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);

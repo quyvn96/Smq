@@ -116,3 +116,17 @@
 		text-align: center;
 		width: 90px;
 	}
+#nganluongContent{
+    display: block;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    padding: 10px
+}
+#nganluongContent a{
+    color:#123ee9;
+}
+#bankContent{
+    font-size: 14px;
+    border: 1px solid #ddd;
+    padding: 10px
+}

@@ -1,7 +1,7 @@
 ﻿  <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Import product from excel file
+        Nhập sản phẩm từ file excel
     </h1>
 </section>
 <!-- Main content -->
@@ -9,26 +9,26 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Add new</h3>
+            <h3 class="box-title">Thêm mới</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form class="form-horizontal" novalidate name="frmImportProduct" role="form" ng-submit="ImportProduct()">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Choose file</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Chọn file</label>
                     <div class="col-sm-10">
                         <input type="file" file-upload name="file" required/>
-                        <span ng-show="frmImportProduct.name.$invalid" class="has-error">Must enter file</span>
+                        <span ng-show="frmImportProduct.name.$invalid" class="has-error">Phải chọn file</span>
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Category</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
                     <div class="col-sm-10">
                         <select name="categoryID" required class="form-control" ng-model="categoryID" ng-options="option.ID as option.Name for option in productCategories">
-                            <option value="">Please select a category</option>
+                            <option value="">Chọn danh mục</option>
                         </select>
-                        <span ng-show="frmImportProduct.categoryID.$invalid" class="has-error">Must choose category</span>
+                        <span ng-show="frmImportProduct.categoryID.$invalid" class="has-error">Phải chọn danh mục</span>
 
                         <input type="hidden" name="categoryID" ng-model="categoryID" />
                     </div>
@@ -36,8 +36,8 @@
 
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button ui-sref="products" class="btn btn-default">Cancel</button>
-                <button type="submit" ng-disabled="frmImportProduct.$invalid" class="btn btn-success pull-right">Save</button>
+                <button ui-sref="products" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmImportProduct.$invalid" class="btn btn-success pull-right">Lưu</button>
             </div><!-- /.box-footer -->
         </form>
     </div><!-- /.box -->

@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<Smq.Web.Models.ProductCategoryViewModel>
+@using Smq.Web.Models;
+@{ 
+    var specialProduct = (List<ProductViewModel>)ViewBag.SpecialProduct ?? new List<ProductViewModel>();
+}
 <div class="sub-cate">
     <div class="top-nav rsidebar span_1_of_left">
-        <h3 class="cate">CATEGORIES</h3>
+        <h3 class="cate">DANH MỤC</h3>
         <ul class="menu">
             @foreach (var category in Model.Where(x => x.ParentID == null))
             {
@@ -39,12 +43,15 @@
         </ul>
     </div>
     <div class="chain-grid menu-chain">
-        <a href="#"><img class="img-responsive chain" src="/Assets/client/images/wat.jpg" alt="" /></a>
-        <div class="grid-chain-bottom chain-watch">
-            <span class="actual dolor-left-grid">300$</span>
-            <span class="reducedfrom">500$</span>
-            <h6><a href="#">Watch Import</a></h6>
+        @foreach (var itemSpecial in specialProduct)
+        {
+            <a href="#"><img class="img-responsive chain" src="@itemSpecial.Image" alt="" /></a>
+            <div class="grid-chain-bottom chain-watch">
+                <span class="actual dolor-left-grid">@itemSpecial.PromotionPrice</span>
+                <span class="reducedfrom">@itemSpecial.Price</span>
+                <h6><a href="#">@itemSpecial.Name</a></h6>
+            </div>
+        }
         </div>
-    </div>
-    <a class="view-all all-product" href="/san-pham.html">VIEW ALL<span> </span></a>
+    <a class="view-all all-product" href="/san-pham.html">Xem tất cả<span> </span></a>
 </div>

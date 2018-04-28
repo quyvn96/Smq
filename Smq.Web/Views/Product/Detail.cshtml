@@ -82,11 +82,11 @@
 
             <h4>@Model.Name</h4>
             <div class="cart-b">
-                <div class="left-n ">@(Model.Price == 0 ? "Liên hệ": @Model.Price.ToString("N0"))</div>
-                <a class="now-get get-cart-in btnAddToCart" href="#" data-id="@Model.ID">ADD TO CART</a>
+                <div class="left-n ">Giá:@(Model.Price == 0 ? "Liên hệ": @Model.Price.ToString("N0"))</div>
+                <a class="now-get get-cart-in btnAddToCart" href="#" data-id="@Model.ID">Mua hàng</a>
                 <div class="clearfix"></div>
             </div>
-            <h6>@Model.Quantity products in warehouse</h6>
+            <h6>Còn lại @Model.Quantity sản phẩm trong kho</h6>
             <p>@Model.Description</p>
              <h5>Tag :</h5>
                 <ul class="taglist">
@@ -97,7 +97,7 @@
                 </ul>
             <div class="clearfix"></div>
             <div class="share">
-                <h5>Share :</h5>
+                <h5>Chia sẻ :</h5>
                 <ul class="share_nav">
                     <li><a href="#"><img src="/Assets/client/images/facebook.png" title="facebook"></a></li>
                     <li><a href="#"><img src="/Assets/client/images/twitter.png" title="Twiiter"></a></li>

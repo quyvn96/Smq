@@ -1,7 +1,7 @@
 ﻿  <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Add new product
+    Thêm mới sản phẩm
   </h1>
 </section>
 <!-- Main content -->
@@ -9,103 +9,103 @@
   <!-- Horizontal Form -->
   <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title">Add new</h3>
+      <h3 class="box-title">Thêm mới sản phẩm</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
     <form class="form-horizontal" novalidate name="frmAddProduct" role="form" ng-submit="AddProduct()">
       <div class="box-body">
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Product name</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Tên sản phẩm</label>
           <div class="col-sm-10">
               <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="product.Name" ng-change="GetSeoTitle()">
-            <span ng-show="frmAddProduct.name.$invalid" class="label label-danger">Must enter category</span>
-            <span ng-show="frmAddProduct.name.$error.maxlength" class="label label-danger">Category name is only 256 characters</span>
+            <span ng-show="frmAddProduct.name.$invalid" class="label label-danger">Phải nhập tên sản phẩm</span>
+            <span ng-show="frmAddProduct.name.$error.maxlength" class="label label-danger">Tên sản phẩm chỉ tối đa 256 ký tự</span>
 
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">SEO title</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="alias" required ng-model="product.Alias">
-            <span ng-show="frmAddProduct.alias.$invalid" class="label label-danger">Must enter SEO title</span>
-            <span ng-show="frmAddProduct.alias.$error.maxlength" class="label label-danger">SEO title is only 256 characters</span>
+            <span ng-show="frmAddProduct.alias.$invalid" class="label label-danger">Phải nhập tiêu đề SEO</span>
+            <span ng-show="frmAddProduct.alias.$error.maxlength" class="label label-danger">Tiêu đề SEO chỉ tối đa 256 ký tự</span>
 
 
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="description" ng-maxlength="500" ng-model="product.Description">
-            <span ng-show="frmAddProduct.description.$error.maxlength" class="label label-danger">Description is only 500 characters</span>
+            <span ng-show="frmAddProduct.description.$error.maxlength" class="label label-danger">Mô tả chỉ tối đa 500 ký tự</span>
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Category</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
           <div class="col-sm-10">
             <select name="parentId" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
-              <option value="">Please select a category</option>
+              <option value="">Chọn danh mục</option>
             </select>
-            <span ng-show="frmAddProduct.CategoryID.$invalid" class="label label-danger">Must choose category</span>
+            <span ng-show="frmAddProduct.CategoryID.$invalid" class="label label-danger">Phải chọn danh mục</span>
 
             <input type="hidden" name="parentId" ng-model="product.CategoryID" />
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Warranty</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Bảo hành</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control" name="warranty" ng-model="product.Warranty">(month)
+            <input type="number" class="form-control" name="warranty" ng-model="product.Warranty">(Tháng)
           </div>
         </div>
           <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Price enter</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Giá nhập</label>
               <div class="col-sm-10">
                   <input type="number" class="form-control" name="originalPrice" required ng-model="product.OriginalPrice">
-                  <span ng-show="frmAddProduct.originalPrice.$invalid" class="label label-danger">Must enter price enter</span>
+                  <span ng-show="frmAddProduct.originalPrice.$invalid" class="label label-danger">Phải nhập giá nhập</span>
               </div>
           </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Price</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Giá bán</label>
           <div class="col-sm-10">
             <input type="number" class="form-control" name="price" required ng-model="product.Price">
-            <span ng-show="frmAddProduct.price.$invalid" class="label label-danger">Must enter price</span>
+            <span ng-show="frmAddProduct.price.$invalid" class="label label-danger">Phải nhập giá bán</span>
           </div>
         </div>
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Price promotion</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Giá khuyến mãi</label>
           <div class="col-sm-10">
             <input type="number" class="form-control" name="promotionPrice" ng-model="product.PromotionPrice">
           </div>
         </div>
 
           <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Quantity</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Số lượng</label>
               <div class="col-sm-10">
                   <input type="number" class="form-control" name="quantity" ng-model="product.Quantity">
               </div>
           </div>
 
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="image" ng-model="product.Image">
-            <span ng-show="frmAddProduct.image.$error.maxlength" class="label label-danger">Image is only 256 characters</span>
-            <button type="button" class="btn btn-default" ng-click="ChooseImage()">Choose image</button>
+            <span ng-show="frmAddProduct.image.$error.maxlength" class="label label-danger">Hình ảnh chỉ tối đa 256 ký tự</span>
+            <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
           </div>
         </div>
 
           <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Add image</label>
+              <label for="inputEmail3" class="col-sm-2 control-label">Thêm hình ảnh</label>
               <div class="col-sm-10">
                   <ul class="list-inline">
                       <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" height="100" class="img-thumbnail"/></li>
                   </ul>
-                  <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Choose image</button>
+                  <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh</button>
               </div>
           </div>
 
         <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Content</label>
+          <label for="inputEmail3" class="col-sm-2 control-label">Nội dung</label>
           <div class="col-sm-10">
             <textarea class="form-control" name="content" ckeditor="ckeditorOptions" ng-model="product.Content"></textarea>
           </div>
@@ -133,25 +133,25 @@
           <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="status" ng-model="product.Status" ng-checked="product.Status"> Active
+                <input type="checkbox" name="status" ng-model="product.Status" ng-checked="product.Status"> Hiệu lực
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag"> Show home page
+                <input type="checkbox" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag"> Hiển thị trang chủ
               </label>
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag"> Product hot
+                <input type="checkbox" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag"> Nổi bật
               </label>
             </div>
           </div>
         </div>
       </div><!-- /.box-body -->
       <div class="box-footer">
-        <button ui-sref="products" class="btn btn-default">Cancel</button>
-        <button type="submit" ng-disabled="frmAddProduct.$invalid" class="btn btn-success pull-right">Save</button>
+        <button ui-sref="products" class="btn btn-default">Hủy</button>
+        <button type="submit" ng-disabled="frmAddProduct.$invalid" class="btn btn-success pull-right">Lưu</button>
       </div><!-- /.box-footer -->
     </form>
   </div><!-- /.box -->

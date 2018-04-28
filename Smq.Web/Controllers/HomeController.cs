@@ -68,6 +68,30 @@ namespace Smq.Web.Controllers
         {
             var model = _productCategoryService.GetAll();
             var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            var listProduct = _productService.GetAll();
+            var listProductVM = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
+            var specialProduct = new List<ProductViewModel>();
+            foreach (var item in listProductVM)
+            {
+                if(item.Description != null && item.Description.ToLower() == "special" && item.HomeFlag == false && item.HotFlag == false)
+                {
+                    specialProduct.Add(new ProductViewModel
+                    {
+                        Name = item.Name,
+                        Price = item.Price,
+                        PromotionPrice = item.PromotionPrice,
+                        Image = item.Image
+                    });
+                }
+            }
+            if(specialProduct.Count() > 0)
+            {
+                ViewBag.SpecialProduct = specialProduct;
+            }
+            else
+            {
+                new List<ProductViewModel>();
+            }
             return PartialView(listProductCategoryViewModel);
         }
     }

@@ -15,18 +15,18 @@
             <div class="women">
                 @if (@keyword == "")
                 {
-                <a href=""><h4>Result search for :@keyword<span> @Model.TotalCount product(s)</span> </h4></a>
+                <a href=""><h4>Kết quả tìm kiếm cho :@keyword<span> @Model.TotalCount sản phẩm</span> </h4></a>
                 }
                 else
                 {
-                    <a href=""><h4>Result search for :@keyword - <span> @Model.TotalCount product(s)</span> </h4></a>
+                    <a href=""><h4>Kết quả tìm kiếm cho :@keyword - <span> @Model.TotalCount sản phẩm</span> </h4></a>
                 }
                 <ul class="w_nav">
-                    <li>Sort : </li>
-                    <li><a class="active" href="?page=@Model.Page&sort=popular">Popular</a></li> |
-                    <li><a href="?page=@Model.Page&sort=new">New</a></li> |
-                    <li><a href="?page=@Model.Page&sort=discount">Discount</a></li> |
-                    <li><a href="?page=@Model.Page&sort=price">Price: Low -> High</a></li>
+                    <li>Sắp xếp : </li>
+                    <li><a class="active" href="?page=@Model.Page&sort=popular">Phổ biến</a></li> |
+                    <li><a href="?page=@Model.Page&sort=new">Mới</a></li> |
+                    <li><a href="?page=@Model.Page&sort=discount">Giảm giá</a></li> |
+                    <li><a href="?page=@Model.Page&sort=price">Giá: Thấp -> Cao</a></li>
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"> </div>
@@ -108,6 +108,6 @@
 
     else
     {
-        <div class="text-center">No products were found</div>
+        <div class="text-center">Không có sản phẩm nào được tìm thấy</div>
     }
 </div>

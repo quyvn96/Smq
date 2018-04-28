@@ -1,7 +1,7 @@
 ﻿  <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Add new category
+        Thêm mới danh mục
     </h1>
 </section>
 <!-- Main content -->
@@ -9,55 +9,55 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Add new category</h3>
+            <h3 class="box-title">Thêm mới danh mục</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
         <form class="form-horizontal" novalidate name="frmAddProductCategory" role="form" ng-submit="AddProductCategory()">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Category name</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" required name="name" ng-model="productCategory.Name" ng-maxlength="256" ng-change="GetSeoTitle()">
-                        <span ng-show="frmAddProductCategory.name.$invalid" class="label label-danger"> Must enter category name</span>
-                        <span ng-show="frmAddProductCategory.name.$error.maxlenght" class="label label-danger">Category name is only 256 characters</span>
+                        <span ng-show="frmAddProductCategory.name.$invalid" class="label label-danger"> Phải nhập tên danh mục</span>
+                        <span ng-show="frmAddProductCategory.name.$error.maxlenght" class="label label-danger">Tên danh mục chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">SEO title</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">tiêu đề SEO</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" required name="alias" ng-model="productCategory.Alias" ng-maxlength="256">
-                        <span ng-show="frmAddProductCategory.alias.$invalid" class="label label-danger">Must enter SEO title</span>
-                        <span ng-show="frmAddProductCategory.alias.$error.maxlenght" class="label label-danger">SEO title is only 256 characters</span>
+                        <span ng-show="frmAddProductCategory.alias.$invalid" class="label label-danger">Phải nhập tiêu đề SEO</span>
+                        <span ng-show="frmAddProductCategory.alias.$error.maxlenght" class="label label-danger">Tiêu đề SEO chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" ng-model="productCategory.Description" ng-maxlength="500">
-                        <span ng-show="frmAddProductCategory.description.$error.maxlenght" class="label label-danger">Descript is only 500 characters</span>
+                        <span ng-show="frmAddProductCategory.description.$error.maxlenght" class="label label-danger">Mô tả chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Parent category</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
                     <div class="col-sm-10">
                         <select name="parentId" class="form-control" ng-model="productCategory.ParentID" ng-options="option.ID as option.Name for option in parentCategories">
-                            <option value="">Please select a parent category</option>
+                            <option value="">Chọn danh mục</option>
                         </select>
                         <input type="hidden" name="parentId" ng-model="productCategory.ParentID" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Order</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder">
-                        <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="label label-danger"> Must enter order</span>
+                        <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="label label-danger"> Phải nhập thứ tự</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Hình ảnh</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="image" ng-model="productCategory.Image" ng-maxlength="256">
-                        <span ng-show="frmAddProductCategory.image.$error.maxlenght" class="label label-danger">Image is only 256 characters</span>
+                        <span ng-show="frmAddProductCategory.image.$error.maxlenght" class="label label-danger">Hình ảnh chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,20 +76,20 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="status" ng-model="productCategory.Status" ng-checked="productCategory.Status"> Active
+                                <input type="checkbox" name="status" ng-model="productCategory.Status" ng-checked="productCategory.Status"> Hiệu lực
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="homeFlag" ng-model="productCategory.HomeFlag" ng-checked="productCategory.HomeFlag"> Show home page
+                                <input type="checkbox" name="homeFlag" ng-model="productCategory.HomeFlag" ng-checked="productCategory.HomeFlag"> Hiển thị trang chủ
                             </label>
                         </div>
                     </div>
                 </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
-                <button ui-sref="product_categories" class="btn btn-default">Cancel</button>
-                <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success pull-right">Save</button>
+                <button ui-sref="product_categories" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success pull-right">Lưu</button>
             </div><!-- /.box-footer -->
         </form>
     </div><!-- /.box -->

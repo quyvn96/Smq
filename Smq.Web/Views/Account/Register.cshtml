@@ -13,29 +13,29 @@
         if (ViewData["SuccessMsg"] != null)
         {
             <div class="alert alert-success" role="alert">
-                <strong>Congratulation you!</strong> has successfully registered.
-               <br /> Please click <a href="/dang-nhap.html">here</a> register.
+                <strong>Chúc mừng bạn </strong> đã đăng ký thành công !
+               <br /> Làm ơn click <a href="/dang-nhap.html"> vào đây</a> để đăng ký.
             </div>
         }
 				 <div class="register-top-grid">
-					<h3>Personal information</h3>
+					<h3>THÔNG TIN CÁ NHÂN</h3>
 					<div class="mation">
-						<span>Full name<label> *</label></span>
+						<span>Họ và tên<label> *</label></span>
 						@Html.TextBoxFor(model => model.FullName)
 					 
 						 <span>Email<label> *</label></span>
                         @Html.TextBoxFor(model => model.Email)
 
-                        <span>Address<label> *</label></span>
+                        <span>Địa chỉ<label> *</label></span>
                         @Html.TextBoxFor(model => model.Address)
 
-                        <span>Phone number<label> *</label></span>
+                        <span>Điện thoại<label> *</label></span>
                         @Html.TextBoxFor(model => model.PhoneNumber)
                         <hr />
-                        <span>Username<label> *</label></span>
+                        <span>Tên đăng nhập<label> *</label></span>
                         @Html.TextBoxFor(model => model.UserName)
 
-                        <span>Password<label> *</label></span>
+                        <span>Mật khẩu<label> *</label></span>
                         @Html.PasswordFor(model => model.Password)
 
                         <hr />
@@ -49,7 +49,7 @@
 					 </div>
 				<div class="clearfix"> </div>
 				<div class="register-but">
-					   <input type="submit" value="Register">
+					   <input type="submit" value="Đăng ký">
 					   <div class="clearfix"> </div>			
 				</div>
     }

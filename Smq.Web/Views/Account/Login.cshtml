@@ -6,31 +6,31 @@
 
 <div class="account_grid">
     <div class="login-right">
-        <h3>Login in</h3>
-        <p>If you have a account. Please login!</p>
+        <h3>Đăng nhập</h3>
+        <p>Nếu bạn có một tài khoản. Làm ơn đăng nhập!</p>
         @using (Html.BeginForm("Login", "Account", new { returUrl = @ViewBag.ReturnUrl}, FormMethod.Post))
         { 
             <div>
-                <span>Username<label> *</label></span>
+                <span>Tên đăng nhập<label> *</label></span>
                 @Html.TextBoxFor(model => model.UserName)
             </div>
             <div>
-                <span>Password<label> *</label></span>
+                <span>Mật khẩu<label> *</label></span>
                 @Html.PasswordFor(model => model.Password)
             </div>
             <div>
                 @Html.CheckBoxFor(model => model.RememberMe)
-                Remember password!
+                Nhớ mật khẩu!
             </div>  
-            <input type="submit" value="Login">
+            <input type="submit" value="Đăng nhập">
             <p id="message-login">@ViewBag.Message</p>
         }
       @Html.Partial("_ExternalLoginsListPartial", new Smq.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </div>
     <div class="login-left">
-        <h3>Do not have an account.</h3>
-        <p>You do not currently have an account. Please register at the link below !</p>
-        <a class="acount-btn" href="/dang-ky.html">Register member(s)</a>
+        <h3>Bạn không có một tài khoản.</h3>
+        <p>Bạn hiện không có tài khoản. Vui lòng đăng ký tại liên kết dưới đây!</p>
+        <a class="acount-btn" href="/dang-ky.html">Đăng ký thành viên</a>
     </div>
     <div class="clearfix"> </div>
 </div>
