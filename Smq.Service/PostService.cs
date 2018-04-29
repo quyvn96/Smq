@@ -1,4 +1,5 @@
-﻿using Smq.Data.Infrastructure;
+﻿using Smq.Common;
+using Smq.Data.Infrastructure;
 using Smq.Data.Repositories;
 using Smq.Model.Models;
 using System;
@@ -11,14 +12,15 @@ namespace Smq.Service
 {
     public interface IPostService
     {
-        void Add(Post post);
+        Post Add(Post post);
         void Update(Post post);
-        void Delete(int id);
+        Post Delete(int id);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
         IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
         Post GetById(int id);
         IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow);
+        IEnumerable<Post> GetAll(string keyword);
         void SaveChanges();
 
     }
@@ -26,14 +28,41 @@ namespace Smq.Service
     {
         IPostRepository _postRepository;
         IUnitOfWork _unitOfWork;
-        public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
+        ITagRepository _tagRepository;
+        IPostTagRepository _postTagRepository;
+        public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork, ITagRepository tagRepository, IPostTagRepository postTagRepository)
         {
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
+            this._tagRepository = tagRepository;
+            this._postTagRepository = postTagRepository;
         }
-        public void Add(Post post)
+        public Post Add(Post post)
         {
-            _postRepository.Add(post);
+            var postAdd = _postRepository.Add(post);
+            _unitOfWork.Commit();
+            if (!string.IsNullOrEmpty(post.Tags))
+            {
+                string[] tags = post.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(n => n.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.PostTag;
+                        _tagRepository.Add(tag);
+                    }
+
+                    PostTag postTag = new PostTag();
+                    postTag.PostID = post.ID;
+                    postTag.TagID = tagId;
+                    _postTagRepository.Add(postTag);
+                }
+            }
+            return post;
         }
 
         public void Update(Post post)
@@ -41,9 +70,9 @@ namespace Smq.Service
             _postRepository.Update(post);
         }
 
-        public void Delete(int id)
+        public Post Delete(int id)
         {
-            _postRepository.Delete(id);
+           return _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
@@ -77,6 +106,18 @@ namespace Smq.Service
         public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
         {
             return _postRepository.GetMultiPaging(n => n.Status && n.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
+        }
+
+        public IEnumerable<Post> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _postRepository.GetMulti(n => n.Name.Contains(keyword) || n.Description.Contains(keyword));
+            }
+            else
+            {
+                return _postRepository.GetAll();
+            }
         }
     }
 }

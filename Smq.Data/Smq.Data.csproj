@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201804131908004_CreateDB.Designer.cs">
       <DependentUpon>201804131908004_CreateDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804290735199_AddTagsForPost.cs" />
+    <Compile Include="Migrations\201804290735199_AddTagsForPost.Designer.cs">
+      <DependentUpon>201804290735199_AddTagsForPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -110,6 +114,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804131908004_CreateDB.resx">
       <DependentUpon>201804131908004_CreateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804290735199_AddTagsForPost.resx">
+      <DependentUpon>201804290735199_AddTagsForPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

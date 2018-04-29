@@ -17,6 +17,7 @@ namespace Smq.Service
         IEnumerable<PostCategory> GetAll();
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
         PostCategory GetById(int id);
+        IEnumerable<PostCategory> GetAll(string keyword);
         void Save();
       
     }
@@ -63,6 +64,18 @@ namespace Smq.Service
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<PostCategory> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                return _postCategoryRepository.GetMulti(n => n.Name.Contains(keyword) || n.Description.Contains(keyword));
+            }
+            else
+            {
+                return _postCategoryRepository.GetAll();
+            }
         }
     }
 }

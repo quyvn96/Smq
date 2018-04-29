@@ -26,6 +26,7 @@ namespace Smq.Web.Models
         public string MetaKeyword { get; set; }
         public string MetaDescription { get; set; }
         public bool Status { get; set; }
+        public string Tags { get; set; }
         public virtual PostCategoryViewModel PostCategory { get; set; }
 
         public virtual IEnumerable<PostTagViewModel> PostTags { get; set; }

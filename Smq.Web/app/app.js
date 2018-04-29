@@ -9,7 +9,8 @@
          'smq.application_users',
          'smq.statistics',
          'smq.common',
-         'smq.orders'])
+         'smq.orders',
+         'smq.posts'])
         .config(config)
         .config(configAuthentication);
 

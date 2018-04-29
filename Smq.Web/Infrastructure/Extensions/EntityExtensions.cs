@@ -61,6 +61,7 @@ namespace Smq.Web.Infrastructure.Extensions
             post.ViewCount = postVm.ViewCount;
             post.CreatedDate = postVm.CreatedDate;
             post.CreatedBy = postVm.CreatedBy;
+            post.Tags = postVm.Tags;
             post.MetaDescription = postVm.MetaDescription;
             post.MetaKeyword = postVm.MetaKeyword;
             post.UpdatedDate = postVm.UpdatedDate;
