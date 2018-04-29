@@ -18,23 +18,23 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" required name="name" ng-model="productCategory.Name" ng-maxlength="256" ng-change="GetSeoTitle()">
-                        <span ng-show="frmAddProductCategory.name.$invalid" class="label label-danger"> Phải nhập tên danh mục</span>
-                        <span ng-show="frmAddProductCategory.name.$error.maxlenght" class="label label-danger">Tên danh mục chỉ tối đa 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.name.$invalid" class="label label-danger"> Phải nhập tên danh mục</span>
+                        <span ng-show="frmUpdateProductCategory.name.$error.maxlenght" class="label label-danger">Tên danh mục chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">tiêu đề SEO</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" required name="alias" ng-model="productCategory.Alias" ng-maxlength="256">
-                        <span ng-show="frmAddProductCategory.alias.$invalid" class="label label-danger"> Phải nhập tiêu đề SEO</span>
-                        <span ng-show="frmAddProductCategory.alias.$error.maxlenght" class="label label-danger">Tiêu đề SEO chỉ tối đa 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.alias.$invalid" class="label label-danger"> Phải nhập tiêu đề SEO</span>
+                        <span ng-show="frmUpdateProductCategory.alias.$error.maxlenght" class="label label-danger">Tiêu đề SEO chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="description" ng-model="productCategory.Description" ng-maxlength="500">
-                        <span ng-show="frmAddProductCategory.description.$error.maxlenght" class="label label-danger">Mô tả chỉ tối đa 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.description.$error.maxlenght" class="label label-danger">Mô tả chỉ tối đa 256 ký tự</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder">
-                        <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="label label-danger">Phải nhập thứ tự</span>
+                        <span ng-show="frmUpdateProductCategory.displayOrder.$invalid" class="label label-danger">Phải nhập thứ tự</span>
                     </div>
                 </div>
                 <div class="form-group">

@@ -288,3 +288,4 @@ __pycache__/
 *.xsd.cs
 Smq.Web/UploadedFiles/_thumbs/Images/soccer.jpg
 Smq.Web/UploadedFiles/
+/Smq.Web/Reports

@@ -8,7 +8,7 @@
         function filterData() {
             $scope.tabledata = [];
             $scope.labels = [];
-            $scope.series = ['Revenue', 'Profit'];
+            $scope.series = ['Doanh thu', 'Lợi nhuận'];
 
             $scope.chartdata = [];
             function getStatistic() {

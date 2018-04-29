@@ -10,7 +10,8 @@
          'smq.statistics',
          'smq.common',
          'smq.orders',
-         'smq.posts'])
+         'smq.posts',
+         'smq.post_categories'])
         .config(config)
         .config(configAuthentication);
 

@@ -13,14 +13,20 @@
             <div class="nav-tabs-custom">
                 <!-- Tabs within a box -->
                 <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Doanh thu</a></li>
+                    <li class="active"><a href=".revenue-chart" data-toggle="tab">Biểu đồ cột</a></li>
+                    <li><a href=".sales-chart" data-toggle="tab">Biểu đồ đường</a></li>
                 </ul>
                 <div class="tab-content no-padding">
-                    <!-- Morris chart - Sales -->
-                    <canvas id="bar" class="chart chart-line"
-                            chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                    <div class="chart tab-pane active revenue-chart" style="position: relative; height: 300px;">
+                        <canvas id="bar" class="chart chart-bar"
+                                chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                    </div>
+                    <div class="chart tab-pane sales-chart" style="position: relative; height: 300px;">
+                        <canvas id="line" class="chart chart-line"
+                                chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                    </div>
                 </div>
-            </div><!-- /.nav-tabs-custom -->
+                </div><!-- /.nav-tabs-custom -->
         </section><!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
         <section class="col-lg-5">
