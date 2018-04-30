@@ -17,11 +17,13 @@ namespace Smq.Web.Controllers
         IProductCategoryService _productCategoryService;
         ICommonService _commonService;
         IProductService _productService;
-        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService,IProductService productService)
+        IPostCategoryService _postCategoryService;
+        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService,IProductService productService, IPostCategoryService postCategoryService)
         {
             this._productCategoryService = productCategoryService;
             this._commonService = commonService;
             this._productService = productService;
+            this._postCategoryService = postCategoryService;
         }
         [OutputCache(Duration = 60,Location=OutputCacheLocation.Client)]
         public ActionResult Index()
@@ -60,6 +62,13 @@ namespace Smq.Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
+            var listPostCategory= _postCategoryService.GetAll();
+            var listPostCategoryParent = listPostCategory.Where(n => n.ParentID == null);
+            var listPostCategoryChild = listPostCategory.Where(n => n.ParentID != null);
+            var listPostCategoryParentVM = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(listPostCategoryParent);
+            var listPostCategoryChildVM = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(listPostCategoryChild);
+            ViewBag.PostCategoryParent = listPostCategoryParentVM;
+            ViewBag.PostCategoryChild = listPostCategoryChildVM;
             return PartialView();
         }
         [ChildActionOnly]

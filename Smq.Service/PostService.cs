@@ -21,6 +21,9 @@ namespace Smq.Service
         Post GetById(int id);
         IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow);
         IEnumerable<Post> GetAll(string keyword);
+        IEnumerable<Post> GetPostById(int id, int page, int pageSize, out int totalRow);
+        IEnumerable<Tag> GetAllTagPost();
+        Tag GetTagPost(string tagId);
         void SaveChanges();
 
     }
@@ -68,6 +71,27 @@ namespace Smq.Service
         public void Update(Post post)
         {
             _postRepository.Update(post);
+            if (!string.IsNullOrEmpty(post.Tags))
+            {
+                string[] tags = post.Tags.Split(',');
+                for (var i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(n => n.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.PostTag;
+                        _tagRepository.Add(tag);
+                    }
+                    _postTagRepository.DeleteMulti(n => n.PostID == post.ID);
+                    PostTag postTag = new PostTag();
+                    postTag.PostID = post.ID;
+                    postTag.TagID = tagId;
+                    _postTagRepository.Add(postTag);
+                }
+            }
         }
 
         public Post Delete(int id)
@@ -118,6 +142,22 @@ namespace Smq.Service
             {
                 return _postRepository.GetAll();
             }
+        }
+
+        public IEnumerable<Post> GetPostById(int id, int page, int pageSize, out int totalRow)
+        {
+            var query = _postRepository.GetMulti(n => n.Status && n.CategoryID == id);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+        public IEnumerable<Tag> GetAllTagPost()
+        {         
+            var listTag = _tagRepository.GetAllTagPost();
+            return listTag;
+        }
+        public Tag GetTagPost(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(n => n.ID == tagId);
         }
     }
 }

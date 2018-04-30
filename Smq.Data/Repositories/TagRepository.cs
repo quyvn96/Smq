@@ -11,6 +11,7 @@ namespace Smq.Data.Repositories
     public interface ITagRepository : IRepository<Tag>
     {
          IEnumerable<Tag> GetTagByProductId(int productId);
+         IEnumerable<Tag> GetAllTagPost();
     }
     public class TagRepository : RepositoryBase<Tag>,ITagRepository
     {
@@ -18,6 +19,15 @@ namespace Smq.Data.Repositories
             : base(dbFactory)
         {
 
+        }
+
+        public IEnumerable<Tag> GetAllTagPost()
+        {
+            var query = from p in DbContext.Tags
+                        join pt in DbContext.PostTags
+                        on p.ID equals pt.TagID
+                        select p;
+            return query;
         }
 
         public IEnumerable<Tag> GetTagByProductId(int productId)

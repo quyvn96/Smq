@@ -124,8 +124,8 @@ ul.login li a span{
 .search {
 	background:#fff;
 	border: 1px solid #ddd;
-	position: relative;
-	width: 47%;
+	position: inherit;
+	width: 44%;
 	float: right;
 	margin: 1.2em 0 0;
 }

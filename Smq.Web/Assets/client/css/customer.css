@@ -130,3 +130,71 @@
     border: 1px solid #ddd;
     padding: 10px
 }
+/*css arricle*/
+.nav-article{
+    float: left;
+    color:#fff;
+    margin:0;
+}
+
+.nav-article>li{
+    float: left;
+    margin-right: 15px;
+}
+ 
+.nav-article>li:first-child>a{
+    text-decoration:none;
+    color: #fff;
+    padding: 0;
+    margin-top:1px;
+    font-size: 1.1em;
+}
+.nav-article li{
+    position: relative;
+}
+
+.nav-article li a{
+    padding: 10px;
+    line-height: 20px;
+    display: inline-block;
+    text-decoration:none;
+    color:#fff;
+}
+
+.nav-article .sub-menu{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200px;
+    background-color: #3c8dbc;
+    padding: 5px 20px;
+}
+ 
+.nav-article li:hover>.sub-menu{
+    display: block;
+}
+
+.nav-article>li>.sub-menu{
+    top: 20px;
+    left: 0;
+}
+
+.show-article{
+    border:1px solid #ddd;
+    padding:10px;
+    margin:5px;
+}
+.elit-grid-articel{
+    float: left;
+    width: 70%;
+}
+.time-article{
+    font-size: 12px;
+    color: #999999;
+    margin-top: 35px;
+}
+.content_box{
+    padding:5px;
+    margin:0;
+}

@@ -93,6 +93,16 @@ namespace Smq.Web
                    url: "tag/{tagId}.html",
                    defaults: new { controller = "Product", action = "ListByTag", tagId = UrlParameter.Optional },
                      namespaces: new string[] { "Smq.Web.Controllers" });
+            routes.MapRoute(
+                  name: "PostTagList",
+                  url: "tagbaiviet/{tagId}.html",
+                  defaults: new { controller = "Post", action = "PostByTag", tagId = UrlParameter.Optional },
+                    namespaces: new string[] { "Smq.Web.Controllers" });
+            routes.MapRoute(
+                  name: "Post",
+                  url: "baiviet/{id}.html",
+                  defaults: new { controller = "Post", action = "Index", tagId = UrlParameter.Optional },
+                  namespaces: new string[] { "Smq.Web.Controllers" });
 
             routes.MapRoute(
                 name: "Default",

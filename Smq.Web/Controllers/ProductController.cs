@@ -34,7 +34,6 @@ namespace Smq.Web.Controllers
             ViewBag.MoreImages = listImages;
 
             ViewBag.Tags = Mapper.Map<IEnumerable<Tag>,IEnumerable<TagViewModel>>(_productService.GetListTagByProductId(id));
-            var val = ViewBag.Tags;
             return View(productViewModel);
         }
 

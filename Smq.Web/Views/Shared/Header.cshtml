@@ -1,4 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using Smq.Web.Models
+@{
+    var listPostCategoryParent = (List<PostCategoryViewModel>)ViewBag.PostCategoryParent ?? new List<PostCategoryViewModel>();
+    var listPostCategoryChild = (List<PostCategoryViewModel>)ViewBag.PostCategoryChild ?? new List<PostCategoryViewModel>();
+}
 <div class="header">
     <div class="top-header">
         <div class="container">
@@ -10,6 +15,36 @@
                 <ul class="support">
                     @*<li class="#"><a href="#"><label> </label></a></li>*@
                     <li><a href="/lien-he.html"><span class="live"><i class="fa fa-phone-square"></i> Liên hệ</span></a></li>
+                </ul>
+                @*<li class="#"><a href="#"><label> </label></a></li>*@
+                @*<li><a href="/lien-he.html"><span class="live"><i class="fa fa-phone-square"></i> Bài viết</span></a></li>*@
+                <ul class="nav-article">
+                    <li>
+                        <a href="#"><i class="fa fa-pencil"></i> Bài viết</a>
+                        <ul class="sub-menu">
+                            @foreach (var itemParent in listPostCategoryParent)
+                            {
+                                foreach (var itemChild in listPostCategoryChild)
+                                {
+                                    if (itemChild.ParentID == itemParent.ID)
+                                    {
+                                      <li>
+                                        <a href="/baiviet/@(itemParent.ID).html">@itemParent.Name</a>
+                                          <ul class="sub-menu">
+                                              <li><a href="/baiviet/@(itemChild.ID).html">@itemChild.Name</a></li>
+                                           </ul>
+                                      </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="/baiviet/@(itemParent.ID).html">@itemParent.Name</a>
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </li>
                 </ul>
                 <div class="clearfix"> </div>
             </div>
@@ -37,25 +72,25 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-              @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new {@id="frmLogOut"}))
-              {
-                  if (Request.IsAuthenticated)
-                  {
-                    @Html.AntiForgeryToken()
-                    @*<div class="account"><a href="#"><span> </span>Tài khoản</a></div>*@
-                    <ul class="login">
-                        <li><a href="/tai-khoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
-                        <li><a href="#" id="btnLogOut">Thoát</a></li>
-                    </ul> 
-                  }
-                  else
-                  {
-                    <ul class="login">
-                        <li><a href="/dang-nhap.html"><span> </span>Đăng nhập</a></li> |
-                        <li><a href="/dang-ky.html">Đăng ký</a></li>
-                    </ul>
-                  }
-              }
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { @id = "frmLogOut" }))
+                {
+                    if (Request.IsAuthenticated)
+                    {
+                        @Html.AntiForgeryToken()
+                        @*<div class="account"><a href="#"><span> </span>Tài khoản</a></div>*@
+                        <ul class="login">
+                            <li><a href="/tai-khoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
+                            <li><a href="#" id="btnLogOut">Thoát</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="login">
+                            <li><a href="/dang-nhap.html"><span> </span>Đăng nhập</a></li> |
+                            <li><a href="/dang-ky.html">Đăng ký</a></li>
+                        </ul>
+                    }
+                }
                 <div class="cart"><a href="/gio-hang.html"><span> </span>Giỏ hàng</a></div>
                 <div class="clearfix"> </div>
             </div>
