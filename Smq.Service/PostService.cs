@@ -107,7 +107,10 @@ namespace Smq.Service
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
             //Select all post by tag
-            return _postRepository.GetMultiPaging(n => n.Status, out totalRow, page, pageSize);
+            //return _postRepository.GetMultiPaging(n => n.Status, out totalRow, page, pageSize);
+            var query = _postRepository.GetMulti(n => n.Status);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public Post GetById(int id)

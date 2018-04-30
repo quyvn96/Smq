@@ -1,13 +1,11 @@
-﻿@using Smq.Web.Models
-@using System;
-@model Smq.Web.Infrastructure.Core.PaginationSet<PostViewModel>
+﻿@model Smq.Web.Infrastructure.Core.PaginationSet<Smq.Web.Models.PostViewModel>
+@using Smq.Web.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AllPost";
     Layout = "~/Views/Shared/Layout.cshtml";
-    var postCategory = (PostCategoryViewModel)ViewBag.PostCategory ?? new PostCategoryViewModel();
 }
 <div class="women-product">
-    <h2>@postCategory.Name</h2>
+    <h2>Bài viết</h2>
     @if (Model.Count > 0)
     {
         foreach (var item in Model.Items)
@@ -26,9 +24,9 @@
         <div class="post-tag">
             Tags:
             <ul class="taglist">
-                @foreach (var tag in (IEnumerable<TagViewModel>)ViewBag.PostTags)
+                @foreach (var tag in (IEnumerable<TagViewModel>)ViewBag.AllPostTags)
                 {
-                  <li><a href="/tagbaiviet/@(tag.ID).html" class="label label-info"> @(tag.Name) </a></li>
+                    <li><a href="/tagbaiviet/@(tag.ID).html" class="label label-info"> @(tag.Name) </a></li>
                 }
             </ul>
 
@@ -79,11 +77,12 @@
                     }
                 </ul>
             </nav>
-         }
+        }
     }
     else
     {
-            <div class="text-center">Không có bài viết nào được tìm thấy</div>
+        <div class="text-center">Không có bài viết nào được tìm thấy</div>
     }
 </div>
+
 

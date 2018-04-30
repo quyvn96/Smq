@@ -67,5 +67,24 @@ namespace Smq.Web.Controllers
             };
             return View(paginationSet);
         }
+        public ActionResult AllPost(int page = 1)
+        {
+            ViewBag.AllPostTags = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(_postService.GetAllTagPost());
+            int pageSize = 5;
+            int totalRow = 0;
+            var postModel = _postService.GetAllPaging(page, pageSize, out totalRow);
+            var postViewModel = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(postModel);
+            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            var paginationSet = new PaginationSet<PostViewModel>()
+            {
+                Items = postViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPage
+            };
+            return View(paginationSet);
+        }
     }
 }

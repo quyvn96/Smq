@@ -43,6 +43,7 @@
                 success: function (response) {
                     if (response.status) {
                         alert('Thêm sản phẩm thành công!');
+                        $("#cart-quantity").html(" <label>("+parseInt(response.quantity)+")</label>");
                     }
                     else {
                         alert(response.message);

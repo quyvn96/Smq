@@ -19,7 +19,7 @@
                     @Html.Raw(item.Content)
                     <div class="time-article">Đăng lúc: @String.Format("{0:dd-MM-yyyy HH:mm}", item.CreatedDate)</div>
                 </div>
-                <img class="img-responsive shoe-left" src="@item.Image" alt="" width="" height="163" />
+                <img class="img-responsive shoe-left" src="@item.Image" alt="" width="200" height="163" />
                 <div class="clearfix"> </div>
             </div>
         }
@@ -73,7 +73,7 @@
     }
     else
     {
-        <div class="text-center">Không có sản phẩm nào được tìm thấy</div>
+        <div class="text-center">Không có bài viết nào được tìm thấy</div>
     }
 </div>
 

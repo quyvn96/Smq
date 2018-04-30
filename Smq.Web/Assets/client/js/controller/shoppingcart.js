@@ -18,15 +18,15 @@
                 }
             },
             messages:{
-                name: "Please enter name",
-                address: "Please enter address",
+                name: "Phải nhập tên",
+                address: "Phải nhập địa chỉ",
                 email: {
-                    required: "Please enter email",
-                    email: "Wrong format"
+                    required: "Phải nhập email",
+                    email: "Sai định dạng"
                 },
                 phone: {
-                    required: "Please enter phone number",
-                    number: "Enter number"
+                    required: "Phải nhập điện thoại",
+                    number: "Sai định dạng"
                 }
             }
         });
@@ -138,7 +138,7 @@
                         $('#divCheckout').hide();
                         cart.deleteAll();
                         setTimeout(function () {
-                            $('#cartContent').html("Congratulations on your successful order. We will contact you as soon as possible!");
+                            $('#cartContent').html("Chúc mừng bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ với bạn ngay khi có thể !");
                         }, 2000);
                     }
                 }
@@ -230,7 +230,7 @@
                     });
                     $('#cartBody').html(html);
                     if (html == '') {
-                        $('#cartContent').html('No products in cart!');
+                        $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng !');
                     }
                     $('#lblTotalOrder').text(numeral(cart.getTotalOrder()).format('0,0'));
                     cart.registerEvent();             

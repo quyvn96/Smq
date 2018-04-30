@@ -205,9 +205,15 @@ namespace Smq.Web.Controllers
                 cart.Add(newItem);
             }
             Session[CommonConstants.SessionCart] = cart;
+            var quantityCart = 0;
+            if(cart != null)
+            {
+                quantityCart = cart.Sum(n => n.Quantity);
+            }
             return Json(new
             {
-                status= true 
+                status= true,
+                quantity = quantityCart
             });
         }
 

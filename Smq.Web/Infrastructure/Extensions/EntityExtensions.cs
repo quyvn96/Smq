@@ -58,6 +58,7 @@ namespace Smq.Web.Infrastructure.Extensions
             post.Content = postVm.Content;
             post.Image = postVm.Image;
             post.HomeFlag = postVm.HomeFlag;
+            post.HotFlag = postVm.HotFlag;
             post.ViewCount = postVm.ViewCount;
             post.CreatedDate = postVm.CreatedDate;
             post.CreatedBy = postVm.CreatedBy;
