@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 @section footerJS{
@@ -23,7 +23,7 @@
                 </thead>
                 <tbody id="cartBody"></tbody>
             </table>
-            <button class="btn btn-success" id="btnContinue">Mua hàng</button>
+            <button class="btn btn-success" id="btnContinue">Tiếp tục mua hàng</button>
             <button class="btn btn-danger" id="btnDeleteAll">Xóa giỏ hàng</button>
             <button class="btn btn-default" id="btnCheckout">Thanh toán</button>
             <div class="pull-right">
@@ -40,7 +40,7 @@
                                 {
                                     <label>
                                         <input type="checkbox" id="chkUserLoginInfo" />
-                                        Use login information
+                                        Sử dụng thông tin đăng nhập
                                     </label>
                                 }      
                                 <input type="text" class="textbox" name="name" id="txtName" placeholder="Họ tên">

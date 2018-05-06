@@ -7,13 +7,13 @@ namespace Smq.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddTagsForPost : IMigrationMetadata
+    public sealed partial class AddIconFieldMenu : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddTagsForPost));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddIconFieldMenu));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804290735199_AddTagsForPost"; }
+            get { return "201805060633485_AddIconFieldMenu"; }
         }
         
         string IMigrationMetadata.Source

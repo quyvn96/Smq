@@ -126,6 +126,12 @@ namespace Smq.Web
                     namespaces: new string[] { "Smq.Web.Controllers" });
 
             routes.MapRoute(
+                    name: "YourInformation",
+                    url: "taikhoan.html",
+                    defaults: new { controller = "Account", action = "YourInformation"},
+                    namespaces: new string[] { "Smq.Web.Controllers" });
+
+            routes.MapRoute(
                     name: "Default",
                     url: "{controller}/{action}/{id}",
                     defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

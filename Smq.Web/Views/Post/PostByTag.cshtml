@@ -2,7 +2,7 @@
 @using System;
 @model Smq.Web.Infrastructure.Core.PaginationSet<PostViewModel>
 @{
-    ViewBag.Title = "PostByTag";
+    ViewBag.Title = "Tag bài viết";
     Layout = "~/Views/Shared/Layout.cshtml";
     var tagPost = (TagViewModel)ViewBag.TagPost ?? new TagViewModel();
 }
@@ -17,7 +17,7 @@
                     <h4><b>@item.Name</b></h4>
                     <label>@item.Description</label>
                     @Html.Raw(item.Content)
-                    <div class="time-article">Đăng lúc: @String.Format("{0:dd-MM-yyyy HH:mm}", item.CreatedDate)</div>
+                    <div class="time-article">Đăng lúc: @String.Format("{0:mm-dd-yyyy HH:mm}", item.CreatedDate)</div>
                 </div>
                 <img class="img-responsive shoe-left" src="@item.Image" alt="" width="200" height="163" />
                 <div class="clearfix"> </div>

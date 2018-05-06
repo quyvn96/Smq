@@ -30,8 +30,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--script-->
     @Scripts.Render("~/js/jquery")
     @Scripts.Render("~/js/plugins")
-    @RenderSection("footerJS", required: false)
     <script src="~/Scripts/js/smq.valiation.js"></script>
     <script src="~/Scripts/js/smq.form.js"></script>
+    @RenderSection("footerJS", required: false)
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#birthday-info').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
 </body>
 </html>

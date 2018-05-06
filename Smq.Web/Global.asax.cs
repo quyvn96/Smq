@@ -1,6 +1,8 @@
-﻿using Smq.Web.Mappings;
+﻿using Smq.Data;
+using Smq.Web.Mappings;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -21,6 +23,7 @@ namespace Smq.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MvcHandler.DisableMvcResponseHeader = true;
+            Database.SetInitializer<SmqSolutionDbContext>(null);
         }
     }
 }

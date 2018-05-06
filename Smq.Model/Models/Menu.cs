@@ -30,5 +30,8 @@ namespace Smq.Model.Models
         public string Target { set; get; }
 
         public bool Status { set; get; }
+
+        [MaxLength(256)]
+        public string Icon { get; set; }
     }
 }

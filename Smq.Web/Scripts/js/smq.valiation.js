@@ -10,7 +10,7 @@ Common.Validation = {
         var value = $(element).val().trim().replace(/\$|\,/g, '');
         if (value === "") {
             $(element).attr("style", "border: 1px solid red");
-            $(errElement).html("This field is required.");
+            $(errElement).html("Trường bắt buộc.");
             return true;
         } else {
             $(element).attr("style", "border: 1px solid #cccccc");
@@ -23,7 +23,7 @@ Common.Validation = {
         var value = $(element).val().trim().replace(/\$|\,/g, '');
         if (!$.isNumeric(value)) {
             $(element).attr("style", "border: 1px solid red");
-            $(errElement).html("This field must be a number.");
+            $(errElement).html("Trường này phải nhập số.");
             return true;
         } else {
             var valueData = parseFloat(value);
@@ -99,10 +99,39 @@ Common.Validation = {
         }
     },
     ValidateRequiredEmail: function (element, errElement) {
-        var value = $(element).val().trim().replace(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, '');
-        if (value === "") {
+        var emailRegex = new RegExp(/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/i);
+        var emailAddress =  $(element).val();
+        var valid = emailRegex.test(emailAddress);
+        if (!valid) {
             $(element).attr("style", "border: 1px solid red");
-            $(errElement).html("Please enter a valid email address.");
+            $(errElement).html("Làm ơn nhập một địa chỉ email.");
+            return true;
+        } else {
+            $(element).attr("style", "border: 1px solid #cccccc");
+            $(errElement).html("");
+            return false;
+        }        
+    },
+    ValidateRequiredDate:function(element,errElement){
+        var dateOut = $(element).val().split("/");
+        var dateToSend = new Date(dateOut[0] + "/" + dateOut[1] + "/" + dateOut[2]);
+        if (!dateToSend) {
+            $(element).attr("style", "border: 1px solid red");
+            $(errElement).html("Làm ơn nhập ngày tháng năm sinh.");
+            return true;
+        }
+        else {
+            $(element).attr("style", "border: 1px solid #cccccc");
+            $(errElement).html("");
+            return false;
+        }
+    },
+    ValidatePassword: function (element, errElement, max) {
+        var value = $(element).val().trim().replace(/\$|\,/g, '');
+        var valueCount = value.length;
+        if (valueCount < max) {
+            $(element).attr("style", "border: 1px solid red");
+            $(errElement).html("Mật khẩu tối thiểu "+max+" ký tự ");
             return true;
         } else {
             $(element).attr("style", "border: 1px solid #cccccc");

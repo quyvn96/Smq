@@ -15,6 +15,9 @@ using Smq.Model.Models;
 using Smq.Common;
 using Smq.Web.App_Start;
 using System.Net;
+using AutoMapper;
+using Smq.Service;
+using System.Globalization;
 
 namespace Smq.Web.Controllers
 {
@@ -22,11 +25,13 @@ namespace Smq.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IApplicationUserService _applicationUserService;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IApplicationUserService applicationUserService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _applicationUserService = applicationUserService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -237,6 +242,68 @@ namespace Smq.Web.Controllers
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult YourInformation()
+        {
+            var userId = User.Identity.GetUserId();
+            if (userId != null)
+            {          
+                var userObj = _userManager.Users.Where(n => n.Id == userId);
+                var userModel = Mapper.Map<IEnumerable<ApplicationUser>, IEnumerable<ApplicationUserViewModel>>(userObj);
+                return View(userModel);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public JsonResult YourInformation(string id, string fullName, string address, string birthDay, string email, string phoneNumber)
+        {
+            var userId = User.Identity.GetUserId();
+
+            if (userId != null && birthDay != null)
+            {
+                var birthDayFormat = DateTime.ParseExact(birthDay, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                _applicationUserService.UpdateUserInformation(id,fullName,address, birthDayFormat, email,phoneNumber);
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+        [HttpPost] 
+        public JsonResult ChangePassword(string currentPassword,string newPassword)
+        {
+            var userId = User.Identity.GetUserId();      
+            if (userId != null && currentPassword != null && newPassword != null)
+            {
+                var checkPassword = _userManager.Find(User.Identity.GetUserName(), currentPassword);
+                if (checkPassword != null)
+                {
+                    _userManager.ChangePassword(userId, currentPassword, newPassword);
+                    return Json(new
+                    {
+                        status = true
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        status = false
+                    });
+                }           
+            }
+            return Json(new
+            {
+                status = false
+            });
         }
         #region Helpers
         // Used for XSRF protection when adding external logins

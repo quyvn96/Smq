@@ -65,9 +65,9 @@
     <Compile Include="Migrations\201804131908004_CreateDB.Designer.cs">
       <DependentUpon>201804131908004_CreateDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804290735199_AddTagsForPost.cs" />
-    <Compile Include="Migrations\201804290735199_AddTagsForPost.Designer.cs">
-      <DependentUpon>201804290735199_AddTagsForPost.cs</DependentUpon>
+    <Compile Include="Migrations\201805060633485_AddIconFieldMenu.cs" />
+    <Compile Include="Migrations\201805060633485_AddIconFieldMenu.Designer.cs">
+      <DependentUpon>201805060633485_AddIconFieldMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
     <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
@@ -115,8 +116,8 @@
     <EmbeddedResource Include="Migrations\201804131908004_CreateDB.resx">
       <DependentUpon>201804131908004_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804290735199_AddTagsForPost.resx">
-      <DependentUpon>201804290735199_AddTagsForPost.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805060633485_AddIconFieldMenu.resx">
+      <DependentUpon>201805060633485_AddIconFieldMenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

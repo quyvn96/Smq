@@ -289,6 +289,7 @@
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\MenuViewModel.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PageViewModel.cs" />
@@ -5070,6 +5071,11 @@
     <Content Include="Assets\admin\libs\toastr\toastr.min.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.min.js" />
     <Content Include="Assets\admin\templates\product-detail.html" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\client\fonts\Univers-Bold.svg" />
+    <Content Include="Assets\client\fonts\Univers.svg" />
+    <Content Include="Assets\client\fonts\Web-Light.html" />
+    <Content Include="Assets\client\fonts\Web-Light.svg" />
     <Content Include="Assets\client\images\bank_logo.png" />
     <Content Include="Assets\client\images\girl1.jpg" />
     <Content Include="Assets\client\images\girl3.jpg" />
@@ -5139,6 +5145,7 @@
     <Content Include="Assets\client\images\wat.jpg" />
     <Content Include="Assets\client\images\zoom.png" />
     <Content Include="Assets\client\js\common.js" />
+    <Content Include="Assets\client\js\controller\userinfomation.js" />
     <Content Include="Assets\client\js\jquery.etalage.min.js" />
     <Content Include="Assets\client\js\jquery.flexisel.js" />
     <Content Include="Assets\client\js\jquery.min.js" />
@@ -5487,11 +5494,30 @@
     <Content Include="Assets\admin\libs\angular-ui-router\LICENSE" />
     <Content Include="Assets\admin\libs\angular-ui-router\README.md" />
     <Content Include="app\components\posts\posts.module.js" />
+    <Content Include="Assets\client\fonts\gijgo.woff2" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\client\fonts\Univers-Bold.eot" />
+    <Content Include="Assets\client\fonts\Univers-Bold.otf" />
+    <Content Include="Assets\client\fonts\Univers-Bold.ttf" />
+    <Content Include="Assets\client\fonts\Univers-Bold.woff" />
+    <Content Include="Assets\client\fonts\Univers-Bold.woff2" />
+    <Content Include="Assets\client\fonts\Univers.eot" />
+    <Content Include="Assets\client\fonts\Univers.otf" />
+    <Content Include="Assets\client\fonts\Univers.ttf" />
+    <Content Include="Assets\client\fonts\Univers.woff" />
+    <Content Include="Assets\client\fonts\Web-Light.ttf" />
+    <Content Include="Assets\client\fonts\Web-Light.woff" />
+    <Content Include="Assets\client\fonts\Web-Light.woff2" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Properties\PublishProfiles\publishweb.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Librarys\CKFinder.dll" />
     <Content Include="Scripts\active-script.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -5501,6 +5527,7 @@
     <Content Include="Scripts\js\npm.js" />
     <Content Include="Scripts\js\smq.form.js" />
     <Content Include="Scripts\js\smq.valiation.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="UploadedFiles\images\ao.jpg" />
     <Content Include="UploadedFiles\images\ba.jpg" />
     <Content Include="UploadedFiles\images\baa.jpg" />
@@ -5572,6 +5599,7 @@
     <Content Include="Views\Product\AllProductLastest.cshtml" />
     <Content Include="Views\Product\AllProductHot.cshtml" />
     <Content Include="Views\Post\AllPost.cshtml" />
+    <Content Include="Views\Account\YourInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\roles\" />

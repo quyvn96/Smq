@@ -1,0 +1,114 @@
+﻿@using Smq.Web.Models
+@model List<ApplicationUserViewModel>
+@{
+    ViewBag.Title = "Tài khoản";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+@section footerJS{
+<script src="~/Assets/client/js/controller/userinfomation.js"></script>
+}
+<div class="women-product">
+    <h3>Thông tin của bạn</h3>
+    @if (Model.Count > 0)
+    {
+     foreach (var item in Model)
+    {
+        <input type="text" id="userId-info" value="@item.Id" hidden/>
+        <div class="col-md-12 user-info">
+            <div class="getinfo">
+                <div class="col-md-2"><b>Họ và tên *</b></div>
+                <div class="col-md-10">
+                    <input type="text" value="@item.FullName" class="form-control" id="fullname-info"/>
+                    <p class="validateWarning col-sm-12" id="validatefullname"></p>
+                </div>            
+            </div><br />
+            <div class="getinfo">
+                <div class="col-md-2"><b>Email *</b></div>
+                <div class="col-md-10">
+                <input type="email" value="@item.Email" class="form-control" id="email-info"/>
+                <p class="validateWarning col-sm-12" id="validateemail"></p>
+                </div>
+               
+            </div><br />
+            <div class="getinfo">
+                <div class="col-md-2"><b>Ngày sinh *</b></div>
+                <div class="col-md-10">
+                <input type="text" value="@String.Format("{0:dd/MM/yyyy}", item.BirthDay)" class="form-control" id="birthday-info"/>   
+                 <p class="validateWarning col-sm-12" id="validatebirthday"></p>
+                </div>
+            </div><br />
+            <div class="getinfo">
+                <div class="col-md-2"><b>Điện thoại *</b></div>
+                <div class="col-md-10">
+                    <input type="text" value="@item.PhoneNumber" class="form-control" id="phonenumber-info"/>
+                    <p class="validateWarning col-sm-12" id="validatephonenumber"></p>
+                </div>
+                
+            </div><br />
+            <div class="getinfo">
+                <div class="col-md-2"><b>Địa chỉ *</b></div>
+                <div class="col-md-10">
+                    <input type="text" value="@item.Address" class="form-control" id="address-info"/>
+                    <p class="validateWarning col-sm-12" id="validateaddress"></p>
+                </div>
+               
+            </div><br /><br />
+            <div class="info-control">
+                <button class="btn btn-info" style="float:left;margin-left:35px;" data-toggle="modal" data-target="#myModal">Đổi mật khẩu</button>
+                <button class="btn btn-warning" style="float:right; margin-right:35px;" id="update-userinfomation">Cập nhật</button>
+            </div>
+        </div>
+    }
+    }
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Đổi mật khẩu</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal frmchangepassword">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Mật khẩu hiện tại *</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="currentpassword" placeholder="Mật khẩu hiện tại">
+                            <p class="validateWarning col-sm-12" id="validatecurrentpassword"></p>
+                            <p class="validateWarning col-sm-12" id="checkcurrentpassword"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Mật khẩu mới *</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="newpassword" placeholder="Mật khẩu mới">
+                            <p class="validateWarning col-sm-12" id="validatenewpassword"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Xác nhận mật khẩu *</label>
+                        <div class="col-sm-8">
+                            <input type="password" class="form-control" id="confimpassword" placeholder="Xác nhận mật khẩu">
+                            <p class="validateWarning col-sm-12" id="validateconfimpassword"></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-8">
+                                <div class="validate-confimpassword-newpassword"></div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" id="change-password">Cập nhật</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="close-changepassword">Thoát</button>
+            </div>
+        </div>
+
+    </div>
+</div>

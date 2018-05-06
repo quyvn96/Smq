@@ -18,12 +18,14 @@ namespace Smq.Web.Controllers
         ICommonService _commonService;
         IProductService _productService;
         IPostCategoryService _postCategoryService;
-        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService,IProductService productService, IPostCategoryService postCategoryService)
+        IMenuService _menuService;
+        public HomeController(IProductCategoryService productCategoryService,ICommonService commonService,IProductService productService, IPostCategoryService postCategoryService, IMenuService menuService)
         {
             this._productCategoryService = productCategoryService;
             this._commonService = commonService;
             this._productService = productService;
             this._postCategoryService = postCategoryService;
+            this._menuService = menuService;
         }
         [OutputCache(Duration = 60,Location=OutputCacheLocation.Client)]
         public ActionResult Index()
@@ -69,6 +71,15 @@ namespace Smq.Web.Controllers
             var listPostCategoryChildVM = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(listPostCategoryChild);
             ViewBag.PostCategoryParent = listPostCategoryParentVM;
             ViewBag.PostCategoryChild = listPostCategoryChildVM;
+
+            var listMenu = _menuService.GetAll();
+            var lisMenuVM = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(listMenu);
+            var listParentMenu = listMenu.Where(n => n.GroupID == 1);
+            var listSpecialMenu = listMenu.Where(n => n.GroupID == 3);
+            var listParentMenuVM = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(listParentMenu);
+            var listSpecialMenuVM = Mapper.Map<IEnumerable<Menu>, IEnumerable<MenuViewModel>>(listSpecialMenu);
+            ViewBag.ParentMenu = listParentMenuVM;
+            ViewBag.SpecialMenu = listSpecialMenuVM;
             return PartialView();
         }
         [ChildActionOnly]

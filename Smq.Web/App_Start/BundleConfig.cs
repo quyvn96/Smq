@@ -8,7 +8,7 @@ namespace Smq.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/js/jquery").Include("~/Assets/client/js/jquery.min.js",
+            bundles.Add(new ScriptBundle("~/js/jquery").Include("~/Scripts/jquery-2.0.3.js",
                  "~/Scripts/active-script.js"));
 
             bundles.Add(new ScriptBundle("~/js/plugins").Include(

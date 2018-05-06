@@ -3,24 +3,26 @@
 @{
     var listPostCategoryParent = (List<PostCategoryViewModel>)ViewBag.PostCategoryParent ?? new List<PostCategoryViewModel>();
     var listPostCategoryChild = (List<PostCategoryViewModel>)ViewBag.PostCategoryChild ?? new List<PostCategoryViewModel>();
+    var listMenuParent = (List<MenuViewModel>)ViewBag.ParentMenu ?? new List<MenuViewModel>();
+    var listSpecialMenu = (List<MenuViewModel>)ViewBag.SpecialMenu ?? new List<MenuViewModel>();
 }
 <div class="header">
     <div class="top-header">
         <div class="container">
             <div class="top-header-left">
-                <ul class="support">
-                    @*<li class="van"><a href="#"><label> </label></a></li>*@
-                    <li><a href="/gioi-thieu.html"><span class="live"><i class="fa fa-info-circle"></i> Giới thiệu</span></a></li>
-                </ul>
-                <ul class="support">
-                    @*<li class="#"><a href="#"><label> </label></a></li>*@
-                    <li><a href="/lien-he.html"><span class="live"><i class="fa fa-phone-square"></i> Liên hệ</span></a></li>
-                </ul>
-                @*<li class="#"><a href="#"><label> </label></a></li>*@
-                @*<li><a href="/lien-he.html"><span class="live"><i class="fa fa-phone-square"></i> Bài viết</span></a></li>*@
+                @foreach (var menuParent in listMenuParent)
+                {
+                    <ul class="support">
+                        @*<li class="van"><a href="#"><label> </label></a></li>*@
+                        <li><a href="@menuParent.URL"><span class="live"><i class="@menuParent.Icon"></i> @menuParent.Name</span></a></li>
+                    </ul>
+                }
                 <ul class="nav-article">
                     <li>
-                        <a href="/tat-ca-bai-viet.html"><i class="fa fa-pencil"></i> Bài viết</a>
+                        @foreach (var menuSpecial in listSpecialMenu)
+                        {
+                         <a href="@menuSpecial.URL"><i class="@menuSpecial.Icon"></i> @menuSpecial.Name</a>
+                        }
                         <ul class="sub-menu">
                             @foreach (var itemParent in listPostCategoryParent)
                             {
@@ -77,9 +79,9 @@
                     if (Request.IsAuthenticated)
                     {
                         @Html.AntiForgeryToken()
-                        @*<div class="account"><a href="#"><span> </span>Tài khoản</a></div>*@
+                        @*<div class="account"><a href="@Url.Action("YourInformation","Account",new { userName = User.Identity.GetUserName()})"><span> </span>Tài khoản</a></div>*@
                         <ul class="login">
-                            <li><a href="/tai-khoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
+                            <li><a href="/taikhoan.html"><span> </span>Xin chào:@User.Identity.GetUserName()</a></li> |
                             <li><a href="#" id="btnLogOut">Thoát</a></li>
                         </ul>
                     }
