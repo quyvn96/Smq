@@ -2,9 +2,9 @@
     app.filter('statusFilter', function () {
         return function (input) {
             if (input == true)
-                return 'Active';
+                return 'Mở';
             else
-                return 'Inactive';
+                return 'Khóa';
         }
     });
 })(angular.module('smq.common'));

@@ -26,6 +26,7 @@ namespace Smq.Web.Mappings
                 cfg.CreateMap<Order, OrderViewModel>();
                 cfg.CreateMap<OrderDetail, OrderDetailViewModel>();
                 cfg.CreateMap<Menu, MenuViewModel>();
+                cfg.CreateMap<Feedback, FeedbackViewModel>();
             });
         }
 

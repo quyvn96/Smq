@@ -256,5 +256,28 @@ namespace Smq.Web.Api
                 return response;
             });
         }
+        [Route("updateorderstatus")]
+        [HttpGet]
+        public HttpResponseMessage DeleteOrder(HttpRequestMessage request, int id, bool status)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var orderObject = _orderService.UpdateOrderStatus(id, status);
+                    _orderService.Save();
+
+                    var responseData = orderObject;
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
     }
 }

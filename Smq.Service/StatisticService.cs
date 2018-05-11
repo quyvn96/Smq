@@ -10,7 +10,7 @@ namespace Smq.Service
 {
     public interface IStatisticService
     {
-        IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate);
+        IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate = null, string toDate=null);
     }
     public class StatisticService:IStatisticService
     {
@@ -19,7 +19,7 @@ namespace Smq.Service
         {
             this._orderRepository = orderRepository;
         }
-        public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate)
+        public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate = null, string toDate = null)
         {
             var data = _orderRepository.GetGetRevenueStatistic(fromDate, toDate);
             return data;

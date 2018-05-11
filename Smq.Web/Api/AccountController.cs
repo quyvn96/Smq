@@ -5,20 +5,22 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Smq.Web.App_Start;
+using Smq.Web.Infrastructure.Core;
+using Smq.Service;
 
 namespace Smq.Web.Api
 {
     [RoutePrefix("api/account")]
-    public class AccountController : ApiController
+    public class AccountController : ApiControllerBase
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController(IErrorService errorService):base(errorService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IErrorService errorService):base(errorService)
         {
             UserManager = userManager;
             SignInManager = signInManager;

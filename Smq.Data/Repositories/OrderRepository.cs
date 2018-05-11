@@ -15,6 +15,7 @@ namespace Smq.Data.Repositories
         IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate);
         IEnumerable<Order> GetAllOrder();
         bool DeleteOrder(int Id);
+        bool UpdateOrderStatus(int id, bool status);
     }
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
@@ -44,13 +45,30 @@ namespace Smq.Data.Repositories
             return DbContext.Database.SqlQuery<Order>("EXEC GetAllOrder").ToList();
         }
 
-        public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate, string toDate)
+        public IEnumerable<RevenueStatisticViewModel> GetGetRevenueStatistic(string fromDate = null, string toDate = null)
         {
             var parameters = new SqlParameter[]{
                 new SqlParameter("@fromDate",fromDate),
                 new SqlParameter("@toDate",toDate)
             };
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameters);
+        }
+
+        public bool UpdateOrderStatus(int id, bool status)
+        {
+            try
+            {
+                var parameters = new SqlParameter[]{
+                new SqlParameter("@Id",id),
+                new SqlParameter("@Status",status)};
+                DbContext.Database.ExecuteSqlCommand("EXEC UpdateOrderStatus @Id,@Status", parameters);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                return false;
+            }
         }
     }
 }

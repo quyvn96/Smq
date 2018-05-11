@@ -248,6 +248,7 @@
     <Compile Include="Api\ApplicationGroupController.cs" />
     <Compile Include="Api\ApplicationRoleController.cs" />
     <Compile Include="Api\ApplicationUserController.cs" />
+    <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
@@ -328,6 +329,9 @@
     <Content Include="app\components\application_users\applicationUserListController.js" />
     <Content Include="app\components\application_users\applicationUserListView.html" />
     <Content Include="app\components\application_users\applicationUsers.module.js" />
+    <Content Include="app\components\feedbacks\feedbackListController.js" />
+    <Content Include="app\components\feedbacks\feedbackListView.html" />
+    <Content Include="app\components\feedbacks\feedbacks.module.js" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />

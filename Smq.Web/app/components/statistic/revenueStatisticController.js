@@ -5,6 +5,7 @@
 
     function revenueStatisticController($scope, apiService, notificationService, $filter) {
         $scope.filterData = filterData;
+        $scope.exportExcelStatistic = exportExcelStatistic;
         function filterData() {
             $scope.tabledata = [];
             $scope.labels = [];
@@ -12,8 +13,7 @@
 
             $scope.chartdata = [];
             function getStatistic() {
-                if ($scope.fromdate != undefined && $scope.todate != undefined)
-                {
+                if ($scope.fromdate != undefined && $scope.todate != undefined) {
                     var config = {
                         param: {
                             fromDate: $filter('date')($scope.fromdate, "yyyy-MM-dd"),
@@ -46,6 +46,22 @@
             }
 
             getStatistic();
+        };
+        function exportExcelStatistic() {
+            var config = {
+                params: {
+                    fromDate: $filter('date')($scope.fromdate, "yyyy-MM-dd"),
+                    toDate: $filter('date')($scope.todate, "yyyy-MM-dd")
+                }
+            }
+            apiService.get('/api/statistic/exportstatistic', config, function (response) {
+                if (response.status = 200) {
+                    window.location.href = response.data.Message;
+                }
+            }, function (error) {
+                notificationService.displayError(error);
+
+            });
         }
     }
 

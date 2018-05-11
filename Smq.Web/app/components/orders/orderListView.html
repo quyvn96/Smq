@@ -38,12 +38,13 @@
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 15%">Tên khách hàng</th>
+                            <th style="width: 20%">Tên khách hàng</th>
                             <th style="width: 15%">Địa chỉ</th>
                             <th style="width: 15%">Email</th>
                             <th style="width: 15%">Điện thoại</th>
-                            <th style="width: 20px">Ngày mua</th>
-                            <th style="width: 20%">#</th>
+                            <th style="width: 15%">Ngày mua</th>
+                            <th style="width: 5%">Trạng thái</th>
+                            <th style="width: 15%">#</th>
                         </tr>
                         <tr ng-repeat="item in orders">
                             <td>{{item.CustomerName}}</td>
@@ -51,7 +52,7 @@
                             <td>{{item.CustomerEmail}}</td>
                             <td>{{item.CustomerMobile}}</td>
                             <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                            <!--<td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | statusFilter}}</span></td>-->
+                            <td style="cursor:pointer"><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}" ng-click="updateOrderStatus(item.ID,item.Status)" title="Cập nhật trạng thái">{{item.Status | statusFilter}}</span></td>
                             <td>
                                 <button class="btn btn-sm btn-info" ng-click="viewOrderDetail(item.ID)" title="Order detail" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-sm btn-danger" ng-click="deleteOrder(item.ID)" title="Delete order"><i class="fa fa-trash"></i></button>

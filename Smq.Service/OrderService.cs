@@ -20,6 +20,7 @@ namespace Smq.Service
         bool DeleteOrderDetails(int orderId, int productId);
         bool UpdateOrderDetails(int orderId, int productId, int quantity);
         void UpdateStatus(int orderId);
+        bool UpdateOrderStatus(int id, bool status);
         void Save();
     }
     public class OrderService : IOrderService
@@ -96,6 +97,11 @@ namespace Smq.Service
         public IEnumerable<OrderDetail> GetAllOrderDetail()
         {
             return _orderDetailRepository.GetAllOrderDetail();
+        }
+
+        public bool UpdateOrderStatus(int id, bool status)
+        {
+            return _orderRepository.UpdateOrderStatus(id, status);
         }
     }
 }

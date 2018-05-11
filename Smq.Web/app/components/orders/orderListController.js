@@ -20,6 +20,7 @@
         $scope.deleteOrderDetails = deleteOrderDetails;
         $scope.updateOrderDetails = updateOrderDetails;
         $scope.validationQuantity = validationQuantity;
+        $scope.updateOrderStatus = updateOrderStatus;
 
         function getOrders(page) {
             page = page || 0;
@@ -152,6 +153,20 @@
             }, function (error) {
                 notificationService.displayError(error);
 
+            });
+        }
+        function updateOrderStatus(id, status) {
+            var config = {
+                params: {
+                    id: id,
+                    status: status
+                }
+            }
+            apiService.get('api/order/updateorderstatus', config, function () {
+                notificationService.displaySuccess('Updated successfully');
+                search();
+            }, function () {
+                notificationService.displayError('Updated faild');
             });
         }
         function search() {

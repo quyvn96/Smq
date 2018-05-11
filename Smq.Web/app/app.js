@@ -11,7 +11,8 @@
          'smq.common',
          'smq.orders',
          'smq.posts',
-         'smq.post_categories'])
+         'smq.post_categories',
+         'smq.feedbacks'])
         .config(config)
         .config(configAuthentication);
 
