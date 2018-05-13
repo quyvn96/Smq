@@ -91,6 +91,8 @@ namespace Smq.Web.Controllers
             var listProduct = _productService.GetAll();
             var listProductVM = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(listProduct);
             var specialProduct = new List<ProductViewModel>();
+            var listPrice = _productService.GetPriceForFilter();
+            ViewBag.ListPrice = listPrice;
             foreach (var item in listProductVM)
             {
                 if(item.Description != null && item.Description.ToLower() == "special" && item.HomeFlag == false && item.HotFlag == false)

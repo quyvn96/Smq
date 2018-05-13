@@ -5,6 +5,7 @@ using Smq.Model.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Smq.Common.ViewModels;
 
 namespace Smq.Service
 {
@@ -48,6 +49,8 @@ namespace Smq.Service
         void IncreaseView(int id);
         IEnumerable<Product> GetListProductByTag(string tagId,int page,int pageSize,out int totalRow);
         bool SellProduct(int productId, int quantity);
+        IEnumerable<PriceFilterViewModel> GetPriceForFilter();
+        IEnumerable<Product> GetProductByPrice(int id,int page, int pageSize, out int totalRow);
     }
 
     public class ProductService : IProductService
@@ -292,6 +295,19 @@ namespace Smq.Service
         public IEnumerable<Product> GetAllHotProduct(int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(n => n.Status && n.HomeFlag == true && n.HotFlag == true).OrderByDescending(n => n.CreatedDate);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<PriceFilterViewModel> GetPriceForFilter()
+        {
+            var listPrice = _productRepository.GetPriceForFilter();
+            return listPrice;
+        }
+
+        public IEnumerable<Product> GetProductByPrice(int id, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetProductByPrice(id);
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }

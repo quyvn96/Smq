@@ -73,18 +73,18 @@ namespace Smq.Web.Controllers
         {
             if (model.UserName == null && model.Password == null)
             {
-                ViewBag.Message = "Incorrect password or username!";
+                ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng!";
                 return View(model);
             }
             else
             {
                 if(model.UserName != null && model.Password == null)
                 {
-                    ViewBag.Message = "Please enter password!";
+                    ViewBag.Message = "Phải nhập mật khẩu!";
                 }
                 else if(model.UserName == null && model.Password != null)
                 {
-                    ViewBag.Message = "Please enter username!";
+                    ViewBag.Message = "Phải nhập tài khoản!";
                 }
                 else
                 { 
@@ -108,7 +108,7 @@ namespace Smq.Web.Controllers
                     }
                     else
                     {
-                        ViewBag.Message = "Incorrect password or username!";
+                        ViewBag.Message = "Tên đăng nhập hoặc mật khẩu không đúng!";
                     }
                 }
                 return View(model);
@@ -130,6 +130,7 @@ namespace Smq.Web.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+            ControllerContext.HttpContext.Session.RemoveAll();
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {

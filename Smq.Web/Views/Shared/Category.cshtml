@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Smq.Web.Models.ProductCategoryViewModel>
 @using Smq.Web.Models;
+@using Smq.Common.ViewModels;
 @{ 
     var specialProduct = (List<ProductViewModel>)ViewBag.SpecialProduct ?? new List<ProductViewModel>();
+    var listPrice = (List<PriceFilterViewModel>)ViewBag.ListPrice ?? new List<PriceFilterViewModel>();
 }
 <div class="sub-cate">
     <div class="top-nav rsidebar span_1_of_left">
@@ -40,6 +42,19 @@
 
             }
 
+        </ul>
+    </div>
+
+    <div class="rsidebar span_1_of_left filter-price">
+        <h3 class="cate">LỌC THEO GIÁ</h3>
+        <ul class="menu">
+            @foreach (var itemPrice in listPrice)
+            {
+                var urlPrice = "san-pham-theo-gia-" + @itemPrice.SequenceNumber + ".html";
+                <li class="item_@itemPrice.SequenceNumber">
+                    <a href="@urlPrice">@itemPrice.PriceLevel</a>
+                </li>
+            }
         </ul>
     </div>
     <div class="chain-grid menu-chain">

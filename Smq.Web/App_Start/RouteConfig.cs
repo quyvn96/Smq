@@ -54,6 +54,12 @@ namespace Smq.Web
                    namespaces: new string[] { "Smq.Web.Controllers" });
 
             routes.MapRoute(
+                  name: "ProductByPrice",
+                  url: "san-pham-theo-gia-{id}.html",
+                  defaults: new { controller = "Product", action = "ProductByPrice" },
+                  namespaces: new string[] { "Smq.Web.Controllers" });
+
+            routes.MapRoute(
                     name: "AllPost",
                     url: "tat-ca-bai-viet.html",
                     defaults: new { controller = "Post", action = "AllPost" },

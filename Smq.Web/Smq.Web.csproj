@@ -5604,6 +5604,7 @@
     <Content Include="Views\Product\AllProductHot.cshtml" />
     <Content Include="Views\Post\AllPost.cshtml" />
     <Content Include="Views\Account\YourInformation.cshtml" />
+    <Content Include="Views\Product\ProductByPrice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\roles\" />
