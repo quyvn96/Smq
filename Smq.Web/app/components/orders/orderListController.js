@@ -85,7 +85,7 @@
                         quantity: quantity
                     }
                 }
-                apiService.get('api/order/updateorderdetails', config, function () {
+                apiService.get('/api/order/updateorderdetails', config, function () {
                     notificationService.displaySuccess('Updated successfully');
                     viewOrderDetail(orderId);
                 }, function () {
@@ -162,7 +162,7 @@
                     status: status
                 }
             }
-            apiService.get('api/order/updateorderstatus', config, function () {
+            apiService.get('/api/order/updateorderstatus', config, function () {
                 notificationService.displaySuccess('Updated successfully');
                 search();
             }, function () {

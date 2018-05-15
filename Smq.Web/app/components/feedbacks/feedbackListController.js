@@ -63,7 +63,7 @@
                         status: status
                     }
                 }
-                apiService.get('api/feedback/updatestatus', config, function () {
+                apiService.get('/api/feedback/updatestatus', config, function () {
                     notificationService.displaySuccess('Updated successfully');
                     search();
                 }, function () {

@@ -53,7 +53,7 @@ namespace Smq.Web.Api
         }
         [Route("updatestatus")]
         [HttpGet]
-        public HttpResponseMessage DeleteOrder(HttpRequestMessage request, int id,bool status)
+        public HttpResponseMessage UpdateFeedbackStatus(HttpRequestMessage request, int id,bool status)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -76,7 +76,7 @@ namespace Smq.Web.Api
         }
         [Route("delete")]
         [HttpDelete]
-        public HttpResponseMessage DeleteOrder(HttpRequestMessage request, int id)
+        public HttpResponseMessage DeleteFeedback(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
