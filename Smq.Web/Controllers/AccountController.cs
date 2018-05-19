@@ -227,10 +227,9 @@ namespace Smq.Web.Controllers
                 content = content.Replace("{{UserName}}", adminUser.FullName);
                 content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "dang-nhap.html");
 
-                MailHelper.SendMail(adminUser.Email, "Register successfully!", content);
-                await _userManager.CreateAsync(user, model.Password);
+                MailHelper.SendMail(adminUser.Email, "Đăng ký thành công !", content);
 
-                ViewData["SuccessMsg"] = "Register successfully!";
+                ViewData["SuccessMsg"] = "Đăng ký thành công!";
             }
 
             return View();
