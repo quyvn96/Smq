@@ -1,6 +1,6 @@
 ﻿@model Smq.Web.Infrastructure.Core.PaginationSet<Smq.Web.Models.ProductViewModel>
 @{
-    ViewBag.Title = "ProductByPrice";
+    ViewBag.Title = "Lọc theo giá";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 <div class="women-product">
@@ -24,7 +24,7 @@
                     </div>
                     <h4><a href="@url">@product.Name</a></h4>
                     <p>@product.Description</p>
-                    @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N2"))
+                    @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N2")) VNĐ
                 </div>
             }
             <div class="clearfix"> </div>

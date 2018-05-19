@@ -82,7 +82,7 @@
 
             <h4>@Model.Name</h4>
             <div class="cart-b">
-                <div class="left-n ">Giá:@(Model.Price == 0 ? "Liên hệ": @Model.Price.ToString("N0"))</div>
+                <div class="left-n ">Giá: @(Model.Price == 0 ? "Liên hệ": @Model.Price.ToString("N0")) VNĐ</div>
                 <a class="now-get get-cart-in btnAddToCart" href="#" data-id="@Model.ID">Mua hàng</a>
                 <div class="clearfix"></div>
             </div>
@@ -120,7 +120,7 @@
     </ul>
     
     <div class="toogle">
-        <h3 class="m_3">Detail product</h3>
+        <h3 class="m_3">Chi tiết sản phẩm</h3>
         <p class="m_text">@Html.Raw(Model.Content)</p>
     </div>
 </div>
