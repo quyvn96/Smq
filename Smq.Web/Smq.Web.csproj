@@ -23,6 +23,7 @@
     <IISExpressUseClassicPipelineMode />
     <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -5084,6 +5085,8 @@
     <Content Include="Assets\client\images\girl1.jpg" />
     <Content Include="Assets\client\images\girl3.jpg" />
     <Content Include="Assets\client\images\logo1.png" />
+    <Content Include="Assets\client\images\rem_5.jpg" />
+    <Content Include="Assets\client\images\rem_6.jpg" />
     <Content Include="Assets\client\js\controller\contact.js" />
     <Content Include="Assets\client\js\controller\shoppingcart.js" />
     <Content Include="Assets\client\css\bootstrap.css" />

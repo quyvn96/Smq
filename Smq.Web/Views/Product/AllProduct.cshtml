@@ -4,84 +4,84 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 <div class="women-product">
-@if (Model.Count > 0)
-{
-    <h2>Tất cả các sản phẩm</h2>
-    <div class="grid-product">
-        @foreach (var product in Model.Items)
+    @if (Model.Count > 0)
+    {
+        <h2>Tất cả các sản phẩm</h2>
+        <div class="grid-product">
+            @foreach (var product in Model.Items)
             {
                 var url = "/" + product.Alias + ".p-" + product.ID + ".html";
-            <div class="product-grid">
-                <div class="content_box">
-                    <a href="@url">
-                        <div class="left-grid-view grid-view-left">
-                            <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
-                            <div class="mask">
-                                <div class="info">View</div>
+                <div class="product-grid">
+                    <div class="content_box">
+                        <a href="@url">
+                            <div class="left-grid-view grid-view-left">
+                                <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
+                                <div class="mask">
+                                    <div class="info">View</div>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    <h4><a href="@url">@product.Name</a></h4>
+                    <p>@product.Description</p>
+                    @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N0")) VNĐ
                 </div>
-                <h4><a href="@url">@product.Name</a></h4>
-                <p>@product.Description</p>
-                @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N2"))
-            </div>
-        }
-        <div class="clearfix"> </div>
+            }
+            <div class="clearfix"> </div>
 
-        @if (Model.TotalPages > 1)
+            @if (Model.TotalPages > 1)
             {
                 var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
                 var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    @if (Model.Page > 1)
-                    {
-                        <li>
-                            <a href="?page=1" aria-label="First">
-                                <i class="fa fa-angle-double-left"></i>
-                            </a>
-                        </li>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        @if (Model.Page > 1)
+                        {
+                            <li>
+                                <a href="?page=1" aria-label="First">
+                                    <i class="fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
                             <li>
                                 <a href="?page=@(Model.Page-1)" aria-label="Previous">
                                     <i class="fa fa-angle-double-left"></i>
                                 </a>
                             </li>
-                    }
-                    @for (int i = startPageIndex; i <= endPageIndex; i++)
-                    {
-                        if (Model.Page == i)
-                        {
-                            <li class="active"><a href="?page=@i" title="Trang @i">@i</a></li>
                         }
-                        else
+                        @for (int i = startPageIndex; i <= endPageIndex; i++)
                         {
-                            <li><a href="?page=@i" title="Trang @i">@i</a></li>
+                            if (Model.Page == i)
+                            {
+                                <li class="active"><a href="?page=@i" title="Trang @i">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="?page=@i" title="Trang @i">@i</a></li>
+                            }
                         }
-                    }
-                    @if (Model.Page < Model.TotalPages)
-                    {
-                        <li>
-                            <a href="?page=@(Model.Page+1)" aria-label="First">
-                                <i class="fa fa-angle-double-right"></i>
-                            </a>
-                        </li>
+                        @if (Model.Page < Model.TotalPages)
+                        {
+                            <li>
+                                <a href="?page=@(Model.Page+1)" aria-label="First">
+                                    <i class="fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
                             <li>
                                 <a href="?page=@Model.TotalPages" aria-label="Previous">
                                     <i class="fa fa-angle-double-right"></i>
                                 </a>
                             </li>
-                    }
-                </ul>
-            </nav>
-        }
+                        }
+                    </ul>
+                </nav>
+            }
 
-    </div>
+        </div>
     }
 
     else
     {
-    <div class="text-center">Không có sản phẩm nào được tìm thấy</div>
+        <div class="text-center">Không có sản phẩm nào được tìm thấy</div>
     }
 </div>

@@ -11,21 +11,21 @@
             @foreach (var product in Model.Items)
             {
                 var url = "/" + product.Alias + ".p-" + product.ID + ".html";
-                <div class="product-grid">
-                    <div class="content_box">
-                        <a href="@url">
-                            <div class="left-grid-view grid-view-left">
-                                <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
-                                <div class="mask">
-                                    <div class="info">View</div>
-                                </div>
+            <div class="product-grid">
+                <div class="content_box">
+                    <a href="@url">
+                        <div class="left-grid-view grid-view-left">
+                            <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
+                            <div class="mask">
+                                <div class="info">View</div>
                             </div>
-                        </a>
-                    </div>
-                    <h4><a href="@url">@product.Name</a></h4>
-                    <p>@product.Description</p>
-                    @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N2"))
+                        </div>
+                    </a>
                 </div>
+                <h4><a href="@url">@product.Name</a></h4>
+                <p>@product.Description</p>
+                @(product.Price == 0 ? "Liên hệ" : product.Price.ToString("N0")) VNĐ
+            </div>
             }
             <div class="clearfix"> </div>
 

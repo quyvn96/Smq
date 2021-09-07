@@ -63,8 +63,8 @@ namespace Smq.Web.App_Start
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "741087990762-inn1tkvfungvir4ms75a9riasu09md27.apps.googleusercontent.com",
-                ClientSecret = "LVL8qK5XWebvRVSk5RIBcHy0"
+                ClientId = "741087990762-mp640q9qtj1dic8vsi64uhc27nu1gm4h.apps.googleusercontent.com",
+                ClientSecret = "wRTmYTfkN6WSgrNh1VobcwFM"
             });
         }
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider

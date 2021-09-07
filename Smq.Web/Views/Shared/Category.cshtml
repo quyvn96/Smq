@@ -62,8 +62,8 @@
         {
             <a href="#"><img class="img-responsive chain" src="@itemSpecial.Image" alt="" /></a>
             <div class="grid-chain-bottom chain-watch">
-                <span class="actual dolor-left-grid">@itemSpecial.PromotionPrice</span>
-                <span class="reducedfrom">@itemSpecial.Price</span>
+                <span class="actual dolor-left-grid">@(itemSpecial.PromotionPrice == 0 ? "Liên hệ" : itemSpecial.PromotionPrice.Value.ToString("N0")) VNĐ</span>
+                <span class="reducedfrom">@(itemSpecial.Price == 0 ? "Liên hệ" : itemSpecial.Price.ToString("N0")) VNĐ</span>
                 <h6><a href="#">@itemSpecial.Name</a></h6>
             </div>
         }
